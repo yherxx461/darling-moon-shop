@@ -9,16 +9,10 @@
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (255) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-
-CREATE TABLE "personal_info" (
-"id" SERIAL PRIMARY KEY,
-"first_name" VARCHAR (255) NOT NULL,
-"last_name" VARCHAR (255) NOT NULL,
-"email" VARCHAR (255) NOT NULL,
-"phone_number" INT,
-"user_id" INT REFERENCES "user"
+    "password" VARCHAR (1000) NOT NULL,
+    "name" VARCHAR (255) UNIQUE NOT NULL,
+    "email" VARCHAR (255) UNIQUE NOT NULL,
+    "phone" VARCHAR (255) UNIQUE NOT NULL
 );
 
 CREATE TABLE "addresses" (
