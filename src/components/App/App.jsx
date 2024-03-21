@@ -6,6 +6,9 @@ import {
   Switch,
 } from 'react-router-dom';
 
+// Material UI Imports
+// import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
@@ -22,6 +25,14 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: '#ce93d8',
+//     },
+//   },
+// });
+
 function App() {
   const dispatch = useDispatch();
 
@@ -33,6 +44,7 @@ function App() {
 
   return (
     <Router>
+      {/* return <ThemeProvider theme={theme}>...</ThemeProvider>; */}
       <div>
         <Nav />
         <Switch>
@@ -44,14 +56,14 @@ function App() {
             // shows AboutPage at all times (logged in or not)
             exact
             path="/about"
-          >
+            >
             <AboutPage />
           </Route> */}
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:5173/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:5173/user */}
+          Even though it seems like they are different pages, the user is always on localhost:5173/user */}
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
@@ -64,7 +76,7 @@ function App() {
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
-          >
+            >
             <InfoPage />
           </ProtectedRoute> */}
 
