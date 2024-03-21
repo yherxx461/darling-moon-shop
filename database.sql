@@ -48,7 +48,6 @@ VALUES
 ('jungwon_bite_me_1.png', 'jungwon_bite_me_2.png', 'jungwon_bite_me_3.png', 'Jungwon "Bite Me"', 'Dark Jungwon during "Bite Me" era.', 17.50),
 ('jungwon_sunshine_1.jpg', 'jungwon_sunshine_1.jpg', 'jungwon_sunshine_1.jpg', 'Jungwon "Sunhine"', 'Fresh and bright like vitamin-C Jungwon.', 15.00);
 
-
 CREATE TABLE "orders" (
 "id" SERIAL PRIMARY KEY,
 "order_date" DATE NOT NULL,
@@ -72,8 +71,6 @@ INSERT INTO "featured_items" ("image_url")
 VALUES 
 ('jungwon_bite_me_1.png'),
 ('jungwon_sunshine_1.jpg');
-
-
 
 DROP TABLE "addresses";
 DROP TABLE "line_items";
