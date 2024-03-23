@@ -22,6 +22,7 @@ import AccountPage from '../AccountPage/AccountPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ProductsPage from '../ProductsPage/ProductsPage';
 
 import './App.css';
 
@@ -55,9 +56,9 @@ function App() {
           {/* <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/about"
-            >
-            <AboutPage />
+            path="/account"
+          >
+            <AccountPage />
           </Route> */}
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -86,7 +87,7 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect to the /user page
-              <Redirect to="/account" />
+              <Redirect to="/home" />
             ) : (
               // Otherwise, show the login page
               <LoginPage />
@@ -97,7 +98,7 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/account" />
+              <Redirect to="/home" />
             ) : (
               // Otherwise, show the registration page
               <RegisterPage />
@@ -108,7 +109,7 @@ function App() {
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/account" />
+              <Redirect to="/home" />
             ) : (
               // Otherwise, show the Landing page
               <LandingPage />

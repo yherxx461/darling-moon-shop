@@ -9,6 +9,13 @@ function Nav() {
 
   return (
     <div className="nav">
+      {user.id && (
+        <>
+          <Link className="navLink" to="/products">
+            Products
+          </Link>
+        </>
+      )}
       {!user.id && (
         // If there's no user, show login/registration links
         <Link className="navLink" to="/products">
@@ -30,8 +37,8 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Link className="navLink" to="/home">
-              Home
+            <Link className="navLink" to="/account">
+              Account
             </Link>
 
             {/* <Link className="navLink" to="/info">
