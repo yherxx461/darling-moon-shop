@@ -9,6 +9,12 @@ function Nav() {
 
   return (
     <div className="nav">
+      {!user.id && (
+        // If there's no user, show login/registration links
+        <Link className="navLink" to="/products">
+          Products
+        </Link>
+      )}
       <Link to="/home">
         <h2 className="nav-title">Darling Moon Shop</h2>
       </Link>

@@ -17,7 +17,7 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // import AboutPage from '../AboutPage/AboutPage';
-import Account from '../Account/Account';
+import AccountPage from '../AccountPage/AccountPage';
 // import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -64,13 +64,15 @@ function App() {
             Visiting localhost:5173/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
           Even though it seems like they are different pages, the user is always on localhost:5173/user */}
-          <ProtectedRoute
+          {/* <ProtectedRoute */}
+          <Route
             // logged in shows UserPage else shows LoginPage
             exact
             path="/account"
           >
-            <Account />
-          </ProtectedRoute>
+            <AccountPage />
+          </Route>
+          {/* </ProtectedRoute> */}
 
           {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
