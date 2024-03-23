@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
 
-function LoginPage() {
+function ProductsPage() {
   const history = useHistory();
 
   return (
@@ -22,4 +22,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default ProductsPage;
