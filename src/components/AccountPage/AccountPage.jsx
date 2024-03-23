@@ -1,6 +1,7 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 function AccountPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -17,7 +18,7 @@ function AccountPage() {
         <LogOutButton className="btn" />
       </span>
       <span>
-        <p>Cart</p>
+        <ShoppingCartOutlinedIcon />
       </span>
     </div>
   );
