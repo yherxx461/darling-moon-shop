@@ -5,12 +5,14 @@ import { Button } from '@mui/material';
 // import ItemizedProduct from "../ItemizedProduct/ItemizedProduct"
 
 function ShoppingCart() {
+  const [quantity, setQuantityValue] = [];
   const handleDeleteItem = () => {
     console.log('in handleDeleteItem');
   };
 
-  const handleChange = () => {
-    console.log;
+  const handleChange = (event) => {
+    event.target.value();
+    console.log('update handleChange for quantity');
   };
 
   const handleOrderCheckout = () => {
@@ -26,8 +28,14 @@ function ShoppingCart() {
           <p>image_url_1</p>
           <p>Product Name</p>
           {/* <label for="quanity">Quantity: </label> */}
-          Qty:{' '}
-          <select name="select-opt" id="select-opt" defaultValue={1}>
+          Qty: {quantity}{' '}
+          <select
+            name="select-opt"
+            id="select-opt"
+            defaultValue={1}
+            onChange={(event) => handleChange}
+            // value={setQuantityValue}
+          >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
