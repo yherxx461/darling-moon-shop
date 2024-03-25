@@ -23,10 +23,11 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProductsPage from '../ProductsPage/ProductsPage';
-
-import './App.css';
 import ThankYouPage from '../ThankYouPage/ThankYouPage';
 import ItemizedProduct from '../ItemizedProduct/ItemizedProduct';
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
+
+import './App.css';
 
 // const theme = createTheme({
 //   palette: {
@@ -131,6 +132,7 @@ function App() {
         <p>Testing Routes:</p>
         <ThankYouPage />
         <ItemizedProduct />
+        <ShoppingCart />
       </div>
     </>
   );
