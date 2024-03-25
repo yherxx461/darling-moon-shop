@@ -26,26 +26,19 @@ function ShoppingCart() {
           <p>image_url_1</p>
           <p>Product Name</p>
           {/* <label for="quanity">Quantity: </label> */}
-          Quantity:{' '}
-          <input
-            list="quantity"
-            placeholder="Quanity"
-            min="1"
-            max="10"
-            // onChange={handleChange}
-          />
-          <datalist id="quantity">
-            <option value="1" />
-            <option value="2" />
-            <option value="3" />
-            <option value="4" />
-            <option value="5" />
-            <option value="6" />
-            <option value="7" />
-            <option value="8" />
-            <option value="9" />
-            <option value="10" />
-          </datalist>
+          Qty:{' '}
+          <select name="select-opt" id="select-opt" defaultValue={1}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
           <p>Price: $##.##</p>
           <Button
             size="small"
