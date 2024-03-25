@@ -26,6 +26,7 @@ import ProductsPage from '../ProductsPage/ProductsPage';
 
 import './App.css';
 import ThankYouPage from '../ThankYouPage/ThankYouPage';
+import ItemizedProduct from '../ItemizedProduct/ItemizedProduct';
 
 // const theme = createTheme({
 //   palette: {
@@ -129,6 +130,7 @@ function App() {
       <div>
         <p>Testing Routes:</p>
         <ThankYouPage />
+        <ItemizedProduct />
       </div>
     </>
   );
