@@ -16,6 +16,7 @@ function ShoppingCartIconPage() {
     <>
       <Badge
         className="shoppingCartIcon"
+        // TO-DO: Once completed the saga/reducer calls, can do item.length to get the total items added to the cart
         badgeContent={4}
         color="primary"
         // anchorOrigin={{
