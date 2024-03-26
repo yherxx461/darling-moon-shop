@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 // import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import { Link } from '@mui/material';
+import { Link, TextField } from '@mui/material';
 // import Badge from '@mui/material/Badge';
 
 // Import Component/Page:
@@ -18,21 +18,60 @@ function AccountPage() {
   const user = useSelector((store) => store.user);
   // Reminder: set useState to false to render original information --> true will make the input field appears in order to edit the information.
   const [isEditing, setIsEditing] = useState(false);
-  //
+  // Use for Conditional Rendering
+  const [editedName, setEditedName] = useState(user.name);
+  const [editedEmail, setEditedEmail] = useState(user.email);
+  const [editedPhone, setEditedPhone] = useState(user.phone);
+
   // const history = useHistory();
 
   // const handleClick = () => {
   //   history.push('/shoppingCart');
   //   // console.log('navigate to Orders');
   // };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setEditedName(user.name);
+    setEditedEmail(user.email);
+    setEditedPhone(user.phone);
+    setIsEditing(false);
+  };
+
   return (
     <div className="container">
       {/*TO-DO: Conditional Rendering to make userInformation editable */}
+      <h2>Welcome, {user.username}!</h2>
       {isEditing ? (
-        <div>
-          <input value={user.phone} />
-          <p>hello</p>
-        </div>
+        <>
+          <TextField
+            type="text"
+            placeholder="Name"
+            value={editedName}
+            onChange={(event) => setEditedName(event.target.value)}
+          />
+          <TextField
+            type="text"
+            placeholder="Email"
+            value={editedEmail}
+            onChange={(event) => setEditedEmail(event.target.value)}
+          />
+          <TextField
+            type="text"
+            placeholder="Phone"
+            value={editedPhone}
+            onChange={(event) => setEditedPhone(event.target.value)}
+          />
+          <button onClick={handleSave}>Save</button>
+          <button onClick={handleCancel}>Cancel</button>
+        </>
       ) : (
         // <div className="container">
         <Card sx={{ display: 'flex' }}>
@@ -44,11 +83,11 @@ function AccountPage() {
               // content: 'center,',
             }}
           >
-            <h2>Welcome, {user.username}!</h2>
             {/* boolean true for editField */}
             <p>{user.name}</p>
             <p>{user.email}</p>
             <p>{user.phone}</p>
+            <button onClick={handleEdit}>Edit</button>
             {/* <p>Your ID is: {user.id}</p> */}
             {/* DO NOT SHOW USER ID. COMMENTED USER ID OUT. */}{' '}
             <LogOutButton className="btn" />
