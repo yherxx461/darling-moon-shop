@@ -8,6 +8,7 @@ import {
 
 // Material UI Imports
 // import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Link } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -41,6 +42,10 @@ function App() {
   const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
+
+  const handleClick = () => {
+    console.log('in handleClick App');
+  };
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -130,9 +135,19 @@ function App() {
       </Router>
       <div>
         <p>Testing Routes:</p>
-        <ThankYouPage />
-        <ItemizedProduct />
-        <ShoppingCart />
+        <Router>
+          {/* <Route exact path="/order-confirmation"> */}
+          <ul>
+            <Route>
+              <Link to="/orderConfirmation">
+                <li>ThankYouPage</li>
+              </Link>
+            </Route>
+            <li>ItemizedProduct</li>
+            <li>ShoppingCart</li>
+            <li>ProductsPage</li>
+          </ul>
+        </Router>
       </div>
     </>
   );
