@@ -50,6 +50,7 @@ function RegisterForm() {
           Password:
           <input
             type="password"
+            placeholder=""
             name="password"
             value={password}
             required
@@ -62,6 +63,7 @@ function RegisterForm() {
           Name:
           <input
             type="text"
+            placeholder="First Last"
             name="name"
             value={name}
             required
@@ -74,6 +76,7 @@ function RegisterForm() {
           Email:
           <input
             type="text"
+            placeholder="handle@email.com"
             name="email"
             value={email}
             required
@@ -86,6 +89,7 @@ function RegisterForm() {
           Phone:
           <input
             type="text"
+            placeholder="(###) ###-####"
             name="phone"
             value={phone}
             required
