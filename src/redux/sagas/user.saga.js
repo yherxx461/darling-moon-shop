@@ -24,18 +24,8 @@ function* fetchUser() {
   }
 }
 
-// function* updateUserInfo() {
-//   try {
-//     console.log('UPDATE_USER_INFO PAYLOAD:', action.payload);
-//     yield axios.put(`/api/user/${id}`, action.payload);
-//   } catch (error) {
-//     console.log('ERROR UPDATING USER INFO', error);
-//   }
-// }
-
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
-  yield takeLatest('UPDATE_USER_INFO', updateUserInfo);
 }
 
 export default userSaga;
