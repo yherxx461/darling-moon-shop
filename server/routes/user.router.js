@@ -50,4 +50,27 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+// PUT request to update user information
+router.put('/:id', (req, res) => {
+  const id = req.params.id;
+  const { name, email, phone } = req.body;
+  console.log(req.body);
+  // const name = req.body.name;
+  // const email = req.body.email;
+  // const phone = req.body.phone;
+
+  const sqlText = `UPDATE "user" SET "name" = $2, "email" = $3, "phone" = $4 WHERE "id" = $1;`;
+  pool
+    // .query(sqlText, [name, email, phone])
+    .query(sqlText, [id, name, email, phone])
+    .then((dbResponse) => {
+      console.log('res.response', dbResponse);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log('User information failed: ', err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
