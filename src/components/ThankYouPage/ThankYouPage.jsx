@@ -14,7 +14,7 @@ function ThankYouPage() {
 
   const handleClickToHome = () => {
     history.push('/home');
-    console.log('in ThankYou handleClick');
+    console.log('in ThankYou handleClicToHome');
   };
 
   return (
