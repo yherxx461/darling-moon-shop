@@ -28,7 +28,6 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/product', productRouter);
 // app.use('/api/addresses', addressesRouter);
-app.use('/api/shopping');
 
 // Listen Server & Port
 app.listen(PORT, () => {
