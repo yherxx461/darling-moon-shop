@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
 
 // Material UI Imports
-// import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import { Link, TextField } from '@mui/material';
@@ -24,20 +22,13 @@ function AccountPage() {
   const [editedEmail, setEditedEmail] = useState(user.email);
   const [editedPhone, setEditedPhone] = useState(user.phone);
 
-  // const history = useHistory();
-
-  // const handleClick = () => {
-  //   history.push('/shoppingCart');
-  //   // console.log('navigate to Orders');
-  // };
-
   const handleEdit = (user) => {
-    // dispatch({ type: 'UPDATE_USER', payload: { id: user.id } });
     setIsEditing(true);
   };
 
   const handleSave = () => {
     dispatch({
+      // Make user info field editable --> once clicked on edited button, it will display the initial value in the textfield, otherwise, it's edited, display the new edited value
       type: 'UPDATE_USER',
       payload: {
         id: user.id,
