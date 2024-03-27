@@ -43,9 +43,9 @@ function App() {
 
   const user = useSelector((store) => store.user);
 
-  const handleClick = () => {
-    console.log('in handleClick App');
-  };
+  // const handleOnClick = () => {
+  //   console.log('in handleClick App');
+  // };
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -140,12 +140,23 @@ function App() {
           <ul>
             <Route>
               <Link to="/orderConfirmation">
-                <li>ThankYouPage</li>
+                <li
+                // onClick={handleOnClick}
+                // onChange={handleOnChange}
+                >
+                  <ThankYouPage />
+                </li>
               </Link>
             </Route>
-            <li>ItemizedProduct</li>
-            <li>ShoppingCart</li>
-            <li>ProductsPage</li>
+            <li>
+              <ItemizedProduct />
+            </li>
+            <li>
+              <ShoppingCart />
+            </li>
+            <li>
+              <ProductsPage />
+            </li>
           </ul>
         </Router>
       </div>
