@@ -17,4 +17,23 @@ router.get('/', (req, res) => {
     });
 });
 
+// POST route request
+router.post('/', (req, res) => {
+  // POST route code
+  const street = req.body.street;
+  const city = req.body.city;
+  const state = req.body.state;
+  const zip = req.body.zip;
+  const { user_id } = req.params;
+
+  const queryText = `INSERT INTO "addresses" (street, city, state, zip, user_id)
+    VALUES ($1, $2, $3, $4, $5) RETURNING id`;
+  pool
+    .query(queryText, [street, city, state, zip, user_id])
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.log('Address not posting', err);
+      res.sendStatus(500);
+    });
+});
 module.exports = router;
