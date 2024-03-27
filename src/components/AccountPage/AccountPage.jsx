@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 
 // Material UI Imports
@@ -16,6 +16,7 @@ import ShoppingCartIconPage from '../ShoppingCart/ShoppingCartIconPage';
 function AccountPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
   // Reminder: set useState to false to render original information --> true will make the input field appears in order to edit the information.
   const [isEditing, setIsEditing] = useState(false);
   // Use for Conditional Rendering
@@ -30,11 +31,21 @@ function AccountPage() {
   //   // console.log('navigate to Orders');
   // };
 
-  const handleEdit = () => {
+  const handleEdit = (user) => {
+    // dispatch({ type: 'UPDATE_USER', payload: { id: user.id } });
     setIsEditing(true);
   };
 
   const handleSave = () => {
+    dispatch({
+      type: 'UPDATE_USER',
+      payload: {
+        id: user.id,
+        name: editedName ? editedName : user.name,
+        email: editedEmail ? editedEmail : user.email,
+        phone: editedPhone ? editedPhone : user.phone,
+      },
+    });
     setIsEditing(false);
   };
 
@@ -53,18 +64,21 @@ function AccountPage() {
         <>
           <TextField
             type="text"
+            defaultValue={user.name}
             placeholder="Name"
             value={editedName}
             onChange={(event) => setEditedName(event.target.value)}
           />
           <TextField
             type="text"
+            defaultValue={user.email}
             placeholder="Email"
             value={editedEmail}
             onChange={(event) => setEditedEmail(event.target.value)}
           />
           <TextField
             type="text"
+            defaultValue={user.phone}
             placeholder="Phone"
             value={editedPhone}
             onChange={(event) => setEditedPhone(event.target.value)}
