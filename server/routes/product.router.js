@@ -47,7 +47,7 @@ router.post('/', (req, res) => {
 
 // GET request for Featured Products
 router.get('/featured', (req, res) => {
-  // Add query to get all products
+  // Add query to get all products --> If want to display price --> update query below and the database table
   const query = `SELECT * FROM "featured_items" ORDER BY "id" ASC;`;
   pool
     .query(query)
