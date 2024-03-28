@@ -43,19 +43,21 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   // POST route code
   const { id } = req.params;
-  const queryText = `UPDATE "addresses" SET "street" = $1, city = $2, state = $3, zip = $4 WHERE "id" = $1`;
+  const { street, city, state, zip } = req.body;
+  const queryText = `UPDATE "addresses" SET street = $1, city = $2, state = $3, zip = $4 WHERE "id" = $5`;
+  const queryArgs = [street, city, state, zip, id];
+
   pool
-    .query(queryText, [id])
+    .query(queryText, queryArgs)
     .then(() => {
       console.log(`PUT /addresses/${id} - SUCCESS`);
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log('Error: Internal error', err);
+      console.log('Address PUT route not updating', err);
       res.sendStatus(500);
     });
 });
-module.exports = router;
 
 // PUT route request
 router.delete('/:id', (req, res) => {
