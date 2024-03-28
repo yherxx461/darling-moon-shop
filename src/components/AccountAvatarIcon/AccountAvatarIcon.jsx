@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 // Material UI Imports
-import Avatar from '@mui/material/Avatar';
+// import Avatar from '@mui/material/Avatar';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 function AccountAvatarIcon() {
-  const user = useSelector((store) => {
-    store.user;
-  });
+  // const user = useSelector((store) => {
+  //   store.user;
+  // });
   return (
     <>
       <AccountCircleOutlinedIcon
