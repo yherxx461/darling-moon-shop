@@ -45,4 +45,19 @@ router.post('/', (req, res) => {
     });
 });
 
+// GET request for Featured Products
+router.get('/featured', (req, res) => {
+  // Add query to get all products
+  const query = `SELECT * FROM "featured_items" ORDER BY "id" ASC;`;
+  pool
+    .query(query)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('ERROR: Get all products', error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
