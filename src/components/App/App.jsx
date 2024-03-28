@@ -27,6 +27,7 @@ import ProductsPage from '../ProductsPage/ProductsPage';
 import ThankYouPage from '../ThankYouPage/ThankYouPage';
 import ItemizedProduct from '../ItemizedProduct/ItemizedProduct';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
+import AddressesPage from '../AddressesPage/AddressesPage';
 
 import './App.css';
 
@@ -140,10 +141,7 @@ function App() {
           <ul>
             <Route>
               <Link to="/orderConfirmation">
-                <li
-                // onClick={handleOnClick}
-                // onChange={handleOnChange}
-                >
+                <li>
                   <ThankYouPage />
                 </li>
               </Link>
@@ -156,6 +154,9 @@ function App() {
             </li>
             <li>
               <ProductsPage />
+            </li>
+            <li>
+              <AddressesPage />
             </li>
           </ul>
         </Router>
