@@ -2,10 +2,6 @@
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
--- USER is a reserved keyword with Postgres
--- You must use double quotes in every query that user is in:
--- ex. SELECT * FROM "user";
--- Otherwise you will have errors!
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (255) UNIQUE NOT NULL,
@@ -34,13 +30,16 @@ CREATE TABLE "products" (
 "image_url_3" VARCHAR (255) NOT NULL,
 "name" VARCHAR (255) NOT NULL,
 "description" VARCHAR (255) NOT NULL,
-"price" INT
+"price" FLOAT
 );
+
+-- Price value: recommended by Ryan --> use a float: ALTER TABLE table_name ALTER COLUMN column_name TYPE DOUBLE PRECISION;
 
 INSERT INTO "products" ("image_url_1", "image_url_2", "image_url_3", "name", "description", "price")
 VALUES 
-('jungwon_bite_me_1.png', 'jungwon_bite_me_2.png', 'jungwon_bite_me_3.png', 'Jungwon "Bite Me"', 'Dark Jungwon during "Bite Me" era.', 17.50),
-('jungwon_sunshine_1.jpg', 'jungwon_sunshine_1.jpg', 'jungwon_sunshine_1.jpg', 'Jungwon "Sunhine"', 'Fresh and bright like vitamin-C Jungwon.', 15.00);
+('jungwon_bite_me_1.png', 'jungwon_bite_me_2.png', 'jungwon_bite_me_3.png', 'Jungwon "Bite Me"', 'Dark Jungwon during "Bite Me" era.', 17.25),
+('jungwon_sunshine_1.jpg', 'jungwon_sunshine_1.jpg', 'jungwon_sunshine_1.jpg', 'Jungwon "Sunhine"', 'Fresh and bright like vitamin-C Jungwon.', 15.75);
+
 
 CREATE TABLE "orders" (
 "id" SERIAL PRIMARY KEY,
@@ -66,9 +65,10 @@ VALUES
 ('jungwon_bite_me_1.png'),
 ('jungwon_sunshine_1.jpg');
 
+
+
 DROP TABLE "addresses";
 DROP TABLE "line_items";
 DROP TABLE "orders";
-DROP TABLE "personal_info";
 DROP TABLE "products";
 DROP TABLE "user";
