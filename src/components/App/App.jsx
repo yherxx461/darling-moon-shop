@@ -46,7 +46,6 @@ function App() {
   return (
     <>
       <Router>
-        {/* return <ThemeProvider theme={theme}>...</ThemeProvider>; */}
         <div>
           <Nav />
           <Switch>
@@ -54,40 +53,24 @@ function App() {
             <Redirect exact from="/" to="/home" />
 
             {/* Visiting localhost:5173/about will show the about page. */}
-            {/* <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/account"
-          >
-            <AccountPage />
-          </Route> */}
-
-            {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:5173/user will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-          Even though it seems like they are different pages, the user is always on localhost:5173/user */}
-            {/* <ProtectedRoute */}
-            <Route
-              // logged in shows UserPage else shows LoginPage
-              exact
-              path="/account"
-            >
-              <AccountPage />
+            <Route exact path="/home">
+              <LandingPage />
             </Route>
-            {/* </ProtectedRoute> */}
+            <Route exact path="/products">
+              <ProductsPage />
+            </Route>
+            <ProtectedRoute exact path="/account">
+              <AccountPage />
+            </ProtectedRoute>
 
-            <ProtectedRoute
-              // logged in shows InfoPage else shows LoginPage
-              exact
-              path="/addresses"
-            >
+            <ProtectedRoute exact path="/addresses">
               <AddressesPage />
             </ProtectedRoute>
 
             <Route exact path="/login">
               {user.id ? (
                 // If the user is already logged in,
-                // redirect to the /user page
+                // redirect to the /home page
                 <Redirect to="/home" />
               ) : (
                 // Otherwise, show the login page
@@ -125,31 +108,6 @@ function App() {
           <Footer />
         </div>
       </Router>
-      <div>
-        <p>Testing Routes:</p>
-        <Router>
-          {/* <Route exact path="/order-confirmation"> */}
-          <ul>
-            <Route>
-              <Link to="/orderConfirmation">
-                <li>
-                  <ThankYouPage />
-                </li>
-              </Link>
-            </Route>
-            <li>
-              <ItemizedProduct />
-            </li>
-            <li>
-              <ShoppingCart />
-            </li>
-            <li>
-              <ProductsPage />
-            </li>
-            <li></li>
-          </ul>
-        </Router>
-      </div>
     </>
   );
 }
