@@ -48,14 +48,14 @@ router.post('/', (req, res) => {
 // GET request for Featured Products
 router.get('/featured', (req, res) => {
   // Add query to get all products --> If want to display price --> update query below and the database table
-  const query = `SELECT * FROM "featured_items" ORDER BY "id" ASC;`;
+  const query = `SELECT * FROM "products" WHERE "featured_item" = TRUE ORDER BY "id" ASC;`;
   pool
     .query(query)
     .then((result) => {
       res.send(result.rows);
     })
     .catch((error) => {
-      console.log('ERROR: Get all products', error);
+      console.log('ERROR: Get all featured products', error);
       res.sendStatus(500);
     });
 });
