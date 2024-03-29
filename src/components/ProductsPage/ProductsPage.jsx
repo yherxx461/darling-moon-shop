@@ -12,6 +12,8 @@ function ProductsPage() {
     <div>
       <button type="button" className="btn btn_asLink" onClick={handleClick}>
         Products
+        {/* TO-DO: Need to do fetching of all the products in the inventory */}
+        {/* TO-DO: MAP THE PRODUCTS OUT */}
       </button>
     </div>
   );
