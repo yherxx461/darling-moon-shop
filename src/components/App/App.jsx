@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom';
 
 // Material UI Imports
-// import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Link } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,14 +29,6 @@ import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import AddressesPage from '../AddressesPage/AddressesPage';
 
 import './App.css';
-
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: '#ce93d8',
-//     },
-//   },
-// });
 
 function App() {
   const dispatch = useDispatch();
@@ -85,13 +76,13 @@ function App() {
             </Route>
             {/* </ProtectedRoute> */}
 
-            {/* <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
+            <ProtectedRoute
+              // logged in shows InfoPage else shows LoginPage
+              exact
+              path="/addresses"
             >
-            <InfoPage />
-          </ProtectedRoute> */}
+              <AddressesPage />
+            </ProtectedRoute>
 
             <Route exact path="/login">
               {user.id ? (
@@ -155,9 +146,7 @@ function App() {
             <li>
               <ProductsPage />
             </li>
-            <li>
-              <AddressesPage />
-            </li>
+            <li></li>
           </ul>
         </Router>
       </div>

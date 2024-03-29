@@ -1,6 +1,17 @@
 import { Button } from '@mui/material';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 function AddressesPage() {
+  const dispatch = useDispatch();
+  const address = useSelector((store) => store.address);
+
+  useEffect(() => {
+    //initial load --> load once
+    dispatch({ type: 'FETCH_ADDRESS' });
+  }, []);
+
   const handleSubmitAddress = () => {
     console.log('in handleSubmitAddresses');
   };
@@ -25,6 +36,21 @@ function AddressesPage() {
           Confirm
         </Button>
       </form>
+      <div>
+        <h3>Saved Addresses</h3>
+        {address.map((addressItem) => {
+          return (
+            <div key={addressItem.id}>
+              <p>{addressItem.street}</p>
+              <p>{addressItem.city}</p>
+              <p>
+                {addressItem.state} {addressItem.zip}
+              </p>
+            </div>
+          );
+        })}
+        <p></p>
+      </div>
     </>
   );
 }
