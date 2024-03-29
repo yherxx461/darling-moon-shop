@@ -1,13 +1,16 @@
 const express = require('express');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 // GET route request
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   // GET query to get addresses
-  const query = `SELECT * FROM "addresses" ORDER BY "id" ASC;`;
+  const query = `SELECT * FROM "addresses" WHERE "user_id" = $1;`;
   pool
-    .query(query)
+    .query(query, [req.user.id])
     .then((result) => {
       res.send(result.rows);
     })
@@ -18,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 // POST route request
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code
   const street = req.body.street;
   const city = req.body.city;
@@ -40,7 +43,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT route request -- {{{{{ THIS IS NOT WORKING YET!!!! }}}}}
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
   // POST route code
   const { id } = req.params;
   const { street, city, state, zip } = req.body;
@@ -60,7 +63,7 @@ router.put('/:id', (req, res) => {
 });
 
 // PUT route request
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   // POST route code
   const { id } = req.params;
 
