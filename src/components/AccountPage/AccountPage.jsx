@@ -104,7 +104,7 @@ function AccountPage() {
               justifyContent: 'center',
             }}
           >
-            <Link to="/shoppingCart">
+            <Link to="/cart">
               <ShoppingCartIconPage />
             </Link>
           </Box>

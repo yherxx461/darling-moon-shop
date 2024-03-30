@@ -8,7 +8,7 @@ function ShoppingCartIconPage() {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push('/shoppingCart');
+    history.push('/cart');
     // console.log('navigate to Orders');
   };
 

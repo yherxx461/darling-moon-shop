@@ -67,6 +67,10 @@ function App() {
               <AddressesPage />
             </ProtectedRoute>
 
+            <ProtectedRoute exact path="/order-confirmation">
+              <ThankYouPage />
+            </ProtectedRoute>
+
             <Route exact path="/login">
               {user.id ? (
                 // If the user is already logged in,
