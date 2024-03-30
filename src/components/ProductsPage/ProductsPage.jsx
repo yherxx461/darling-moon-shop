@@ -1,8 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function ProductsPage() {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const products = useSelector((store) => store.products);
+
+  useEffect(() => {
+    // initial load  --> first load to load once
+    dispatch({
+      type: 'FETCH_PRODUCTS',
+    });
+  });
 
   const handleClick = () => {
     history.push('/products');
