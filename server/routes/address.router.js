@@ -8,14 +8,14 @@ const router = express.Router();
 // GET route request
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET query to get addresses
-  const query = `SELECT * FROM "addresses" WHERE "user_id" = $1;`;
+  const query = `SELECT * FROM "address" WHERE "user_id" = $1;`;
   pool
     .query(query, [req.user.id])
     .then((result) => {
       res.send(result.rows);
     })
     .catch((error) => {
-      console.log('ERROR: Get all addresses', error);
+      console.log('ERROR: Get all address', error);
       res.sendStatus(500);
     });
 });
@@ -31,7 +31,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
   /// {{{{ SHOULD USER_ID BE PART OF THE QUERY TEXT TOO OR SINCE IT'S ONLY ONE USER PER ACCOUNT, IT'S NOT NEEDED!?}}}}
 
-  const queryText = `INSERT INTO "addresses" (street, city, state, zip, user_id)
+  const queryText = `INSERT INTO "address" (street, city, state, zip, user_id)
     VALUES ($1, $2, $3, $4, $5) RETURNING id`;
   pool
     .query(queryText, [street, city, state, zip, user_id])
@@ -47,13 +47,13 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   // POST route code
   const { id } = req.params;
   const { street, city, state, zip } = req.body;
-  const queryText = `UPDATE "addresses" SET street = $1, city = $2, state = $3, zip = $4 WHERE "id" = $5`;
+  const queryText = `UPDATE "address" SET street = $1, city = $2, state = $3, zip = $4 WHERE "id" = $5`;
   const queryArgs = [street, city, state, zip, id];
 
   pool
     .query(queryText, queryArgs)
     .then(() => {
-      console.log(`PUT /addresses/${id} - SUCCESS`);
+      console.log(`PUT /address/${id} - SUCCESS`);
       res.sendStatus(201);
     })
     .catch((err) => {
@@ -67,7 +67,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   // POST route code
   const { id } = req.params;
 
-  const queryText = `DELETE FROM "addresses" WHERE "id" = $1;`;
+  const queryText = `DELETE FROM "address" WHERE "id" = $1;`;
 
   pool
     .query(queryText, [id])

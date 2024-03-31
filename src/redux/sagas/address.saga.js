@@ -4,8 +4,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchAddress() {
   try {
-    const response = yield axios.get('/api/addresses');
-    yield put({ type: 'SET_ADDRESSES', payload: response.data });
+    const response = yield axios.get('/api/address');
+    yield put({ type: 'SET_ADDRESS', payload: response.data });
   } catch (error) {
     console.log('Address get request failed', error);
   }
