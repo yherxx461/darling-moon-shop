@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
+import Box from '@mui/material/Box';
 
 function ProductsPage() {
   const dispatch = useDispatch();
@@ -24,22 +25,27 @@ function ProductsPage() {
       {/* TO-DO: Need to do fetching of all the products in the inventory */}
       {products.map((product) => {
         return (
-          <Grid>
-            <Card
-              sx={{ maxWidth: 250 }}
-              variant="outlined"
-              className="container"
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 4, sm: 8, md: 12 }}
             >
-              <div>
+              <Card
+                sx={{ maxWidth: 250 }}
+                variant="outlined"
+                className="container"
+              >
                 <img src={product.image_1} />
                 <CardContent>
                   <Typography gutterBottom variant="p" component="div">
-                    {product.name} {'     '} {product.price}
+                    {product.name}
                   </Typography>
+                  <p>{product.price}</p>
                 </CardContent>
-              </div>
-            </Card>
-          </Grid>
+              </Card>
+            </Grid>
+          </Box>
         );
       })}
     </div>
