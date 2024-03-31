@@ -1,8 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useParams } from 'react';
+
+// import ItemizedProduct from '../ItemizedProduct/ItemizedProduct';
 
 function ProductsPage() {
+  const id = useParams();
   const dispatch = useDispatch();
   const products = useSelector((store) => store.products);
 
@@ -14,19 +17,13 @@ function ProductsPage() {
   }, []);
 
   return (
-    <div>
-      Products
+    <div className="productImages" key={id}>
       {/* TO-DO: Need to do fetching of all the products in the inventory */}
       {products.map((product) => {
         return (
           <div>
-            <p>{product.image_url_1}</p>
-            <p>{product.image_url_2}</p>
-            <p>{product.image_url_3}</p>
-            <h3>{product.name}</h3>
-            <p>{product.description}</p>
-            <p>Quantity: #</p>
-            <p>$ {product.price}</p>
+            <img src={product.image_url_1} />
+            {/* <ItemizedProduct product={product} /> */}
           </div>
         );
       })}
