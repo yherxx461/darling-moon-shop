@@ -1,9 +1,9 @@
-const productsReducer = (state = {}, action) => {
+const productsReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_PRODUCTS':
       return action.payload;
     case 'UNSET_PRODUCTS':
-      return {};
+      return [];
     default:
       return state;
   }

@@ -1,10 +1,8 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 function ProductsPage() {
-  const history = useHistory();
   const dispatch = useDispatch();
   const products = useSelector((store) => store.products);
 
@@ -13,19 +11,25 @@ function ProductsPage() {
     dispatch({
       type: 'FETCH_PRODUCTS',
     });
-  });
+  }, []);
 
-  const handleClick = () => {
-    history.push('/products');
-    console.log('in handleClick navigation to Itemized Product');
-  };
   return (
     <div>
-      <button type="button" className="btn btn_asLink" onClick={handleClick}>
-        Products
-        {/* TO-DO: Need to do fetching of all the products in the inventory */}
-        {/* TO-DO: MAP THE PRODUCTS OUT */}
-      </button>
+      Products
+      {/* TO-DO: Need to do fetching of all the products in the inventory */}
+      {products.map((product) => {
+        return (
+          <div>
+            <p>{product.image_url_1}</p>
+            <p>{product.image_url_2}</p>
+            <p>{product.image_url_3}</p>
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <p>Quantity: #</p>
+            <p>$ {product.price}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
