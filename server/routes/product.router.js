@@ -20,24 +20,17 @@ router.get('/', (req, res) => {
 // POST route request
 router.post('/', (req, res) => {
   // POST route code
-  const image_url_1 = req.body.image_url_1;
-  const image_url_2 = req.body.image_url_2;
-  const image_url_3 = req.body.image_url_3;
+  const image_1 = req.body.image_1;
+  const image_2 = req.body.image_2;
+  const image_3 = req.body.image_3;
   const name = req.body.name;
   const description = req.body.description;
   const price = req.body.price;
 
-  const queryText = `INSERT INTO "products" (image_url_1, image_url_2, image_url_3, name, description, price)
+  const queryText = `INSERT INTO "products" (image_1, image_2, image_3, name, description, price)
     VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`;
   pool
-    .query(queryText, [
-      image_url_1,
-      image_url_2,
-      image_url_3,
-      name,
-      description,
-      price,
-    ])
+    .query(queryText, [image_1, image_2, image_3, name, description, price])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('Products not posting visually ', err);

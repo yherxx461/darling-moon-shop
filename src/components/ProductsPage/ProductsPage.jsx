@@ -1,11 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useParams } from 'react';
+import { useEffect } from 'react';
 
-// import ItemizedProduct from '../ItemizedProduct/ItemizedProduct';
+// Material UI Imports
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import CardContent from '@mui/material/CardContent';
 
 function ProductsPage() {
-  const id = useParams();
   const dispatch = useDispatch();
   const products = useSelector((store) => store.products);
 
@@ -17,14 +20,26 @@ function ProductsPage() {
   }, []);
 
   return (
-    <div className="productImages" key={id}>
+    <div className="productImages">
       {/* TO-DO: Need to do fetching of all the products in the inventory */}
       {products.map((product) => {
         return (
-          <div>
-            <img src={product.image_url_1} />
-            {/* <ItemizedProduct product={product} /> */}
-          </div>
+          <Grid>
+            <Card
+              sx={{ maxWidth: 250 }}
+              variant="outlined"
+              className="container"
+            >
+              <div>
+                <img src={product.image_1} />
+                <CardContent>
+                  <Typography gutterBottom variant="p" component="div">
+                    {product.name} {'     '} {product.price}
+                  </Typography>
+                </CardContent>
+              </div>
+            </Card>
+          </Grid>
         );
       })}
     </div>
