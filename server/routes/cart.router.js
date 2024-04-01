@@ -68,27 +68,26 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // PUT route request
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  // POST route code
-  const quantity = req.body;
+  // PUT route code
+  const { quantity } = req.body;
   const { id } = req.params;
-  const queryText = `UPDATE "line_items" SET quantity = $1, order_id = $2, product_id = $3;`;
-  const queryArgs = [quantity, order_id, product_id];
+  const queryText = `UPDATE "line_items" SET quantity = $1 WHERE "id" = $2;`;
 
   pool
-    .query(queryText, [queryArgs, id])
+    .query(queryText, [quantity, id])
     .then(() => {
       console.log(`PUT /cart/${id} - SUCCESS`);
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log('line_items PUT route not updating', err);
+      console.log('Unable to update item', err);
       res.sendStatus(500);
     });
 });
 
-// PUT route request
+// DELETE route request
 router.delete('/:id', (req, res) => {
-  // POST route code
+  // DELETE route code
   const { id } = req.params;
 
   const queryText = `DELETE FROM "line_items" WHERE "id" = $1;`;
