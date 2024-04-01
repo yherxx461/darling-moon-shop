@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
-// import AccountAvatarIcon from '../AccountAvatarIcon/AccountAvatarIcon';
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import ShoppingCartIconPage from '../ShoppingCart/ShoppingCartIconPage';
 
@@ -44,22 +43,14 @@ function Nav() {
               <ShoppingCartIconPage />
             </Link>
             <Link className="navLink" to="/account">
-              {/* <AccountAvatarIcon /> */}
               <AccountCircleOutlined fontSize="large" />
             </Link>
 
-            {/* <Link className="navLink" to="/info">
-              Info Page
-            </Link> */}
             <Link to="/home">
               <LogOutButton className="navLink" />
             </Link>
           </>
         )}
-
-        {/* <Link className="navLink" to="/about">
-          About
-        </Link> */}
       </div>
     </div>
   );

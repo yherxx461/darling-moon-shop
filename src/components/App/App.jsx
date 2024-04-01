@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 // Material UI Imports
-import { Link } from '@mui/material';
+// import { Link } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -58,6 +58,9 @@ function App() {
             </Route>
             <Route exact path="/products">
               <ProductsPage />
+            </Route>
+            <Route exact path="/products/id">
+              <ItemizedProduct />
             </Route>
             <ProtectedRoute exact path="/account">
               <AccountPage />
