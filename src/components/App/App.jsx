@@ -53,7 +53,7 @@ function App() {
             <Redirect exact from="/" to="/home" />
 
             {/* Visiting localhost:5173/about will show the about page. */}
-            <Route exact path="/home">
+            <Route exact path="/landingPage">
               <LandingPage />
             </Route>
             <Route exact path="/products">
@@ -69,6 +69,10 @@ function App() {
 
             <ProtectedRoute exact path="/order-confirmation">
               <ThankYouPage />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/cart">
+              <ShoppingCart />
             </ProtectedRoute>
 
             <Route exact path="/login">

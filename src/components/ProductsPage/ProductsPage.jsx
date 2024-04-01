@@ -22,6 +22,8 @@ function ProductsPage() {
 
   return (
     <div className="productImages">
+      {/* <div className="productImages" key={products.id}> */}
+
       {/* TO-DO: Need to do fetching of all the products in the inventory */}
       {products.map((product) => {
         return (
