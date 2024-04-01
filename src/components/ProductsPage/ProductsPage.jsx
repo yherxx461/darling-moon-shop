@@ -24,7 +24,7 @@ function ProductsPage() {
     });
   }, []);
 
-  const handleClickToItemizedProduct = () => {
+  const handleClickToItemizedProduct = (id) => {
     history.push(`/products/${id}`);
   };
 
@@ -50,7 +50,7 @@ function ProductsPage() {
                 sx={{ maxWidth: 250 }}
                 variant="outlined"
                 className="container"
-                onClick={handleClickToItemizedProduct}
+                onClick={() => handleClickToItemizedProduct(product.id)}
               >
                 <img src={product.image_1} className="productImage" />
                 <CardContent>
