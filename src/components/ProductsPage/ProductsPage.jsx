@@ -36,20 +36,23 @@ function ProductsPage() {
         return (
           <Box sx={{ flexGrow: 1 }}>
             <Grid
+              item
+              xs={12}
+              md={4}
+              kg={4}
               container
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
+              alignItems="center"
+              justifyContent="center"
             >
               <Card
                 sx={{ maxWidth: 250 }}
                 variant="outlined"
                 className="container"
+                onClick={handleClickToItemizedProduct}
               >
-                <img
-                  src={product.image_1}
-                  className="productImage"
-                  onClick={handleClickToItemizedProduct}
-                />
+                <img src={product.image_1} className="productImage" />
                 <CardContent>
                   <Typography gutterBottom variant="h" component="div">
                     <h3>{product.name}</h3>
