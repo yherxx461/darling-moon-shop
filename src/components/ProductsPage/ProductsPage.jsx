@@ -51,10 +51,10 @@ function ProductsPage() {
                   onClick={handleClickToItemizedProduct}
                 />
                 <CardContent>
-                  <Typography gutterBottom variant="p" component="div">
-                    {product.name}
+                  <Typography gutterBottom variant="h" component="div">
+                    <h3>{product.name}</h3>
                   </Typography>
-                  <p>{product.price}</p>
+                  <p>$ {product.price}</p>
                 </CardContent>
               </Card>
             </Grid>
