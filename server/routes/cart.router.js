@@ -28,7 +28,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // POST route request
 router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code
-  const { quantity, order_date, order_id, product_id, address_id } = req.body;
+  // const { quantity, order_date, order_id, product_id, address_id } = req.body;
+  const { order_date, address_id } = req.body;
 
   if (!order_id) {
     const queryText1 = `INSERT INTO "orders" (order_date, address_id, user_id)
@@ -86,7 +87,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 // DELETE route request
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   // DELETE route code
   const { id } = req.params;
 
