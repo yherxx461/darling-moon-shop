@@ -7,6 +7,7 @@ import addressSaga from './address.saga';
 import productsSaga from './products.saga';
 import cartSaga from './cart.saga';
 import itemDetailsSaga from './itemDetails.saga';
+import featuredItemsSaga from './featured.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     productsSaga(),
     cartSaga(),
     itemDetailsSaga(),
+    featuredItemsSaga(),
   ]);
 }

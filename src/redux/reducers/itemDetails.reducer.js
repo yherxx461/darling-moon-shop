@@ -2,8 +2,6 @@ const itemDetailsReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_ITEM_DETAILS':
       return action.payload;
-    case 'UNSET_ITEM_DETAILS':
-      return action.payload;
     default:
       return state;
   }

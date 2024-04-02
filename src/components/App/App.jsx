@@ -29,6 +29,7 @@ import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import AddressesPage from '../AddressesPage/AddressesPage';
 
 import './App.css';
+import HomePage from '../HomePage/HomePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -52,14 +53,14 @@ function App() {
             {/* Visiting localhost:5173 will redirect to localhost:5173/home */}
             <Redirect exact from="/" to="/home" />
 
-            {/* Visiting localhost:5173/about will show the about page. */}
-            <Route exact path="/landingPage">
-              <LandingPage />
+            {/* Visiting localhost:5173/about will show the home. */}
+            <Route exact path="/home">
+              <HomePage />
             </Route>
             <Route exact path="/products">
               <ProductsPage />
             </Route>
-            <Route exact path="/products/id">
+            <Route exact path="/products/:id">
               <ItemizedProduct />
             </Route>
             <ProtectedRoute exact path="/account">

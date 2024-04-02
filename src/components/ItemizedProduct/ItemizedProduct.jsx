@@ -1,42 +1,38 @@
-import { useHistory } from 'react-router-dom';
-
 // Material UI Imports
 import { Button } from '@mui/material';
+
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
-// function ItemizedProduct({ item }) {
-function ItemizedProduct(product) {
-  const history = useHistory();
-  const id = useParams;
+function ItemizedProduct() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const item = useSelector((store) => store.details);
+  const [image1, setImage1] = useState('');
+  const [image2, setImage2] = useState('');
+  const [image3, setImage3] = useState('');
+  // const asdf
 
-  const handleClickToProduct = () => {
-    history.push(`/products/${id}`);
-  };
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ITEM_DETAILS', payload: id });
+  }, [id, dispatch]);
 
-  // const handleAdd = () => {
-  //   console.log('Add to Cart handle');
-  // };
   return (
     <>
       <div className="itemizedProduct">
-        <img
-          src={product.image_url_1}
-          alt={product.name}
-          // onClick={() => handleClickToProduct(product.id)}
-        />
         {/* /* Page Layout: 3 images, Title, Description, Quantity, Total, 'Add to
         Chart' Button */
         /*{' '} */}
-        <img
-          src={(product.image_url_1, product.image_url_2, product.image_url_3)}
-        />{' '}
-        <h3 type="text">{product.name}</h3>
+        <img src={(item.image_1, item.image_2, item.image_3)} />{' '}
+        <h3 type="text">{item.name}</h3>
         {/* <h3>{item.name}</h3> */}
-        <p type="text">{product.description}</p>
+        <p type="text">{item.description}</p>
         {/* <p>{item.description}</p> */}
         <p type="quantity">Qty: </p>
         {/* <p>{item.quantity}</p> */}
-        <p type="price">{product.price}</p>
+        <p type="price">{item.price}</p>
         {/* <p>{item.price}</p> */}
         <Button
           size="small"
