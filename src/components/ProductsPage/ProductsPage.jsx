@@ -42,7 +42,6 @@ function ProductsPage() {
                   sx={{ maxWidth: 250 }}
                   variant="outlined"
                   className="container"
-                  justifyContent="center"
                   onClick={() => handleClickToItemizedProduct(product.id)}
                 >
                   <img src={product.image_1} className="productImage" />
