@@ -17,6 +17,39 @@ router.get('/', (req, res) => {
     });
 });
 
+// GET request for Featured Products
+router.get('/featured', (req, res) => {
+  // Add query to get all products --> If want to display price --> update query below and the database table
+  const query = `SELECT * FROM "products" WHERE "featured_item" = true ORDER BY "id" ASC;`;
+  pool
+    .query(query)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log('ERROR: Get all featured products', error);
+      res.sendStatus(500);
+    });
+});
+
+router.get('/:id', (req, res) => {
+  const id = req.params.id;
+
+  pool
+    .query('SELECT * FROM products WHERE id = $1', [id])
+    .then((result) => {
+      if (result.rows.length > 0) {
+        res.json(result.rows[0]);
+      } else {
+        res.status(404).json({ error: 'Product not found' });
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching individual product:', error);
+      res.status(500).json({ error: 'An unexpected error occurred' });
+    });
+});
+
 // POST route request
 router.post('/', (req, res) => {
   // POST route code
@@ -34,21 +67,6 @@ router.post('/', (req, res) => {
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('Products not posting visually ', err);
-      res.sendStatus(500);
-    });
-});
-
-// GET request for Featured Products
-router.get('/featured', (req, res) => {
-  // Add query to get all products --> If want to display price --> update query below and the database table
-  const query = `SELECT * FROM "products" WHERE "featured_item" = TRUE ORDER BY "id" ASC;`;
-  pool
-    .query(query)
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch((error) => {
-      console.log('ERROR: Get all featured products', error);
       res.sendStatus(500);
     });
 });
