@@ -28,9 +28,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // POST route request
 router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code
-  // const { quantity, order_date, order_id, product_id, address_id } = req.body;
-  const { order_date, address_id } = req.body;
-
+  // const { order_date, address_id } = req.body; // initial query
+  const { order_date, address_id, quantity, product_id, order_id } = req.body; // updated query
   if (!order_id) {
     const queryText1 = `INSERT INTO "orders" (order_date, address_id, user_id)
     VALUES ($1, $2, $3) RETURNING id;`;
@@ -54,6 +53,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         res.sendStatus(500);
       });
   } else {
+    const { order_id } = req.body;
     const queryText = `INSERT INTO "line_items" (quantity, order_id, product_id)
     VALUES ($1, $2, $3) RETURNING id;`;
 
