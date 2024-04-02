@@ -6,10 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import { Link, TextField } from '@mui/material';
-// import Badge from '@mui/material/Badge';
 
 // Import Component/Page:
 import ShoppingCartIconPage from '../ShoppingCart/ShoppingCartIconPage';
+import './AccountPage.css';
 
 function AccountPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -48,69 +48,71 @@ function AccountPage() {
   };
 
   return (
-    <div className="container">
-      {/*TO-DO: Conditional Rendering to make userInformation editable */}
-      <h2>Welcome, {user.username}!</h2>
-      {isEditing ? (
-        <>
-          <TextField
-            type="text"
-            defaultValue={user.name}
-            placeholder="Name"
-            value={editedName}
-            onChange={(event) => setEditedName(event.target.value)}
-          />
-          <TextField
-            type="text"
-            defaultValue={user.email}
-            placeholder="Email"
-            value={editedEmail}
-            onChange={(event) => setEditedEmail(event.target.value)}
-          />
-          <TextField
-            type="text"
-            defaultValue={user.phone}
-            placeholder="Phone"
-            value={editedPhone}
-            onChange={(event) => setEditedPhone(event.target.value)}
-          />
-          <button onClick={handleSave}>Save</button>
-          <button onClick={handleCancel}>Cancel</button>
-        </>
-      ) : (
-        // <div className="container">
-        <Card sx={{ display: 'flex' }}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              // content: 'center,',
-            }}
-          >
-            {/* boolean true for editField */}
-            <p>{user.name}</p>
-            <p>{user.email}</p>
-            <p>{user.phone}</p>
-            <button onClick={handleEdit}>Edit</button>
-            {/* <p>Your ID is: {user.id}</p> */}
-            {/* DO NOT SHOW USER ID. COMMENTED USER ID OUT. */}{' '}
-            <LogOutButton className="btn" />
-          </Box>{' '}
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-            }}
-          >
-            <Link to="/cart">
-              <ShoppingCartIconPage />
-            </Link>
-          </Box>
-        </Card>
-      )}
-    </div>
+    <>
+      <div className="container">
+        {/*TO-DO: Conditional Rendering to make userInformation editable */}
+        <h2>Welcome, {user.username}!</h2>
+        {isEditing ? (
+          <>
+            <TextField
+              type="text"
+              defaultValue={user.name}
+              placeholder="Name"
+              value={editedName}
+              onChange={(event) => setEditedName(event.target.value)}
+            />
+            <TextField
+              type="text"
+              defaultValue={user.email}
+              placeholder="Email"
+              value={editedEmail}
+              onChange={(event) => setEditedEmail(event.target.value)}
+            />
+            <TextField
+              type="text"
+              defaultValue={user.phone}
+              placeholder="Phone"
+              value={editedPhone}
+              onChange={(event) => setEditedPhone(event.target.value)}
+            />
+            <button onClick={handleSave}>Save</button>
+            <button onClick={handleCancel}>Cancel</button>
+          </>
+        ) : (
+          // <div className="container">
+          <Card sx={{ display: 'flex' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                // content: 'center,',
+              }}
+            >
+              {/* boolean true for editField */}
+              <p>{user.name}</p>
+              <p>{user.email}</p>
+              <p>{user.phone}</p>
+              <button onClick={handleEdit}>Edit</button>
+              {/* <p>Your ID is: {user.id}</p> */}
+              {/* DO NOT SHOW USER ID. COMMENTED USER ID OUT. */}{' '}
+              <LogOutButton className="btn" />
+            </Box>{' '}
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+              }}
+            >
+              <Link to="/cart">
+                <ShoppingCartIconPage />
+              </Link>
+            </Box>
+          </Card>
+        )}
+      </div>
+    </>
   );
 }
 
