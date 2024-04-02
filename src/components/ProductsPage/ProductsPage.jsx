@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import './ProductsPage.css';
 
 // Material UI Imports
 import Grid from '@mui/material/Grid';
@@ -35,7 +36,7 @@ function ProductsPage() {
         {/* TO-DO: Need to do fetching of all the products in the inventory */}
         {products.map((product) => {
           return (
-            <Grid key={product.id} item xs={12} md={4} lg={4}>
+            <Grid key={product.id} item xs={12} md={3} lg={3}>
               <Box sx={{ flexGrow: 1 }}>
                 <Card
                   sx={{ maxWidth: 250 }}
