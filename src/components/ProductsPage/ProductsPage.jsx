@@ -12,7 +12,7 @@ import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
 
 function ProductsPage() {
-  const id = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const products = useSelector((store) => store.products);
   const history = useHistory();
@@ -30,40 +30,38 @@ function ProductsPage() {
 
   return (
     <div className="productImages">
-      {/* <div className="productImages" key={products.id}> */}
-      {/* TO-DO: Need to do fetching of all the products in the inventory */}
-      {products.map((product) => {
-        return (
-          <Box sx={{ flexGrow: 1 }}>
-            <Grid
-              item
-              xs={12}
-              md={4}
-              kg={4}
-              container
-              spacing={{ xs: 2, md: 3 }}
-              columns={{ xs: 4, sm: 8, md: 12 }}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Card
-                sx={{ maxWidth: 250 }}
-                variant="outlined"
-                className="container"
-                onClick={() => handleClickToItemizedProduct(product.id)}
-              >
-                <img src={product.image_1} className="productImage" />
-                <CardContent>
-                  <Typography gutterBottom variant="h" component="div">
-                    <h3>{product.name}</h3>
-                  </Typography>
-                  <p>$ {product.price}</p>
-                </CardContent>
-              </Card>
+      <Grid container spacing={2}>
+        {/* <div className="productImages" key={products.id}> */}
+        {/* TO-DO: Need to do fetching of all the products in the inventory */}
+        {products.map((product) => {
+          return (
+            <Grid key={product.id} item xs={12} md={4} lg={4}>
+              <Box sx={{ flexGrow: 1 }}>
+                <Card
+                  sx={{ maxWidth: 250 }}
+                  variant="outlined"
+                  className="container"
+                  justifyContent="center"
+                  onClick={() => handleClickToItemizedProduct(product.id)}
+                >
+                  <img
+                    src={product.image_1}
+                    className="productImage"
+                    width={250}
+                    height={250}
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="p" component="div">
+                      <h3>{product.name}</h3>
+                    </Typography>
+                    <p>$ {product.price}</p>
+                  </CardContent>
+                </Card>
+              </Box>
             </Grid>
-          </Box>
-        );
-      })}
+          );
+        })}
+      </Grid>
     </div>
   );
 }
