@@ -10,35 +10,54 @@ function ItemizedProduct() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const item = useSelector((store) => store.details);
-  const [image1, setImage1] = useState('');
-  const [image2, setImage2] = useState('');
-  const [image3, setImage3] = useState('');
-  // const asdf
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_ITEM_DETAILS', payload: id });
   }, [id, dispatch]);
 
+  const handleAddToCart = () => {
+    // Dispatch action to add item to the cart
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: {
+        id: id,
+        name: item.name,
+        price: item.price,
+        quantity: quantity,
+      },
+    });
+    alert('Item added to cart!');
+  };
+
+  const handleQuantityChange = (event) => {
+    const newQuantity = parseInt(event.target.value, 10);
+    if (!isNaN(newQuantity)) {
+      setQuantity(newQuantity);
+    }
+  };
+
   return (
     <>
-      <div className="itemizedProduct">
-        {/* /* Page Layout: 3 images, Title, Description, Quantity, Total, 'Add to
-        Chart' Button */
-        /*{' '} */}
-        <img src={(item.image_1, item.image_2, item.image_3)} />{' '}
-        <h3 type="text">{item.name}</h3>
-        {/* <h3>{item.name}</h3> */}
-        <p type="text">{item.description}</p>
-        {/* <p>{item.description}</p> */}
-        <p type="quantity">Qty: </p>
-        {/* <p>{item.quantity}</p> */}
-        <p type="price">{item.price}</p>
-        {/* <p>{item.price}</p> */}
+      <div className="itemizedProduct" key={item.id}>
+        <img src={item.image_1} />
+        <img src={item.image_2} />
+        <img src={item.image_3} />
+        <h3>{item.name}</h3>
+        <p>{item.description}</p>
+        <label className="quantity">Qty:</label>
+        <input
+          type="number"
+          id="quantity"
+          value={quantity}
+          onChange={handleQuantityChange}
+        />
+        <p>${item.price}</p>
         <Button
           size="small"
           variant="outlined"
           type="submit"
-          // onSubmit={handleAdd}
+          onClick={handleAddToCart}
         >
           Add to Cart
         </Button>
@@ -46,5 +65,4 @@ function ItemizedProduct() {
     </>
   );
 }
-
 export default ItemizedProduct;
