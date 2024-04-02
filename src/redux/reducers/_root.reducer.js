@@ -5,7 +5,6 @@ import addressReducer from './address.reducer';
 import productsReducer from './products.reducer';
 import cartReducer from './cart.reducer';
 import itemDetailsReducer from './itemDetails.reducer';
-import featuredItemsSaga from './featured.reducer';
 import featuredItemsReducer from './featured.reducer';
 
 // rootReducer is the primary reducer for our entire project
