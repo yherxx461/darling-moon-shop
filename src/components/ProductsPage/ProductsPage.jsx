@@ -45,12 +45,7 @@ function ProductsPage() {
                   justifyContent="center"
                   onClick={() => handleClickToItemizedProduct(product.id)}
                 >
-                  <img
-                    src={product.image_1}
-                    className="productImage"
-                    width={250}
-                    height={250}
-                  />
+                  <img src={product.image_1} className="productImage" />
                   <CardContent>
                     <Typography gutterBottom variant="p" component="div">
                       <h3>{product.name}</h3>

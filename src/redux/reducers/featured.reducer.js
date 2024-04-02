@@ -2,8 +2,6 @@ const featuredItemsReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_FEATURED_ITEMS':
       return action.payload;
-    case 'UNSET_FEATURED_ITEMS':
-      return action.payload;
     default:
       return state;
   }
