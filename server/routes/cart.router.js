@@ -30,6 +30,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code
   // const { order_date, address_id } = req.body; // initial query
   const { order_date, address_id, quantity, product_id, order_id } = req.body; // updated query
+
   if (!order_id) {
     const queryText1 = `INSERT INTO "orders" (order_date, address_id, user_id)
     VALUES ($1, $2, $3) RETURNING id;`;
@@ -37,11 +38,15 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     pool
       .query(queryText1, [order_date, address_id, req.user.id])
       .then((response) => {
-        console.log('response.data', response);
-        const queryText = `INSERT INTO "line_items" (quantity, order_id, product_id)
-    VALUES ($1, $2, $3) RETURNING id;`;
+        const newOrderId = response.rows[0].id; // the new inserted order
+        const queryText2 = `INSERT INTO "line_items" (quantity, order_id, product_id)
+        VALUES ($1, $2, $3) RETURNING id;`;
+
+        //     console.log('response.data', response);
+        //     const queryText = `INSERT INTO "line_items" (quantity, order_id, product_id)
+        // VALUES ($1, $2, $3) RETURNING id;`;
         pool
-          .query(queryText, [quantity, response.rows[0].id, product_id])
+          .query(queryText2, [quantity, newOrderId, product_id])
           .then(() => res.sendStatus(201))
           .catch((err) => {
             console.log('Item not posting to Cart', err);
@@ -49,11 +54,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
           });
       })
       .catch((err) => {
-        console.log('Initial Item added to Cart', err);
+        console.log('New Item added to Cart', err);
         res.sendStatus(500);
       });
   } else {
-    const { order_id } = req.body;
     const queryText = `INSERT INTO "line_items" (quantity, order_id, product_id)
     VALUES ($1, $2, $3) RETURNING id;`;
 
@@ -61,7 +65,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
       .query(queryText, [quantity, order_id, product_id])
       .then(() => res.sendStatus(201))
       .catch((err) => {
-        console.log('Item not posting to Cart', err);
+        console.log('Error inserting line item', err);
         res.sendStatus(500);
       });
   }

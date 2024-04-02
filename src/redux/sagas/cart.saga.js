@@ -5,7 +5,11 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchCartItems() {
   try {
     const response = yield axios.get('/api/cart');
-    yield put({ type: 'SET_CART', payload: response.data });
+    const cartItems = response.data.map((item) => ({
+      ...item,
+      price: item.price || 0,
+    }));
+    yield put({ type: 'SET_CART', payload: cartItems });
   } catch (error) {
     console.log('Cart get request failed', error);
   }
