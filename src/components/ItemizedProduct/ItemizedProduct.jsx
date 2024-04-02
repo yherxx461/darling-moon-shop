@@ -18,13 +18,15 @@ function ItemizedProduct() {
 
   const handleAddToCart = () => {
     // Dispatch action to add item to the cart
+    console.log('adding item to cart', id, item.name, item.price, quantity);
     dispatch({
       type: 'ADD_TO_CART',
       payload: {
-        id: id,
-        name: item.name,
-        price: item.price,
+        order_date: new Date(),
+        address_id: item.address_id,
         quantity: quantity,
+        product_id: id,
+        order_id: null,
       },
     });
     alert('Item added to cart!');
