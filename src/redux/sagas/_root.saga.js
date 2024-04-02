@@ -29,5 +29,6 @@ export default function* rootSaga() {
     itemDetailsSaga(),
     featuredItemsSaga(),
     addToCartSaga(),
+    updateUserSaga(),
   ]);
 }
