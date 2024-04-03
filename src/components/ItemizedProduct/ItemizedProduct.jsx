@@ -32,12 +32,15 @@ function ItemizedProduct() {
     alert('Item added to cart!');
   };
 
-  const handleChange = (event, id) => {
+  const handleChange = (event) => {
     const newQuantity = parseInt(event.target.value, 10);
-    dispatch({
-      type: 'UPDATE_QUANTITY_REQUEST',
-      payload: { id: id, quantity: newQuantity },
-    });
+    if (!isNaN(newQuantity) && newQuantity >= 1 && newQuantity <= 10) {
+      setQuantity(newQuantity);
+    }
+    //   dispatch({
+    //     type: 'UPDATE_QUANTITY_REQUEST',
+    //     payload: { id: id, quantity: newQuantity },
+    //   });
   };
 
   return (
