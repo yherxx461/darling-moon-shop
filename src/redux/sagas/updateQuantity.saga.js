@@ -5,11 +5,11 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* updateQuantity(action) {
   try {
-    yield axios.put(`/api/cart/${action.payload.id}`, {
-      quantity: action.payload.quantity,
-    });
+    console.log('UPDATE_QUANTITY_PAYLOAD:', action.payload);
+    yield axios.put(`/api/cart/${action.payload.id}`, action.payload);
+    // quantity: action.payload.quantity,
     yield put({
-      type: 'UPDATE_QUANTITY',
+      type: 'UPDATE_QUANTITY_REQUEST',
       payload: { id: action.payload.id, quantity: action.payload.quantity },
     });
   } catch (error) {
