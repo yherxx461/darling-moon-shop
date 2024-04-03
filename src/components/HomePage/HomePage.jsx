@@ -27,7 +27,7 @@ function HomePage() {
 
   return (
     <div>
-      <h2 className="container">Featured Items</h2>
+      <h1 className="container">Featured Items</h1>
       <Grid container spacing={2}>
         {featured.map((featuredItem) => {
           return (
