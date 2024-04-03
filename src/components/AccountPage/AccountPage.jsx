@@ -62,12 +62,16 @@ function AccountPage() {
       <div>
         <ul>
           <li>
-            <Link to="/account" onClick={handleClickAccount}>
+            <Link
+              className="sidenav"
+              to="/account"
+              onClick={handleClickAccount}
+            >
               Account
             </Link>
           </li>
           <li>
-            <Link to="/address" onClick={handClickAddress}>
+            <Link className="sidenav" to="/address" onClick={handClickAddress}>
               Addresses
             </Link>
           </li>
