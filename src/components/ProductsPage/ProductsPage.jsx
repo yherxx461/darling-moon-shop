@@ -49,7 +49,7 @@ function ProductsPage() {
                     <Typography gutterBottom variant="p" component="div">
                       <h3>{product.name}</h3>
                     </Typography>
-                    <p>$ {product.price}</p>
+                    <p>$ {product.price.toFixed(2)}</p>
                   </CardContent>
                 </Card>
               </Box>

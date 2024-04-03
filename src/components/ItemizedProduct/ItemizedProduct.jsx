@@ -32,11 +32,12 @@ function ItemizedProduct() {
     alert('Item added to cart!');
   };
 
-  const handleQuantityChange = (event) => {
+  const handleChange = (event, id) => {
     const newQuantity = parseInt(event.target.value, 10);
-    if (!isNaN(newQuantity)) {
-      setQuantity(newQuantity);
-    }
+    dispatch({
+      type: 'UPDATE_QUANTITY_REQUEST',
+      payload: { id: id, quantity: newQuantity },
+    });
   };
 
   return (
@@ -47,14 +48,16 @@ function ItemizedProduct() {
         <img src={item.image_3} />
         <h3>{item.name}</h3>
         <p>{item.description}</p>
-        <label className="quantity">Qty:</label>
+        <label className="quantity">Qty: {item.quantity}</label>
         <input
           type="number"
           id="quantity"
+          min={1}
+          max={10}
           value={quantity}
-          onChange={handleQuantityChange}
+          onChange={handleChange}
         />
-        <p>${item.price}</p>
+        <p>$ {item.price.toFixed(2)}</p>
         <Button
           size="small"
           variant="outlined"
