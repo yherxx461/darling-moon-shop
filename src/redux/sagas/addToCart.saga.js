@@ -3,7 +3,9 @@ import axios from 'axios';
 
 function* addToCartSaga(action) {
   try {
+    // Send Post request to add item to the cart
     yield axios.post('/api/cart', action.payload);
+    // After adding item to cart, fetch all items added to the cart
     yield put({ type: 'FETCH_CART' });
     // Dispatch SET_CART action to update cart items after adding them to the cart
 
