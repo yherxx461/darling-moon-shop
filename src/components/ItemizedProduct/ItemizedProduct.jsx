@@ -57,7 +57,7 @@ function ItemizedProduct() {
           value={quantity}
           onChange={handleChange}
         />
-        <p>$ {item.price.toFixed(2)}</p>
+        <p>$ {item.price}</p>
         <Button
           size="small"
           variant="outlined"
