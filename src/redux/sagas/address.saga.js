@@ -13,7 +13,7 @@ function* fetchAddress() {
 
 function* addAddressSaga(action) {
   try {
-    yield axios.post('/api/address/add', action.payload);
+    yield axios.post(`/api/address/${action.payload}`, action.payload);
     yield put({ type: 'FETCH_ADDRESS' }); // fetch address again after adding a new address
   } catch (error) {
     console.log('Error adding new address', error);

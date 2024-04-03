@@ -27,7 +27,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const city = req.body.city;
   const state = req.body.state;
   const zip = req.body.zip;
-  const { user_id } = req.params;
+  const user_id = req.user.id;
 
   const queryText = `INSERT INTO "address" (street, city, state, zip, user_id)
     VALUES ($1, $2, $3, $4, $5) RETURNING id;`;

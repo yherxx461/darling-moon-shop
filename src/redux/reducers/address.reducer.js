@@ -1,4 +1,4 @@
-const addressReducer = (state = [], action) => {
+const addressReducer = (state = [''], action) => {
   switch (action.type) {
     case 'SET_ADDRESS':
       return action.payload;

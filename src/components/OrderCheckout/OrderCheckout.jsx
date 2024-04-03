@@ -20,10 +20,8 @@ function OrderCheckout() {
       <div className="shipping-address">
         <Box>
           <p>{user.name}</p>
-          <p>{address.street}</p>
-          <p>
-            {address.city}, {address.state} {address.zip}
-          </p>
+          <p>1234 Main Street</p>
+          <p>New York, New York 10044</p>
         </Box>
       </div>
     </>
