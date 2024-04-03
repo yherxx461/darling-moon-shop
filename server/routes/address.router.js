@@ -31,6 +31,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
   const queryText = `INSERT INTO "address" (street, city, state, zip, user_id)
     VALUES ($1, $2, $3, $4, $5) RETURNING id;`;
+
+  console.log('Address POST route:', queryText);
   pool
     .query(queryText, [street, city, state, zip, user_id])
     .then(() => res.sendStatus(201))

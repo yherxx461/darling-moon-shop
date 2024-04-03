@@ -79,6 +79,10 @@ function App() {
               <ShoppingCart />
             </ProtectedRoute>
 
+            <ProtectedRoute exact path="/address">
+              <AddressesPage />
+            </ProtectedRoute>
+
             <Route exact path="/login">
               {user.id ? (
                 // If the user is already logged in,

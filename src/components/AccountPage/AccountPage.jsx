@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 // Material UI Imports
 import Box from '@mui/material/Box';
@@ -17,6 +18,7 @@ function AccountPage() {
   const dispatch = useDispatch();
   // Reminder: set useState to false to render original information --> true will make the input field appears in order to edit the information.
   const [isEditing, setIsEditing] = useState(false);
+  const history = useHistory();
   // Use for Conditional Rendering
   const [editedName, setEditedName] = useState(user.name);
   const [editedEmail, setEditedEmail] = useState(user.email);
@@ -47,8 +49,30 @@ function AccountPage() {
     setIsEditing(false);
   };
 
+  const handClickAddress = () => {
+    history.push('/address');
+  };
+
+  const handleClickAccount = () => {
+    history.push('/account');
+  };
+
   return (
     <>
+      <div>
+        <ul>
+          <li>
+            <Link to="/account" onClick={handleClickAccount}>
+              Account
+            </Link>
+          </li>
+          <li>
+            <Link to="/address" onClick={handClickAddress}>
+              Addresses
+            </Link>
+          </li>
+        </ul>
+      </div>
       <div className="container">
         {/*TO-DO: Conditional Rendering to make userInformation editable */}
         <h2>Welcome, {user.username}!</h2>
