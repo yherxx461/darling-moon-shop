@@ -22,7 +22,6 @@ function ItemizedProduct() {
     dispatch({
       type: 'ADD_TO_CART',
       payload: {
-        order_date: new Date(),
         address_id: item.address_id,
         quantity: quantity,
         product_id: id,

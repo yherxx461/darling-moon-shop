@@ -26,7 +26,8 @@ import ProductsPage from '../ProductsPage/ProductsPage';
 import ThankYouPage from '../ThankYouPage/ThankYouPage';
 import ItemizedProduct from '../ItemizedProduct/ItemizedProduct';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
-import AddressesPage from '../AddressesPage/AddressesPage';
+import AddressPage from '../AddressPage/AddressPage';
+import OrderCheckout from '../OrderCheckout/OrderCheckout';
 
 import './App.css';
 import HomePage from '../HomePage/HomePage';
@@ -68,7 +69,7 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute exact path="/addresses">
-              <AddressesPage />
+              <AddressPage />
             </ProtectedRoute>
 
             <ProtectedRoute exact path="/order-confirmation">
@@ -80,7 +81,11 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute exact path="/address">
-              <AddressesPage />
+              <AddressPage />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/order-checkout">
+              <OrderCheckout />
             </ProtectedRoute>
 
             <Route exact path="/login">
