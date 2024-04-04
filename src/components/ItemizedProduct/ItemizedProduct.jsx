@@ -28,7 +28,7 @@ function ItemizedProduct() {
         order_id: null,
       },
     });
-    alert('Item added to cart!');
+    // alert('Item added to cart!');
   };
 
   const handleChange = (event) => {
