@@ -14,6 +14,7 @@ function ShoppingCart() {
   const cart = useSelector((store) => store.cart);
   const dispatch = useDispatch();
   const history = useHistory();
+  const product = useSelector((store) => store.products);
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(
@@ -75,10 +76,10 @@ function ShoppingCart() {
         {/* Mapping/fetching the item in the cart */}
         {cart.map((item) => (
           <div key={item.id} className="selectedItems">
-            <img src={item.image_1} />
-            <p>{item.name}</p>
+            <img src={product.image_1} />
+            <p>{product.name}</p>
             <p>
-              subtotal: $ {item.price.toFixed(2)} x {item.quantity}
+              $ {item.price.toFixed(2)} x {item.quantity} qty
             </p>
             <Button
               size="small"
