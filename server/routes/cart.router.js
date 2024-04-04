@@ -74,12 +74,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 // PUT route request
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   // PUT route code
-  const { quantity } = req.body;
+  const { quantity, order_id, product_id } = req.body;
   const { id } = req.params;
   const queryText = `UPDATE "line_items" SET quantity = $1 WHERE "id" = $2;`;
 
   pool
-    .query(queryText, [quantity, id])
+    .query(queryText, [quantity, order_id, product_id, id])
     .then(() => {
       console.log(`PUT /cart/${id} - SUCCESS`);
       res.sendStatus(201);
