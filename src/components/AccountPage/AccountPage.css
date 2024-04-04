@@ -1,5 +1,5 @@
-/* body {
-  background:
+body {
+  background:fixed;
 }
 
 .wrapper {
@@ -63,4 +63,4 @@ li {
   .sidenav a {
     font-size: 18px;
   }
-} */
+}

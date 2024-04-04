@@ -26,20 +26,20 @@ Container
 Button
 -------------------------------------------------------------------------------- */
 
-.btn {
+/* .btn {
   display: inline-block;
   padding: 10px 20px;
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #d7afff;
-  color: #ffffff;
+  background-color: #dadada;
+  color: #000000;
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
-}
+} */
 
-.btn_sizeMin {
+/* .btn_sizeMin {
   min-height: 50px;
   min-width: 100px;
 }
@@ -52,15 +52,15 @@ Button
 .btn_sizeFull {
   display: block;
   width: 100%;
-}
+} */
 
-.btn:hover {
+/* .btn:hover {
   background-color: #ca80ff;
   text-decoration: none;
-}
+} */
 
-/* This line makes the "Register" and "Login" buttons look like links */
-.btn_asLink {
+/* /* This line makes the "Register" and "Login" buttons look like links */
+/* .btn_asLink {
   padding: 0;
   border-width: 0;
   border-bottom: 1px solid #444;
@@ -75,12 +75,14 @@ Button
   border-color: #008183;
   color: #008183;
 }
+*/
+*/
 
 /* --------------------------------------------------------------------------------
 Alert
 -------------------------------------------------------------------------------- */
 
-.alert {
+/* .alert {
   box-sizing: border-box;
   padding: 15px 10px;
   margin: 15px 0;
@@ -89,7 +91,7 @@ Alert
   border-radius: 3px;
   color: #e01616;
   font-size: 0.8rem;
-}
+} */
 
 /* --------------------------------------------------------------------------------
 Form Treatment

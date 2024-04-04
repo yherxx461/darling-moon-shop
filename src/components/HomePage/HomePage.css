@@ -2,15 +2,16 @@ img {
   object-fit: cover;
   width: 250px;
   height: 250px;
+  justify-content: center;
 }
 
 .container {
   margin: 3em;
-  margin-top: 3em;
+  margin-top: 2em;
   text-align: center;
 }
 
-h2,
+h3,
 p {
   text-align: center;
 }
