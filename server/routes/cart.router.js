@@ -12,7 +12,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   const query = `SELECT line_items.id AS id, products.name AS product_name, products.image_1 AS img, products.price AS price, line_items.quantity AS quantity, line_items.order_id AS order_id, line_items.product_id AS product_id
   FROM line_items JOIN orders ON line_items.order_id = orders.id 
   JOIN products ON products.id = line_items.product_id
-  WHERE orders.user_id = $1;`;
+  WHERE orders.user_id = $1
+  ORDER BY "id" ASC;`;
 
   pool
     .query(query, [req.user.id])
@@ -91,12 +92,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 // PUT route request
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   // PUT route code
-  const { quantity, order_id, product_id } = req.body;
+  const { quantity } = req.body;
   const { id } = req.params;
   const queryText = `UPDATE "line_items" SET quantity = $1 WHERE "id" = $2;`;
 
   pool
-    .query(queryText, [quantity, order_id, product_id, id])
+    .query(queryText, [quantity, id])
     .then(() => {
       console.log(`PUT /cart/${id} - SUCCESS`);
       res.sendStatus(201);

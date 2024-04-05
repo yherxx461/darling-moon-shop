@@ -5,11 +5,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchCart() {
   try {
     const response = yield axios.get('/api/cart');
-    const cartItems = response.data.map((item) => ({
-      ...item,
-      price: item.price || 0,
-    }));
-    yield put({ type: 'SET_CART', payload: cartItems });
+    yield put({ type: 'SET_CART', payload: response.data });
   } catch (error) {
     console.log('Cart get request failed', error);
   }
@@ -30,9 +26,22 @@ function* addToCart(action) {
   }
 }
 
+function* updateCartQuantity(action) {
+  try {
+    // Send Post request to add item to the cart
+    yield axios.put(`/api/cart/${action.payload.id}`, action.payload);
+    // After adding item to cart, fetch all items added to the cart
+    yield put({ type: 'FETCH_CART' });
+    // Dispatch SET_CART action to update cart items after adding them to the cart
+  } catch (error) {
+    console.log('Error in updating new item to cart', error);
+  }
+}
+
 function* cartSaga() {
   yield takeLatest('FETCH_CART', fetchCart);
   yield takeLatest('ADD_TO_CART', addToCart);
+  yield takeLatest('UPDATE_CART_QUANTITY', updateCartQuantity);
 }
 
 export default cartSaga;

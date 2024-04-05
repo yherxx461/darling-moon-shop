@@ -1,11 +1,7 @@
 const cartReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_CART':
-      const cartItems = action.payload.map((item) => ({
-        ...item,
-        price: item.price || 0,
-      }));
-      return cartItems;
+      return action.payload;
     case 'UNSET_CART':
       return [];
     default:
