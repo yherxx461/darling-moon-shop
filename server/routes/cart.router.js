@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET query to get item in cart
   // const query = `SELECT * FROM "line_items" ORDER BY "id" ASC`;
-  const query = `SELECT line_items.id AS id, products.name AS product_name, products.price AS price, line_items.quantity AS quantity, line_items.order_id AS order_id, line_items.product_id AS product_id 
+  const query = `SELECT line_items.id AS id, products.name AS product_name, products.image_1 AS img, products.price AS price, line_items.quantity AS quantity, line_items.order_id AS order_id, line_items.product_id AS product_id
   FROM line_items JOIN orders ON line_items.order_id = orders.id 
   JOIN products ON products.id = line_items.product_id
   WHERE orders.user_id = $1;`;
@@ -26,12 +26,29 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 // POST route request
+// router.post('/', rejectUnauthenticated, (req, res) => {
+//   console.log(req.body);
+//   const { quantity, order_id, product_id } = req.body; // initial query
+//   const queryText = `INSERT INTO "line_items" (quantity, order_id, product_id) VALUES ($1, $2, $3) RETURNING id;`;
+
+//   pool
+//     .query(queryText, [quantity, order_id, product_id])
+//     .then(() => res.sendStatus(201))
+//     .catch((err) => {
+//       console.log('Item not posting to Cart', err);
+//       res.sendStatus(500);
+//     });
+// });
+
+// POST route request
 router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code
+  console.log(req.body);
   // const { order_date, address_id } = req.body; // initial query
+  // console.log(order_date, address_id);
   const { order_date, address_id, quantity, product_id, order_id } = req.body; // updated query
 
-  if (!order_id) {
+  if (!req.body.order_id) {
     const queryText1 = `INSERT INTO "orders" (order_date, address_id, user_id)
     VALUES ($1, $2, $3) RETURNING id;`;
 
@@ -42,7 +59,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         const queryText2 = `INSERT INTO "line_items" (quantity, order_id, product_id)
         VALUES ($1, $2, $3) RETURNING id;`;
 
-        //     console.log('response.data', response);
+        console.log('response.data', response);
         //     const queryText = `INSERT INTO "line_items" (quantity, order_id, product_id)
         // VALUES ($1, $2, $3) RETURNING id;`;
         pool
