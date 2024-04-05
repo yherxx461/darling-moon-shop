@@ -2,9 +2,9 @@ import { Button, Link } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 
-function AddressesPage() {
+function AddressPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const address = useSelector((store) => store.address);
@@ -16,12 +16,7 @@ function AddressesPage() {
     isDefault: false,
   });
 
-  useEffect(() => {
-    //initial load --> load once
-    dispatch({ type: 'FETCH_ADDRESS' });
-  }, []);
-
-  const handClickAddress = () => {
+  const handleClickAddress = () => {
     history.push('/address');
   };
 
@@ -32,6 +27,7 @@ function AddressesPage() {
   const handleSubmitAddress = (event) => {
     event.preventDefault();
     dispatch({ type: 'ADD_ADDRESS', payload: newAddress });
+    // clear up fields
     setNewAddress({
       street: '',
       city: '',
@@ -41,11 +37,16 @@ function AddressesPage() {
     });
     setNewAddress('');
   };
+  useEffect(() => {
+    //initial load --> load once
+    dispatch({ type: 'FETCH_ADDRESS' });
+  }, []);
 
   const handleChange = (event) => {
     const updatedAddress = event.target;
     setNewAddress(updatedAddress);
   };
+
   return (
     <>
       <div>
@@ -60,13 +61,17 @@ function AddressesPage() {
             </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/address" onClick={handClickAddress}>
+            <Link
+              className="nav-link"
+              to="/address"
+              onClick={handleClickAddress}
+            >
               Addresses
             </Link>
           </li>
         </ul>
       </div>
-      <h3>Address</h3>
+      <h3>Addresses</h3>
       <form className="address-form" onSubmit={handleSubmitAddress}>
         <br></br>
         <input
@@ -122,11 +127,11 @@ function AddressesPage() {
               {addressItem.city}, {addressItem.state} {addressItem.zip}
             </p>
           </div>
-        ))}
+        ))}{' '}
         ;
       </>
     </>
   );
 }
 
-export default AddressesPage;
+export default AddressPage;
