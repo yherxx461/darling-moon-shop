@@ -1,5 +1,6 @@
 // Material UI Imports
 import { Card, Button, TextField } from '@mui/material';
+import ShoppingCartItem from '../ShoppingCartItem/ShoppingCartItem';
 // Imports:
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -12,7 +13,7 @@ function ShoppingCart() {
   const cart = useSelector((store) => store.cart);
   const dispatch = useDispatch();
   const history = useHistory();
-  const product = useSelector((store) => store.products);
+  // const product = useSelector((store) => store.products);
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(
@@ -33,17 +34,11 @@ function ShoppingCart() {
     dispatch({ type: 'FETCH_CART' });
   }, []);
 
-  const handleDeleteItem = (id) => {
-    dispatch({
-      type: 'DELETE_CART_ITEM',
-      payload: id,
-    });
-  };
-
   const handleProceedToOrderCheckout = () => {
     console.log('in handleOrderCheckout');
     history.push('/order-checkout');
   };
+
   return (
     <>
       <div>
@@ -65,22 +60,7 @@ function ShoppingCart() {
         </Card>
         {/* Mapping/fetching the item in the cart */}
         {cart.map((item) => (
-          <div key={item.id} className="selectedItems">
-            <img src={item.img} />
-            <p>{item.product_name}</p>
-            <p>
-              $ {item.price.toFixed(2)} x {item.quantity} qty
-            </p>
-            <TextField type="number" label="Quantity" value={item.quantity} />
-            <Button
-              size="small"
-              variant="outlined"
-              type="button"
-              onClick={() => handleDeleteItem(item.id)}
-            >
-              Remove
-            </Button>
-          </div>
+          <ShoppingCartItem item={item} />
         ))}
       </div>
     </>
