@@ -1,7 +1,5 @@
 // Material UI Imports
-import { Card, Grid } from '@mui/material';
-import { Button } from '@mui/material';
-
+import { Card, Button, TextField } from '@mui/material';
 // Imports:
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -30,18 +28,10 @@ function ShoppingCart() {
     [cart]
   );
 
-  useEffect(
-    (item) => {
-      // useEffect(() => {
-      // Total price whenever item in cart changes
-      let total = 0;
-      cart.forEach((item) => {
-        total += item.price * item.quantity;
-      });
-      setTotalPrice(total);
-    },
-    [cart]
-  );
+  useEffect(() => {
+    dispatch({ type: 'FETCH_PRODUCT' });
+    dispatch({ type: 'FETCH_CART' });
+  }, []);
 
   const handleDeleteItem = (id) => {
     dispatch({
@@ -76,11 +66,12 @@ function ShoppingCart() {
         {/* Mapping/fetching the item in the cart */}
         {cart.map((item) => (
           <div key={item.id} className="selectedItems">
-            <img src={product.image_1} />
-            <p>{product.name}</p>
+            <img src={item.img} />
+            <p>{item.product_name}</p>
             <p>
               $ {item.price.toFixed(2)} x {item.quantity} qty
             </p>
+            <TextField type="number" label="Quantity" value={item.quantity} />
             <Button
               size="small"
               variant="outlined"
