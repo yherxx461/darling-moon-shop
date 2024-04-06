@@ -39,11 +39,11 @@ function ShoppingCartItem({ item }) {
       <p>{item.product_name}</p>
       <p>
         $ {item.price.toFixed(2)} x{' '}
-        <IconButton size="small" color="secondary" onClick={handleUpButton}>
+        <IconButton size="small" color="secondary" onClick={handleDownButton}>
           <ArrowDropDownIcon />
         </IconButton>
         {item.quantity}{' '}
-        <IconButton size="small" color="secondary" onClick={handleDownButton}>
+        <IconButton size="small" color="secondary" onClick={handleUpButton}>
           <ArrowDropUpIcon />
         </IconButton>
         qty
