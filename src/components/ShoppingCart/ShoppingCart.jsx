@@ -60,7 +60,7 @@ function ShoppingCart() {
         </Card>
         {/* Mapping/fetching the item in the cart */}
         {cart.map((item) => (
-          <ShoppingCartItem item={item} />
+          <ShoppingCartItem key={item.id} item={item} />
         ))}
       </div>
     </>
