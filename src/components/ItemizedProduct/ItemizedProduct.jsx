@@ -36,10 +36,6 @@ function ItemizedProduct() {
     if (!isNaN(newQuantity) && newQuantity >= 1 && newQuantity <= 10) {
       setQuantity(newQuantity);
     }
-    //   dispatch({
-    //     type: 'UPDATE_QUANTITY_REQUEST',
-    //     payload: { id: id, quantity: newQuantity },
-    //   });
   };
 
   return (
