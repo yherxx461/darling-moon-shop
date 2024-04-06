@@ -6,7 +6,6 @@ import productsReducer from './products.reducer';
 import cartReducer from './cart.reducer';
 import itemDetailsReducer from './itemDetails.reducer';
 import featuredItemsReducer from './featured.reducer';
-import addToCartReducer from './addToCart.reducer';
 import updateQuantityReducer from './updateQuantity.reducer';
 import deleteItemReducer from './deleteItem.reducer';
 
@@ -24,7 +23,6 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   details: itemDetailsReducer,
   featured: featuredItemsReducer,
-  addToCart: addToCartReducer,
   quantityUpdate: updateQuantityReducer,
   deleteItem: deleteItemReducer,
 });

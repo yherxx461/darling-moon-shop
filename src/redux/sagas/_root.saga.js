@@ -8,7 +8,6 @@ import productsSaga from './products.saga';
 import cartSaga from './cart.saga';
 import itemDetailsSaga from './itemDetails.saga';
 import featuredItemsSaga from './featured.saga';
-import addToCartSaga from './addToCart.saga';
 import deleteItemsSaga from './deleteItem.saga';
 
 // rootSaga is the primary saga.
@@ -29,7 +28,6 @@ export default function* rootSaga() {
     cartSaga(),
     itemDetailsSaga(),
     featuredItemsSaga(),
-    addToCartSaga(),
     updateUserSaga(),
     deleteItemsSaga(),
   ]);
