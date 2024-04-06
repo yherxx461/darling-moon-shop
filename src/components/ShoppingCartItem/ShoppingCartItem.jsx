@@ -38,7 +38,7 @@ function ShoppingCartItem({ item }) {
       <img src={item.img} />
       <p>{item.product_name}</p>
       <p>
-        $ {item.price.toFixed(2)} x{' '}
+        $ {item.price} x{' '}
         <IconButton size="small" color="secondary" onClick={handleDownButton}>
           <KeyboardArrowDownOutlinedIcon min={1} />
         </IconButton>

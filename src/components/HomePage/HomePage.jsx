@@ -40,7 +40,7 @@ function HomePage() {
               >
                 <img src={featuredItem.image_1} className="productImage" />
                 <p>{featuredItem.name}</p>
-                <p>$ {featuredItem.price.toFixed(2)}</p>
+                <p>$ {featuredItem.price}</p>
               </Card>
             </Grid>
           );

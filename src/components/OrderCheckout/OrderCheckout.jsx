@@ -52,7 +52,7 @@ function OrderCheckout() {
               <img src={product.img} />
               <p>{product.product_name}</p>
               <p>
-                $ {product.price.toFixed(2)} x {product.quantity}
+                $ {product.price} x {product.quantity}
               </p>
               <p></p>
             </div>
