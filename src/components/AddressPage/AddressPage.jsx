@@ -26,7 +26,9 @@ function AddressPage() {
 
   const handleSubmitAddress = (event) => {
     event.preventDefault();
-    dispatch({ type: 'ADD_ADDRESS', payload: newAddress });
+    dispatch({ type: 'UPDATE_ADDRESS', payload: newAddress });
+    dispatch({ type: 'UPDATE_ADDRESS', payload: newAddress });
+    dispatch({ type: 'FETCH_ADDRESS' });
     // clear up fields
     setNewAddress({
       street: '',
@@ -35,12 +37,11 @@ function AddressPage() {
       zip: '',
       isDefault: false,
     });
-    setNewAddress('');
+    useEffect(() => {
+      //initial load --> load once
+      dispatch({ type: 'FETCH_ADDRESS' });
+    }, []);
   };
-  useEffect(() => {
-    //initial load --> load once
-    dispatch({ type: 'FETCH_ADDRESS' });
-  }, []);
 
   const handleChange = (event) => {
     const updatedAddress = event.target;
@@ -128,7 +129,6 @@ function AddressPage() {
             </p>
           </div>
         ))}{' '}
-        ;
       </>
     </>
   );
