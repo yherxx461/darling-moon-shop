@@ -15,6 +15,7 @@ function OrderCheckout() {
   useEffect(() => {
     // Dispatch an action to fetch products when the component mounts
     dispatch({ type: 'FETCH_CART' });
+    dispatch({ type: 'FETCH_ADDRESS' });
   }, [dispatch]);
 
   const handleSubmitOrderCheckout = () => {
@@ -37,8 +38,10 @@ function OrderCheckout() {
       <div className="shipping-address">
         <Box>
           <p>{user.name}</p>
-          <p>{address.street}1234 Main Street</p>
-          <p>New York, New York 10044</p>
+          <p>{address.street}</p>
+          <p>
+            {address.city}, {address.city} {address.zip}
+          </p>
         </Box>
       </div>
       <div>
@@ -46,8 +49,8 @@ function OrderCheckout() {
           <p>Orders</p>
           {cart.map((product) => (
             <div key={product.id}>
-              <img src={product.image_1} />
-              <p>Product Name</p>
+              <img src={product.img} />
+              <p>{product.product_name}</p>
               <p>
                 $ {product.price.toFixed(2)} x {product.quantity}
               </p>

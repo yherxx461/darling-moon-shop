@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 function ShoppingCartItem({ item }) {
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState(item.quantity);
+  // const [quantity, setQuantity] = useState(item.quantity);
 
   // const handleQuantityChange = (event, item) => {
   //   setQuantity(event.target.value);
