@@ -9,6 +9,9 @@ function ShoppingCartIconPage() {
   const history = useHistory();
   const cart = useSelector((store) => store.cart);
 
+  // Counting total quantity instead of total items
+  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+
   const handleClick = () => {
     history.push('/cart');
     // console.log('navigate to Orders');
@@ -19,7 +22,7 @@ function ShoppingCartIconPage() {
       <Badge
         className="shoppingCartIcon"
         // TO-DO: Once completed the saga/reducer calls, can do item.length to get the total items added to the cart
-        badgeContent={cart.length}
+        badgeContent={totalQuantity}
         color="primary"
         // anchorOrigin={{
         //   vertical: 'top',

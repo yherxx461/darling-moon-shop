@@ -5,11 +5,8 @@ const cartReducer = (state = [], action) => {
     case 'UNSET_CART':
       return [];
     case 'ADD_TO_CART':
-      return {
-        // Must return previous state if no change is required for it to work
-        ...state,
-        items: [...state, action.payload],
-      };
+      // Add new item to the existing array of state
+      return [...state, action.payload];
     default:
       return state;
   }
