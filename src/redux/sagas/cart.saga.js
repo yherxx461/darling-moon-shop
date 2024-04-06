@@ -38,10 +38,20 @@ function* updateCartQuantity(action) {
   }
 }
 
+function* deleteCartItems(action) {
+  try {
+    yield axios.delete(`/api/cart/${action.payload}`);
+    yield put({ type: 'FETCH_CART' });
+  } catch (error) {
+    console.log('Error deleting item off cart', error);
+  }
+}
+
 function* cartSaga() {
   yield takeLatest('FETCH_CART', fetchCart);
   yield takeLatest('ADD_TO_CART', addToCart);
   yield takeLatest('UPDATE_CART_QUANTITY', updateCartQuantity);
+  yield takeLatest('DELETE_CART_ITEM', deleteCartItems);
 }
 
 export default cartSaga;
