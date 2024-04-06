@@ -3,7 +3,7 @@ const addressReducer = (state = [], action) => {
     case 'SET_ADDRESS':
       return action.payload;
     case 'ADD_ADDRESS':
-      return { ...state, newAddress: action.users };
+      return { ...state, newAddress: action.address };
     default:
       return state;
   }
