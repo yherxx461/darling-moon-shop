@@ -1,4 +1,4 @@
-import { Button, IconButton, TextField } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import { useDispatch } from 'react-redux';
@@ -14,16 +14,22 @@ function ShoppingCartItem({ item }) {
   // };
 
   const handleUpButton = () => {
-    dispatch({
-      type: 'UPDATE_CART_QUANTITY',
-      payload: { id: item.id, quantity: item.quantity + 1 },
-    });
+    if (item.quantity < 10) {
+      // Limit quantity to not go over 10
+      dispatch({
+        type: 'UPDATE_CART_QUANTITY',
+        payload: { id: item.id, quantity: item.quantity + 1 },
+      });
+    }
   };
   const handleDownButton = () => {
-    dispatch({
-      type: 'UPDATE_CART_QUANTITY',
-      payload: { id: item.id, quantity: item.quantity - 1 },
-    });
+    if (item.quantity > 1) {
+      // Limit quantity to start at 1
+      dispatch({
+        type: 'UPDATE_CART_QUANTITY',
+        payload: { id: item.id, quantity: item.quantity - 1 },
+      });
+    }
   };
 
   const handleDeleteItem = (id) => {
@@ -40,11 +46,11 @@ function ShoppingCartItem({ item }) {
       <p>
         $ {item.price} x{' '}
         <IconButton size="small" color="secondary" onClick={handleDownButton}>
-          <KeyboardArrowDownOutlinedIcon min={1} />
+          <KeyboardArrowDownOutlinedIcon />
         </IconButton>
         {item.quantity}{' '}
         <IconButton size="small" color="secondary" onClick={handleUpButton}>
-          <KeyboardArrowUpOutlinedIcon max={10} />
+          <KeyboardArrowUpOutlinedIcon />
         </IconButton>
         qty
       </p>
