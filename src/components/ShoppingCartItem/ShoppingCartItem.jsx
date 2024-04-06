@@ -1,8 +1,8 @@
 import { Button, IconButton, TextField } from '@mui/material';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 function ShoppingCartItem({ item }) {
   const dispatch = useDispatch();
@@ -40,11 +40,11 @@ function ShoppingCartItem({ item }) {
       <p>
         $ {item.price.toFixed(2)} x{' '}
         <IconButton size="small" color="secondary" onClick={handleDownButton}>
-          <ArrowDropDownIcon />
+          <KeyboardArrowDownOutlinedIcon min={1} />
         </IconButton>
         {item.quantity}{' '}
         <IconButton size="small" color="secondary" onClick={handleUpButton}>
-          <ArrowDropUpIcon />
+          <KeyboardArrowUpOutlinedIcon max={10} />
         </IconButton>
         qty
       </p>
