@@ -11,40 +11,31 @@ CREATE TABLE "user" (
     "phone" VARCHAR (255) UNIQUE NOT NULL
 );
 
-CREATE TABLE "addresses" (
+CREATE TABLE "address" (
 "id" SERIAL PRIMARY KEY,
 "street" VARCHAR (255) NOT NULL,
 "city" VARCHAR (255) NOT NULL,
 "state" VARCHAR (255) NOT NULL,
 "zip" INT,
+"isDefault" BOOLEAN DEFAULT FALSE,
 "user_id" INT REFERENCES "user"
 );
 
-INSERT INTO "addresses" ("street", "city", "state", "zip")
-VALUES ('1234 Main Street', 'New York', 'New York', 10044);
-
 CREATE TABLE "products" (
 "id" SERIAL PRIMARY KEY,
-"image_url_1" VARCHAR (255) NOT NULL,
-"image_url_2" VARCHAR (255) NOT NULL,
-"image_url_3" VARCHAR (255) NOT NULL,
+"image_1" VARCHAR (255) NOT NULL,
+"image_2" VARCHAR (255) NOT NULL,
+"image_3" VARCHAR (255) NOT NULL,
 "name" VARCHAR (255) NOT NULL,
 "description" VARCHAR (255) NOT NULL,
-"price" FLOAT
+"price" NUMERIC (10, 2),
+"featured_item" BOOLEAN DEFAULT FALSE
 );
-
--- Price value: recommended by Ryan --> use a float: ALTER TABLE table_name ALTER COLUMN column_name TYPE DOUBLE PRECISION;
-
-INSERT INTO "products" ("image_url_1", "image_url_2", "image_url_3", "name", "description", "price")
-VALUES 
-('jungwon_bite_me_1.png', 'jungwon_bite_me_2.png', 'jungwon_bite_me_3.png', 'Jungwon "Bite Me"', 'Dark Jungwon during "Bite Me" era.', 17.25),
-('jungwon_sunshine_1.jpg', 'jungwon_sunshine_1.jpg', 'jungwon_sunshine_1.jpg', 'Jungwon "Sunhine"', 'Fresh and bright like vitamin-C Jungwon.', 15.75);
-
 
 CREATE TABLE "orders" (
 "id" SERIAL PRIMARY KEY,
-"order_date" DATE NOT NULL,
-"address_id" INT REFERENCES "addresses",
+"order_date" DATE, 
+"address_id" INT REFERENCES "address",
 "user_id" INT REFERENCES "user"
 );
 
@@ -55,20 +46,18 @@ CREATE TABLE "line_items" (
 "product_id" INT REFERENCES "products"
 );
 
-CREATE TABLE "featured_items" (
-"id" SERIAL PRIMARY KEY, 
-"image_url" VARCHAR (255) NOT NULL
-);
+-- PRODUCT LIST
 
-INSERT INTO "featured_items" ("image_url")
-VALUES 
-('jungwon_bite_me_1.png'),
-('jungwon_sunshine_1.jpg');
-
-
-
-DROP TABLE "addresses";
-DROP TABLE "line_items";
-DROP TABLE "orders";
-DROP TABLE "products";
-DROP TABLE "user";
+INSERT INTO "products" ("image_1", "image_2", "image_3", "name", "description", "price")
+VALUES
+('images/jungwon_bite_me_1.png', 'images/jungwon_bite_me_2.png', 'images/jungwon_bite_me_3.png', 'Jungwon - Bite Me', 'Dark Jungwon during Bite Me era.', 17.25),
+('images/jungwon_sunshine_1.jpg', 'images/jungwon_sunshine_2.jpg', 'images/jungwon_sunshine_3.jpg', 'Jungwon - Sunshine', 'Fresh and bright like vitamin-C Jungwon.', 17.25),
+('images/purple_clouds_1.JPEG', 'images/purple_clouds_2.JPEG', 'images/purple_clouds_3.JPEG', 'Purple Clouds', 'A heart filled with enchanted warm, dream-like place.', 16.50),
+('images/pink_clouds_1.JPG', 'images/pink_clouds_2.JPG', 'images/all_hearts.JPG', 'Pink Clouds', 'A heart filled with enchanted warm, dream-like place.', 16.50),
+('images/light_blue_clouds_1.JPG', 'images/light_blue_clouds_2.JPG', 'images/all_hearts.JPG', 'Lightblue Clouds', 'A heart filled with enchanted warm, dream-like place.', 16.50),
+('images/black_clouds_1.JPG', 'images/black_clouds_2.JPG', 'images/all_hearts.JPG', 'Black Clouds', 'A heart filled with enchanted warm, dream-like place.', 16.50),
+('images/baby_chick_1.JPG', 'images/baby_chick_2.JPG', 'images/baby_chick_3.png', 'Baby Chicken Friends', 'Tiny small yellow friends to keep you company', 17.00),
+('images/love_1.JPG', 'images/love_2.JPG', 'images/love_3.JPG', 'Love Heart', 'Need an extract heart for someone? Here''s one for you!', 16.75),
+('images/pink_angel_1.JPG', 'images/pink_angel_2.JPG', 'images/pink_angel_3.JPG', 'Pink Angel', 'Are you an angel?', 16.75),
+('images/90s_kitsch_1.png', 'images/90s_kitsch_2.png', 'images/90s_kitsch_3.png', '90s Kitsch!', 'Want to be cool like us? Betcha!', 15.00),
+('images/2000s_baby_1.png', 'images/2000s_baby_2.png', 'images/90s_baby_3.png', '2000s Baby!', 'What are you? Old? Young!? I''m MZ!', 15.00);
