@@ -27,21 +27,6 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 // POST route request
-// router.post('/', rejectUnauthenticated, (req, res) => {
-//   console.log(req.body);
-//   const { quantity, order_id, product_id } = req.body; // initial query
-//   const queryText = `INSERT INTO "line_items" (quantity, order_id, product_id) VALUES ($1, $2, $3) RETURNING id;`;
-
-//   pool
-//     .query(queryText, [quantity, order_id, product_id])
-//     .then(() => res.sendStatus(201))
-//     .catch((err) => {
-//       console.log('Item not posting to Cart', err);
-//       res.sendStatus(500);
-//     });
-// });
-
-// POST route request
 router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code
   console.log(req.body);
