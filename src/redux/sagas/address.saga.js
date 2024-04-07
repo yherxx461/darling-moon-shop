@@ -13,8 +13,7 @@ function* fetchAddress() {
 
 function* addAddress(action) {
   try {
-    yield axios.post(`/api/address/${action.payload}`, action.payload);
-    yield put({ type: 'ADD_ADDRESS' }); // fetch address again after adding a new address
+    yield axios.post(`/api/address`, action.payload);
     yield put({ type: 'FETCH_ADDRESS' });
   } catch (error) {
     console.log('Error adding new address', error);

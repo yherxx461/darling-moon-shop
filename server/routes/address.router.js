@@ -9,6 +9,7 @@ const router = express.Router();
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET query to get addresses
   const query = `SELECT * FROM "address" WHERE "user_id" = $1;`;
+  const userId = req.user.id;
   pool
     .query(query, [req.user.id])
     .then((result) => {
@@ -23,18 +24,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // POST route request
 router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code
-  const street = req.body.street;
-  const city = req.body.city;
-  const state = req.body.state;
-  const zip = req.body.zip;
-  const user_id = req.user.id;
+  const { street, city, state, zip, isDefault } = req.body;
+  const userId = req.user.id;
+  const isDefaultKey = isDefault === 'true';
+  const zipValue = zip === '' ? null : zip;
 
-  const queryText = `INSERT INTO "address" (street, city, state, zip, user_id)
-    VALUES ($1, $2, $3, $4, $5) RETURNING id;`;
-
-  console.log('Address POST route:', queryText);
+  const queryText = `INSERT INTO "address" (street, city, state, zip, isDefault, user_id) 
+  VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`;
+  console.log(
+    'POST Request - SUCCESS: New address posted to database:',
+    queryText
+  );
   pool
-    .query(queryText, [street, city, state, zip, user_id])
+    .query(queryText, [street, city, state, zipValue, isDefaultKey, userId])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('Address not posting', err);
@@ -54,7 +56,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     .query(queryText, queryArgs)
     .then(() => {
       console.log(`PUT /address/${id} - SUCCESS`);
-      res.sendStatus(201);
+      res.status(200);
     })
     .catch((err) => {
       console.log('Address PUT route not updating', err);
@@ -71,7 +73,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
   pool
     .query(queryText, [id])
-    .then(() => res.sendStatus(201))
+    .then(() => res.status(200))
     .catch((err) => {
       console.log('Unable to delete address', err);
       res.sendStatus(500);
