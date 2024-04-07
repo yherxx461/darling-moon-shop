@@ -15,6 +15,10 @@ function AddressPage() {
     zip: '',
     isDefault: false,
   });
+  useEffect(() => {
+    // Fetch address on initial load
+    dispatch({ type: 'FETCH_ADDRESS' });
+  }, [dispatch]);
 
   const handleClickAddress = () => {
     history.push('/address');
@@ -26,10 +30,26 @@ function AddressPage() {
 
   const handleSubmitAddress = (event) => {
     event.preventDefault();
-    dispatch({ type: 'UPDATE_ADDRESS', payload: newAddress });
-    dispatch({ type: 'UPDATE_ADDRESS', payload: newAddress });
-    dispatch({ type: 'FETCH_ADDRESS' });
-    // clear up fields
+
+    if (newAddress.isDefault) {
+      // Find the previous default address
+      const previousDefault = address.find(
+        (addressItem) => addressItem.isDefault
+      );
+      if (previousDefault) {
+        // Dispatch action to update the previous default address
+        dispatch({
+          type: 'UPDATE_ADDRESS',
+          payload: { ...previousDefault, isDefault: false },
+        });
+      }
+    }
+
+    // Set the "isDefault" value to boolean true or false before dispatching
+    dispatch({
+      type: 'ADD_ADDRESS',
+      payload: { ...newAddress, isDefault: newAddress.isDefault },
+    });
     setNewAddress({
       street: '',
       city: '',
@@ -37,15 +57,14 @@ function AddressPage() {
       zip: '',
       isDefault: false,
     });
-    useEffect(() => {
-      //initial load --> load once
-      dispatch({ type: 'FETCH_ADDRESS' });
-    }, []);
   };
 
   const handleChange = (event) => {
-    const updatedAddress = event.target;
-    setNewAddress(updatedAddress);
+    const { name, value, checked } = event.target;
+    setNewAddress((prevAddress) => ({
+      ...prevAddress,
+      [name]: name === 'isDefault' ? checked : value,
+    }));
   };
 
   return (
@@ -79,6 +98,7 @@ function AddressPage() {
           type="text"
           className="street"
           placeholder="Street"
+          name="street"
           value={newAddress.street}
           onChange={handleChange}
         />
@@ -87,6 +107,7 @@ function AddressPage() {
           type="text"
           className="city"
           placeholder="City"
+          name="city"
           value={newAddress.city}
           onChange={handleChange}
         />
@@ -95,6 +116,7 @@ function AddressPage() {
           type="text"
           className="state"
           placeholder="State"
+          name="state"
           value={newAddress.state}
           onChange={handleChange}
         />
@@ -103,6 +125,7 @@ function AddressPage() {
           type="text"
           className="zip"
           placeholder="Zip"
+          name="zip"
           value={newAddress.zip}
           onChange={handleChange}
         />
@@ -110,28 +133,31 @@ function AddressPage() {
         <input
           type="checkbox"
           className="set-default"
+          name="isDefault"
           checked={newAddress.isDefault}
           onChange={handleChange}
         />
         Set as default address
         <br></br>
-        <Button variant="outlined" size="small">
+        <Button type="submit" variant="outlined" size="small">
           Confirm
         </Button>
       </form>
       <>
         <h3>Saved Addresses</h3>
+        {/* <div className="saved-addresses" key={address.id}> */}
         {address.map((addressItem) => (
           <div key={addressItem.id}>
+            <p>{addressItem.isDefault ? 'not default' : 'default'}</p>
             <p>{addressItem.street}</p>
             <p>
               {addressItem.city}, {addressItem.state} {addressItem.zip}
             </p>
           </div>
         ))}{' '}
+        {/* </div> */}
       </>
     </>
   );
 }
-
 export default AddressPage;
