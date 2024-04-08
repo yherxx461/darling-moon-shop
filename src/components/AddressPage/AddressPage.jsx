@@ -61,7 +61,12 @@ function AddressPage() {
   };
 
   const handleChange = (event) => {
-    const { name, value, checked } = event.target;
+    const { name, value } = event.target;
+    const checked =
+      // default to newAddress.isDefault if not a checkbox ==> false;
+      event.target.type === 'checkbox'
+        ? event.target.checked
+        : newAddress.isDefault;
     setNewAddress((prevAddress) => ({
       ...prevAddress,
       [name]: name === 'isDefault' ? checked : value,
@@ -163,14 +168,14 @@ function AddressPage() {
               {addressItem.city}, {addressItem.state} {addressItem.zip}
             </p>
             <Button
-              variant="outline"
-              color="secondary"
+              variant="outlined"
+              color="primary"
               onClick={() => handleDeleteAddress(addressItem.id)}
             >
               Delete
             </Button>
             <Button
-              variant="outline"
+              variant="outlined"
               color="primary"
               onClick={() => handleSetDefaultAddress(addressItem.id)}
             >
