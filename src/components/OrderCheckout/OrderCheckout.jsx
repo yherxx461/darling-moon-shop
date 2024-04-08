@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 function OrderCheckout() {
   const user = useSelector((store) => store.user);
-  const address = useSelector((store) => store.address);
+  const addresses = useSelector((store) => store.address);
   const cart = useSelector((store) => store.cart);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -19,6 +19,8 @@ function OrderCheckout() {
   }, [dispatch]);
 
   const handleSubmitOrderCheckout = () => {
+    // Dispatch action to clear cart
+    dispatch({ type: 'CLEAR_CART' });
     history.push('/order-confirmation');
   };
 
@@ -35,15 +37,21 @@ function OrderCheckout() {
       <div>
         <p className="page-title">Ship To:</p>
       </div>
-      <div className="shipping-address">
-        <Box>
-          <p>{user.name}</p>
-          <p>{address.street}</p>
-          <p>
-            {address.city}, {address.city} {address.zip}
-          </p>
-        </Box>
-      </div>
+      {addresses.length > 0 ? (
+        addresses.map((address) => (
+          <div key={address.id} className="shipping-address">
+            <Box>
+              <p>{user.name}</p>
+              <p>{address.street}</p>
+              <p>
+                {address.city}, {address.state} {address.zip}
+              </p>
+            </Box>
+          </div>
+        ))
+      ) : (
+        <p>No address found</p>
+      )}
       <div>
         <Box className="item-list">
           <p>Orders</p>
@@ -54,7 +62,6 @@ function OrderCheckout() {
               <p>
                 $ {product.price} x {product.quantity}
               </p>
-              <p></p>
             </div>
           ))}
         </Box>
@@ -62,5 +69,6 @@ function OrderCheckout() {
     </>
   );
 }
+// }
 
 export default OrderCheckout;
