@@ -40,30 +40,38 @@ function ItemizedProduct() {
 
   return (
     <>
-      <div className="itemizedProduct" key={item.id}>
-        <img src={item.image_1} />
-        <img src={item.image_2} />
-        <img src={item.image_3} />
-        <h3>{item.name}</h3>
-        <p>{item.description}</p>
-        <label className="quantity">Qty: {item.quantity}</label>
-        <input
-          type="number"
-          id="quantity"
-          min={1}
-          max={10}
-          value={quantity}
-          onChange={handleChange}
-        />
-        <p>$ {item.price}</p>
-        <Button
-          size="small"
-          variant="outlined"
-          type="submit"
-          onClick={handleAddToCart}
-        >
-          Add to Cart
-        </Button>
+      <div className="container" key={item.id}>
+        <div className="images">
+          <img src={item.image_1} />
+        </div>
+        <div>
+          <img src={item.image_2} />
+        </div>
+        <div>
+          <img src={item.image_3} />
+        </div>
+        <div className="details">
+          <h3>{item.name}</h3>
+          <p>{item.description}</p>
+          <label className="quantity">Qty: {item.quantity}</label>
+          <input
+            type="number"
+            id="quantity"
+            min={1}
+            max={10}
+            value={quantity}
+            onChange={handleChange}
+          />
+          <p>$ {item.price}</p>
+          <Button
+            size="small"
+            variant="outlined"
+            type="submit"
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </Button>
+        </div>
       </div>
     </>
   );
