@@ -2,8 +2,8 @@ import { Box, Link } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+
 // import './OrderCheckout.css';
-// imports
 
 function OrderCheckout() {
   const user = useSelector((store) => store.user);
@@ -35,7 +35,7 @@ function OrderCheckout() {
         </button>
       </div>
       <div>
-        <p className="page-title">Ship To:</p>
+        <h3 className="page-title">Ship To:</h3>
       </div>
       {addresses.length > 0 ? (
         addresses.map((address) => (
@@ -54,11 +54,12 @@ function OrderCheckout() {
       )}
       <div>
         <Box className="item-list">
-          <p>Orders</p>
+          <h3>Orders</h3>
           {cart.map((product) => (
+            <
             <div key={product.id}>
               <img src={product.img} />
-              <p>{product.product_name}</p>
+              <h3>{product.product_name}</h3>
               <p>
                 $ {product.price} x {product.quantity}
               </p>
