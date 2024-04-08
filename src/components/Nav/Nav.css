@@ -5,7 +5,7 @@
   align-items: center;
 
   margin: 0 0 30px;
-  background-color: #d7afff;
+  /* background-color: #d7afff; */
   overflow: hidden;
 }
 
@@ -16,27 +16,28 @@
 .nav-title {
   font-size: 24px;
   font-weight: 700;
-  color: #f2f2f2;
+  color: #000000;
   padding-left: 10px;
-  margin: 0;
+  align-items: center;
+  margin: 2em;
 }
 
-.navLink {
+/* .navLink {
   display: inline-block;
-  color: #f2f2f2;
-  background-color: #d7afff;
-  text-align: center;
+  color: #131111; */
+/* background-color: #d7afff; */
+/* text-align: center;
   padding: 30px 10px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 15px; */
 
-  /* these last two make the logout button in
+/* these last two make the logout button in
   the nav bar look like another link */
-  border: none;
+/* border: none;
   cursor: pointer;
   outline: 0;
-}
+} */
 
-.navLink:hover {
+/* .navLink:hover {
   background-color: #ca80ff;
-}
+} */
