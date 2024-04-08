@@ -1,6 +1,6 @@
 import { Box, Link, Grid, Button } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 // import './OrderCheckout.css';
@@ -12,11 +12,21 @@ function OrderCheckout() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [totalPrice, setTotalPrice] = useState(0);
+
   useEffect(() => {
     // Dispatch an action to fetch products when the component mounts
     dispatch({ type: 'FETCH_CART' });
     dispatch({ type: 'FETCH_ADDRESS' });
   }, [dispatch]);
+
+  // Total price when chart quantity/item changes
+  useEffect(() => {
+    const totalPrice = cart.reduce((acc, product) => {
+      return acc + product.price * product.quantity;
+    }, 0);
+    setTotalPrice(totalPrice);
+  }, [cart]);
 
   const handleSubmitOrderCheckout = () => {
     // Dispatch action to clear cart
@@ -30,6 +40,8 @@ function OrderCheckout() {
         <h1>Order Checkout</h1>
       </div>
       <div>
+        Total: ${totalPrice.toFixed(2)}
+        <br></br>
         <Button
           variant="outlined"
           size="small"
