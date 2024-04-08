@@ -41,11 +41,23 @@ function* updateAddress(action) {
   }
 }
 
+function* setDefaultAddress(action) {
+  try {
+    const { id } = action.payload;
+    // Make API call to set the address as default
+    yield axios.put(`/api/address/${id}`);
+    yield put({ type: 'FETCH_ADDRESS' }); // Fetch updated addresses after setting default
+  } catch (error) {
+    console.log('Error setting address as default', error);
+  }
+}
+
 function* addressSaga() {
   yield takeLatest('FETCH_ADDRESS', fetchAddress);
   yield takeLatest('ADD_ADDRESS', addAddress);
   yield takeLatest('DELETE_ADDRESS', deleteAddress);
   yield takeLatest('UPDATE_ADDRESS', updateAddress);
+  yield takeLatest('SET_DEFAULT_ADDRESS', setDefaultAddress);
 }
 
 export default addressSaga;

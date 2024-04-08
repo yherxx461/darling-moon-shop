@@ -56,7 +56,7 @@ function AddressPage() {
       city: '',
       state: '',
       zip: '',
-      isDefault: false,
+      isDefault: newAddress.isDefault,
     });
   };
 
@@ -70,6 +70,10 @@ function AddressPage() {
 
   const handleDeleteAddress = (id) => {
     dispatch({ type: 'DELETE_ADDRESS', payload: id });
+  };
+
+  const handleSetDefaultAddress = (id) => {
+    dispatch({ type: 'SET_DEFAULT_ADDRESS', payload: id });
   };
 
   return (
@@ -164,6 +168,13 @@ function AddressPage() {
               onClick={() => handleDeleteAddress(addressItem.id)}
             >
               Delete
+            </Button>
+            <Button
+              variant="outline"
+              color="primary"
+              onClick={() => handleSetDefaultAddress(addressItem.id)}
+            >
+              Set as Default
             </Button>
           </div>
         ))}{' '}
