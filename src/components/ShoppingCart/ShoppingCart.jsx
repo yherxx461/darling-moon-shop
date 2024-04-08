@@ -52,7 +52,6 @@ function ShoppingCart() {
             className="btn"
             size="small"
             variant="outlined"
-            type="submit"
             onClick={handleProceedToOrderCheckout}
           >
             Proceed to Order Checkout
