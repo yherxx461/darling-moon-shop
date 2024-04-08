@@ -1,4 +1,4 @@
-import { Box, Link } from '@mui/material';
+import { Box, Link, Grid, Button } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -30,9 +30,13 @@ function OrderCheckout() {
         <h1>Order Checkout</h1>
       </div>
       <div>
-        <button onClick={handleSubmitOrderCheckout}>
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={handleSubmitOrderCheckout}
+        >
           <Link to="/order-confirmation">Order Checkout</Link>
-        </button>
+        </Button>
       </div>
       <div>
         <h3 className="page-title">Ship To:</h3>
@@ -56,7 +60,6 @@ function OrderCheckout() {
         <Box className="item-list">
           <h3>Orders</h3>
           {cart.map((product) => (
-            <
             <div key={product.id}>
               <img src={product.img} />
               <h3>{product.product_name}</h3>
