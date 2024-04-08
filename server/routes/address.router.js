@@ -63,6 +63,25 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+// PUT request to update default status
+// PUT route request to set an address as default
+router.put('/:id/default', rejectUnauthenticated, (req, res) => {
+  // PUT route code to set an address as default
+  const { id } = req.params;
+  const queryText = `UPDATE "address" SET "isDefault" = TRUE WHERE "id" = $1;`;
+
+  pool
+    .query(queryText, [id])
+    .then(() => {
+      console.log(`PUT /address/${id}/default - SUCCESS`);
+      res.status(200).send('Address set as default successfully');
+    })
+    .catch((err) => {
+      console.log('Error setting address as default', err);
+      res.sendStatus(500);
+    });
+});
+
 // PUT route request
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   // POST route code
