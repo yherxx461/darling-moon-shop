@@ -26,7 +26,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code
   const { street, city, state, zip, isDefault } = req.body;
   const userId = req.user.id;
-  const isDefaultKey = isDefault === 'true';
   const zipValue = zip === '' ? null : zip;
 
   const queryText = `INSERT INTO "address" (street, city, state, zip, isDefault, user_id) 
@@ -36,7 +35,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     queryText
   );
   pool
-    .query(queryText, [street, city, state, zipValue, isDefaultKey, userId])
+    .query(queryText, [street, city, state, zipValue, isDefault, userId])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('Address not posting', err);

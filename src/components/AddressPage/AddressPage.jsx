@@ -3,6 +3,7 @@ import { Button, Link } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import './AddressPage.css';
 
 function AddressPage() {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ function AddressPage() {
       const previousDefault = address.find(
         (addressItem) => addressItem.isDefault
       );
-      if (previousDefault) {
+      if (previousDefault && newAddress.isDefault) {
         // Dispatch action to update the previous default address
         dispatch({
           type: 'UPDATE_ADDRESS',
@@ -67,6 +68,10 @@ function AddressPage() {
     }));
   };
 
+  const handleDeleteAddress = (id) => {
+    dispatch({ type: 'DELETE_ADDRESS', payload: id });
+  };
+
   return (
     <>
       <div>
@@ -91,7 +96,7 @@ function AddressPage() {
           </li>
         </ul>
       </div>
-      <h3>Addresses</h3>
+      <h3>Add New Address</h3>
       <form className="address-form" onSubmit={handleSubmitAddress}>
         <br></br>
         <input
@@ -143,20 +148,27 @@ function AddressPage() {
           Confirm
         </Button>
       </form>
-      <>
+      <div key={address.id}>
         <h3>Saved Addresses</h3>
         {/* <div className="saved-addresses" key={address.id}> */}
         {address.map((addressItem) => (
           <div key={addressItem.id}>
-            <p>{addressItem.isDefault ? 'not default' : 'default'}</p>
+            <p>{addressItem.isDefault ? 'default' : 'not default'}</p>
             <p>{addressItem.street}</p>
             <p>
               {addressItem.city}, {addressItem.state} {addressItem.zip}
             </p>
+            <Button
+              variant="outline"
+              color="secondary"
+              onClick={() => handleDeleteAddress(addressItem.id)}
+            >
+              Delete
+            </Button>
           </div>
         ))}{' '}
         {/* </div> */}
-      </>
+      </div>
     </>
   );
 }

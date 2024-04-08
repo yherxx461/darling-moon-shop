@@ -22,8 +22,8 @@ function* addAddress(action) {
 
 function* deleteAddress(action) {
   try {
-    yield axios.delete(`/api/address/${action.payload}`, action.payload);
-    yield put({ type: 'DELETE_ADDRESS' });
+    yield axios.delete(`/api/address/${action.payload}`);
+    // yield put({ type: 'DELETE_ADDRESS' });
     yield put({ type: 'FETCH_ADDRESS' });
   } catch (error) {
     console.log('Error in deleting address', error);
@@ -32,8 +32,9 @@ function* deleteAddress(action) {
 
 function* updateAddress(action) {
   try {
-    yield axios.put(`/api/address/${action.payload}`, action.payload);
-    yield put({ type: 'UPDATE_ADDRESS' });
+    const { id, ...addressData } = action.payload;
+    yield axios.put(`/api/address/${id}`, addressData);
+    // yield put({ type: 'UPDATE_ADDRESS' });
     yield put({ type: 'FETCH_ADDRESS' });
   } catch (error) {
     console.log('Error in deleting address', error);
