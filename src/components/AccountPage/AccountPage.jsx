@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 // Material UI Imports
 import Box from '@mui/material/Box';
@@ -121,10 +122,14 @@ function AccountPage() {
               <p>{user.name}</p>
               <p>{user.email}</p>
               <p>{user.phone}</p>
-              <button onClick={handleEdit}>Edit</button>
+              <Button variant="outlined" color="primary" onClick={handleEdit}>
+                Edit
+              </Button>
               {/* <p>Your ID is: {user.id}</p> */}
-              {/* DO NOT SHOW USER ID. COMMENTED USER ID OUT. */}{' '}
-              <LogOutButton className="btn" />
+              {/* DO NOT SHOW USER ID. COMMENTED USER ID OUT. */} <br></br>
+              <Button variant="outlined" color="primary">
+                <LogOutButton className="btn" />
+              </Button>
             </Box>{' '}
             <Box
               sx={{
