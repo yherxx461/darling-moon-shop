@@ -49,7 +49,9 @@ function* deleteCartItems(action) {
 
 function* clearCart(action) {
   try {
-    yield axios.delete(`/api/cart/${action.payload.id}`, action.payload);
+    yield axios.delete(`/api/cart/${action.payload.id}`, {
+      data: action.payload,
+    });
     yield put({ type: 'CLEAR_CART' });
   } catch (error) {
     console.error('Error clearing cart', error);

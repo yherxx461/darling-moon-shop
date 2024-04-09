@@ -12,10 +12,25 @@ function* fetchOrders() {
   }
 }
 
-function* submitOrder(action) {
+// function* submitOrder(action) {
+//   try {
+//     yield axios.post('/api/orders', action.payload);
+//     yield put({ type: 'SUBMIT_ORDER_SUCCESS' });
+//   } catch (error) {
+//     yield put({ type: 'SUBMIT_ORDER_FAIL', payload: error.message });
+//   }
+// }
+
+function* handleOrderCheckout(action) {
   try {
-    yield axios.post('/api/orders', action.payload);
-    yield put({ type: 'SUBMIT_ORDER_SUCCESS' });
+    const orderDate = new Date();
+    const { addressId } = action.payload;
+    yield axios.post('/api/orders', {
+      ...orderDate,
+      order_date: orderDate,
+      address_id: addressId,
+    });
+    yield put({ type: 'SUBMIT_ORDER_REQUEST' });
   } catch (error) {
     yield put({ type: 'SUBMIT_ORDER_FAIL', payload: error.message });
   }
@@ -24,7 +39,8 @@ function* submitOrder(action) {
 function* orderCheckout() {
   // yield takeLatest('DELETE_CART_ITEM', orderCheckoutSaga);
   yield takeLatest('FETCH_ORDERS', fetchOrders);
-  yield takeLatest('SUBMIT_ORDER_REQUEST', submitOrder);
+  // yield takeLatest('SUBMIT_ORDER_REQUEST', submitOrder);
+  yield takeLatest('SUBMIT_ORDER_REQUEST', handleOrderCheckout);
 }
 
 export default orderCheckout;

@@ -13,6 +13,7 @@ function OrderCheckout() {
   const history = useHistory();
 
   const [totalPrice, setTotalPrice] = useState(0);
+  const [defaultAddress, setDefaultAddress] = useState(null);
 
   useEffect(() => {
     // Dispatch an action to fetch products when the component mounts
@@ -28,9 +29,26 @@ function OrderCheckout() {
     setTotalPrice(totalPrice);
   }, [cart]);
 
+  // Get time of when the cart is cleared
+  // const addressId = addresses.length > 0 ? addresses[0].id : null;
+  // const orderDetails = {
+  //   addressId: addressId,
+  useEffect(() => {
+    const defaultAddress = addresses.find((address) => address.isDefault);
+    setDefaultAddress(defaultAddress);
+  }, [addresses]);
+
   const handleSubmitOrderCheckout = () => {
+    if (!defaultAddress) {
+      alert('Please set a default address before placing the order.');
+      return;
+    }
+    const orderDetails = {
+      addressId: defaultAddress.id,
+    };
     // Dispatch action to clear cart
     dispatch({ type: 'CLEAR_CART' });
+    dispatch({ type: 'SUBMIT_ORDER_REQUEST', payload: orderDetails });
     history.push('/order-confirmation');
   };
 
