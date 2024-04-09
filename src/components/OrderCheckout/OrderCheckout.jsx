@@ -58,52 +58,80 @@ function OrderCheckout() {
 
   return (
     <>
-      <div>
-        <h1>Order Checkout</h1>
-      </div>
-      <div>
-        Total: ${totalPrice.toFixed(2)}
-        <br></br>
-        <Link to="/order-confirmation">
-          <Button variant="outlined" size="small" onClick={handlePlaceOrder}>
-            Place Order
-          </Button>
-        </Link>
-      </div>
-      <div>
-        <h3 className="page-title">Ship To:</h3>
-      </div>
-      {defaultAddress ? (
-        // render only the default address is not null
-        <div key={defaultAddress.id} className="shipping-address">
-          <Box>
-            <p>{user.name}</p>
-            <p>{defaultAddress.street}</p>
-            <p>
-              {defaultAddress.city}, {defaultAddress.state} {defaultAddress.zip}
-            </p>
-          </Box>
-        </div>
-      ) : (
-        <p>No address found</p>
-      )}
-      <div>
-        <Box className="item-list">
-          <h3>Orders</h3>
-          {cart.map((product) => (
-            <div key={product.id}>
-              <img src={product.img} />
-              <h3>{product.product_name}</h3>
-              <p>
-                $ {product.price} x {product.quantity} qty
-              </p>
-            </div>
-          ))}
+      <Box margin="2em" display={'flex'} justifyContent={'space-between'}>
+        <Box width="70%">
+          <div>
+            <h1>Order Checkout</h1>
+          </div>
+          <div>
+            <h2 className="page-title">Ship To:</h2>
+          </div>
+          <div
+            className="address-container"
+            style={{ display: 'flex', justifyContent: 'flex-start' }}
+          >
+            {defaultAddress ? (
+              // render only the default address is not null
+              <div key={defaultAddress.id} className="shipping-address">
+                <Box>
+                  <p style={{ justifyContent: 'flex-start' }}>{user.name}</p>
+                  <p style={{ justifyContent: 'flex-start' }}>
+                    {defaultAddress.street}
+                  </p>
+                  <p style={{ justifyContent: 'flex-start' }}>
+                    {defaultAddress.city}, {defaultAddress.state}{' '}
+                    {defaultAddress.zip}
+                  </p>
+                </Box>
+              </div>
+            ) : (
+              <p>No address found</p>
+            )}
+          </div>
+          <div>
+            <Box className="item-list">
+              <h2>Orders</h2>
+              {cart.map((product) => (
+                <div
+                  key={product.id}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginBottom: '1em',
+                  }}
+                >
+                  {/* <div style={{ marginRight: '1em' }}> */}
+                  <img src={product.img} />
+                  {/* <div style={{ marginLeft: '1em' }}> */}
+                  <h3 style={{ marginLeft: '1em' }}>{product.product_name}</h3>
+                  <p style={{ marginLeft: '1em' }}>
+                    $ {product.price} x {product.quantity} qty
+                  </p>
+                </div>
+                // </div>
+                // </div>
+              ))}
+            </Box>
+          </div>
         </Box>
-      </div>
+        <Box width="30%">
+          <div className="total-container">
+            Total: ${totalPrice.toFixed(2)}
+            <br></br>
+            <Link to="/order-confirmation">
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={handlePlaceOrder}
+              >
+                Place Order
+              </Button>
+            </Link>
+          </div>
+        </Box>
+      </Box>
     </>
   );
 }
-// }
 
 export default OrderCheckout;

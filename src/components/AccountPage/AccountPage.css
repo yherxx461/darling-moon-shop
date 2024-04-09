@@ -1,66 +1,33 @@
-/* body {
-  background:fixed;
-}
-
-.wrapper {
+.account-page {
   display: flex;
-  position: relative;
 }
 
-.wrapper,
 .sidebar {
-  position: fixed;
-  width: 300px;
-  height: 100%;
-  background-color: aliceblue;
-  padding: 60px 0;
+  width: 200px;
+  padding: 20px;
+  background-color: #f0f0f0;
 }
 
-.wrapper,
-.sidebar,
-ul,
-li {
-  padding: 15px;
-  border-bottom: 1px solid whitesmoke;
-  border-top: 1px solid whitesmoke;
-  width: 25px;
-} */
-
-/* .sidenav {
-  height: 100%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #fffcfc;
-  overflow-x: visible;
-  padding-top: 20px;
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
+.sidebar ul li {
+  margin-bottom: 10px;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
-} */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
 
-/* .main { */
-/* margin-left: 160px; Same as the width of the sidenav */
-/* font-size: 28px; Increased text to enable scrolling */
-/* padding: 0px 10px;
-} */
+.user-info {
+  padding: 20px;
+  margin-bottom: 20px;
+}
 
-/* @media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-  .sidenav a {
-    font-size: 18px;
-  }
+.cart-icon {
+  margin-left: auto;
+  padding: 20px;
 }

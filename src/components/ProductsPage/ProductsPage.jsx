@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import './ProductsPage.css';
+// import './ProductsPage.css';
 
 // Material UI Imports
 import Grid from '@mui/material/Grid';

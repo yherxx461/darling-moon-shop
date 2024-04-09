@@ -5,54 +5,46 @@ import './Nav.css';
 import { useSelector } from 'react-redux';
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import ShoppingCartIconPage from '../ShoppingCart/ShoppingCartIconPage';
+import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
 
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="nav">
-      {user.id && (
-        <>
-          <Link className="navigation" to="/products">
+    <AppBar position="static">
+      <Toolbar>
+        <Link to="/products" className="navLink">
+          <Typography variant="h6" component="div">
             Products
-          </Link>
-        </>
-      )}
-      {!user.id && (
-        // If there's no user, show login/registration links
-        <Link className="navigation" to="/products">
-          Products
+          </Typography>
         </Link>
-      )}
-      <Link to="/home">
-        <h2 className="nav-title">Darling Moon Shop</h2>
-      </Link>
-      <div>
-        {/* If no user is logged in, show these links */}
-        {!user.id && (
-          // If there's no user, show login/registration links
-          <Link className="nagigat" to="/login">
+        <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Typography variant="h6" component="div">
+            Darling Moon Shop
+          </Typography>
+        </Link>
+        <Box sx={{ flexGrow: 1 }} />
+        {user.id ? (
+          <>
+            <Link to="/cart" className="navLink">
+              <IconButton color="inherit">
+                <ShoppingCartIconPage />
+              </IconButton>
+            </Link>
+            <Link to="/account" className="navLink">
+              <IconButton color="inherit">
+                <AccountCircleOutlined fontSize="large" />
+              </IconButton>
+            </Link>
+            <LogOutButton className="navLink" />
+          </>
+        ) : (
+          <Link to="/login" className="navLink">
             Login / Register
           </Link>
         )}
-
-        {/* If a user is logged in, show these links */}
-        {user.id && (
-          <>
-            <Link className="navLink" to="/cart">
-              <ShoppingCartIconPage />
-            </Link>
-            <Link className="navLink" to="/account">
-              <AccountCircleOutlined fontSize="large" />
-            </Link>
-
-            <Link to="/home">
-              <LogOutButton className="navLink" />
-            </Link>
-          </>
-        )}
-      </div>
-    </div>
+      </Toolbar>
+    </AppBar>
   );
 }
 

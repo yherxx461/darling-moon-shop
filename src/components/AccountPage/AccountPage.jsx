@@ -14,10 +14,8 @@ import ShoppingCartIconPage from '../ShoppingCart/ShoppingCartIconPage';
 import './AccountPage.css';
 
 function AccountPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  // Reminder: set useState to false to render original information --> true will make the input field appears in order to edit the information.
   const [isEditing, setIsEditing] = useState(false);
   const history = useHistory();
   // Use for Conditional Rendering
@@ -31,7 +29,6 @@ function AccountPage() {
 
   const handleSave = () => {
     dispatch({
-      // Make user info field editable --> once clicked on edited button, it will display the initial value in the textfield, otherwise, it's edited, display the new edited value
       type: 'UPDATE_USER',
       payload: {
         id: user.id,
@@ -50,7 +47,7 @@ function AccountPage() {
     setIsEditing(false);
   };
 
-  const handClickAddress = () => {
+  const handleClickAddress = () => {
     history.push('/address');
   };
 
@@ -59,27 +56,22 @@ function AccountPage() {
   };
 
   return (
-    <>
-      <div>
+    <div className="account-page">
+      <div className="sidebar">
         <ul>
           <li>
-            <Link
-              className="sidenav"
-              to="/account"
-              onClick={handleClickAccount}
-            >
+            <Link to="/account" onClick={handleClickAccount}>
               Account
             </Link>
           </li>
           <li>
-            <Link className="sidenav" to="/address" onClick={handClickAddress}>
+            <Link to="/address" onClick={handleClickAddress}>
               Addresses
             </Link>
           </li>
         </ul>
       </div>
-      <div className="container">
-        {/*TO-DO: Conditional Rendering to make userInformation editable */}
+      <div className="main-content">
         <h2>Welcome, {user.username}!</h2>
         {isEditing ? (
           <>
@@ -104,50 +96,39 @@ function AccountPage() {
               value={editedPhone}
               onChange={(event) => setEditedPhone(event.target.value)}
             />
-            <button onClick={handleSave}>Save</button>
-            <button onClick={handleCancel}>Cancel</button>
+            <Button onClick={handleSave}>Save</Button>
+            <Button onClick={handleCancel}>Cancel</Button>
           </>
         ) : (
-          // <div className="container">
-          <Card sx={{ display: 'flex' }}>
+          <Card className="user-info">
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                // content: 'center,',
+                alignItems: 'center',
+                justifyContent: 'space-between',
               }}
             >
-              {/* boolean true for editField */}
-              <p>{user.name}</p>
-              <p>{user.email}</p>
-              <p>{user.phone}</p>
-              <Button variant="outlined" color="primary" onClick={handleEdit}>
-                Edit
-              </Button>
-              {/* <p>Your ID is: {user.id}</p> */}
-              {/* DO NOT SHOW USER ID. COMMENTED USER ID OUT. */} <br></br>
-              <Button variant="outlined" color="primary">
-                <LogOutButton className="btn" />
-              </Button>
-            </Box>{' '}
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-              }}
-            >
-              <Link to="/cart">
-                <ShoppingCartIconPage />
-              </Link>
+              <div>
+                <p>{user.name}</p>
+                <p>{user.email}</p>
+                <p>{user.phone}</p>
+              </div>
+              <div>
+                <Button variant="outlined" onClick={handleEdit}>
+                  Edit
+                </Button>
+                <LogOutButton />
+              </div>
             </Box>
           </Card>
         )}
       </div>
-    </>
+      {/* <Card className="cart-icon">
+        <Link to="/cart">
+          <ShoppingCartIconPage />
+        </Link>
+      </Card> */}
+    </div>
   );
 }
-
-// this allows us to use <App /> in index.js
 export default AccountPage;

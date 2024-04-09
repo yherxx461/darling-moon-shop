@@ -41,25 +41,30 @@ function ShoppingCart() {
 
   return (
     <>
-      <div>
-        <h3>Shopping Cart</h3>
-        {/* .toFixed(2) means that it displayed the price with two decimal places */}
-        <Card className="totalCost">
-          {/* TO-DO: Total */}
-          {/* TO-DO: Order Checkout Button */}
-          <p>Total: ${totalPrice.toFixed(2)}</p>
-          <Button
-            className="btn"
-            size="small"
-            variant="outlined"
-            onClick={handleProceedToOrderCheckout}
-          >
-            Proceed to Order Checkout
-          </Button>
-        </Card>
-        {/* Mapping/fetching the item in the cart */}
+      <h1>Shopping Cart</h1>
+      <div className="container">
+        <div className="total-container">
+          {/* <Card className="container"> */}
+          <div>
+            <p>Total: ${totalPrice.toFixed(2)}</p>
+            <Button
+              className="btn"
+              size="small"
+              variant="outlined"
+              onClick={handleProceedToOrderCheckout}
+            >
+              Proceed to Order Checkout
+            </Button>
+          </div>
+          {/* </Card> */}
+        </div>
+        {/* Mapping/fetching the items in the cart */}
         {cart.map((item) => (
-          <ShoppingCartItem key={item.id} item={item} />
+          <div className="items-container">
+            <Card key={item.id} className="item-card">
+              <ShoppingCartItem item={item} className="item-details" />
+            </Card>
+          </div>
         ))}
       </div>
     </>

@@ -4,3 +4,8 @@
   display: flex;
   justify-content: center;
 } */
+
+.address-container,
+.shopping-address p {
+  margin-left: 0%;
+}

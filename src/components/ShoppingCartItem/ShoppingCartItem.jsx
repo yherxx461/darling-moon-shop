@@ -41,34 +41,29 @@ function ShoppingCartItem({ item }) {
 
   return (
     <div key={item.id} className="selectedItems">
-      <img src={item.img} />
-      <p>{item.product_name}</p>
-      <p>
-        $ {item.price} x{' '}
-        <IconButton size="small" color="secondary" onClick={handleDownButton}>
-          <KeyboardArrowDownOutlinedIcon />
-        </IconButton>
-        {item.quantity} qty{' '}
-        <IconButton size="small" color="secondary" onClick={handleUpButton}>
-          <KeyboardArrowUpOutlinedIcon />
-        </IconButton>
-      </p>
-      {/* <TextField
-        type="number"
-        label="Quantity"
-        size="small"
-        sx={{ width: '70px' }}
-        value={quantity}
-        onChange={(event) => handleQuantityChange(event, item)}
-      /> */}
-      <Button
-        size="small"
-        variant="outlined"
-        type="button"
-        onClick={() => handleDeleteItem(item.id)}
-      >
-        Remove
-      </Button>
+      <img src={item.img} className="item-image" />
+      <div className="item-details">
+        <p>{item.product_name}</p>
+        <br></br>
+        <p>
+          $ {item.price} x{' '}
+          <IconButton size="small" color="secondary" onClick={handleDownButton}>
+            <KeyboardArrowDownOutlinedIcon />
+          </IconButton>
+          {item.quantity} qty{' '}
+          <IconButton size="small" color="secondary" onClick={handleUpButton}>
+            <KeyboardArrowUpOutlinedIcon />
+          </IconButton>
+        </p>
+        <Button
+          size="small"
+          variant="outlined"
+          type="button"
+          onClick={() => handleDeleteItem(item.id)}
+        >
+          Remove
+        </Button>
+      </div>
     </div>
   );
 }
