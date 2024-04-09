@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import './itemizedProduct.css';
 
 function ItemizedProduct() {
   const { id } = useParams();
@@ -43,11 +44,7 @@ function ItemizedProduct() {
       <div className="container" key={item.id}>
         <div className="images">
           <img src={item.image_1} />
-        </div>
-        <div>
           <img src={item.image_2} />
-        </div>
-        <div>
           <img src={item.image_3} />
         </div>
         <div className="details">

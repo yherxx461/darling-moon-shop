@@ -1,5 +1,4 @@
 import { Button, Link } from '@mui/material';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -57,6 +56,7 @@ function AddressPage() {
       zip: '',
       isDefault: false,
     });
+    Swal.success('new address added');
   };
 
   const handleChange = (event) => {
