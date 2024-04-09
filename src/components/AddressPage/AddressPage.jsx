@@ -47,7 +47,7 @@ function AddressPage() {
     // Dispatch action to add new address
     dispatch({
       type: 'ADD_ADDRESS',
-      payload: { ...newAddress },
+      payload: { ...newAddress, isDefault: newAddress.isDefault },
     });
     // Reset fields
     setNewAddress({
@@ -158,7 +158,7 @@ function AddressPage() {
         <div>
           {addresses.map((addressItem) => (
             <div key={addressItem.id}>
-              <p>{addressItem.isDefault ? 'default' : 'not default'}</p>
+              <p>{addressItem.isDefault ? 'not default' : 'default'}</p>
               <p>{addressItem.street}</p>
               <p>
                 {addressItem.city}, {addressItem.state} {addressItem.zip}

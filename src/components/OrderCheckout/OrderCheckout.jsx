@@ -34,13 +34,13 @@ function OrderCheckout() {
   // const orderDetails = {
   //   addressId: addressId,
   useEffect(() => {
-    const defaultAddress = addresses.find((address) => address.isDefault);
+    const defaultAddress = addresses.find((address) => address.isdefault);
     setDefaultAddress(defaultAddress);
   }, [addresses]);
 
   const handleSubmitOrderCheckout = () => {
     if (!defaultAddress) {
-      alert('Please set a default address before placing the order.');
+      // alert('Please set a default address before placing the order.');
       return;
     }
     const orderDetails = {
@@ -71,18 +71,17 @@ function OrderCheckout() {
       <div>
         <h3 className="page-title">Ship To:</h3>
       </div>
-      {addresses.length > 0 ? (
-        addresses.map((address) => (
-          <div key={address.id} className="shipping-address">
-            <Box>
-              <p>{user.name}</p>
-              <p>{address.street}</p>
-              <p>
-                {address.city}, {address.state} {address.zip}
-              </p>
-            </Box>
-          </div>
-        ))
+      {defaultAddress ? (
+        // render only the default address is not null
+        <div key={defaultAddress.id} className="shipping-address">
+          <Box>
+            <p>{user.name}</p>
+            <p>{defaultAddress.street}</p>
+            <p>
+              {defaultAddress.city}, {defaultAddress.state} {defaultAddress.zip}
+            </p>
+          </Box>
+        </div>
       ) : (
         <p>No address found</p>
       )}
