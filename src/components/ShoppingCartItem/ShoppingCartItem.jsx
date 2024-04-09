@@ -48,11 +48,10 @@ function ShoppingCartItem({ item }) {
         <IconButton size="small" color="secondary" onClick={handleDownButton}>
           <KeyboardArrowDownOutlinedIcon />
         </IconButton>
-        {item.quantity}{' '}
+        {item.quantity} qty{' '}
         <IconButton size="small" color="secondary" onClick={handleUpButton}>
           <KeyboardArrowUpOutlinedIcon />
         </IconButton>
-        qty
       </p>
       {/* <TextField
         type="number"
