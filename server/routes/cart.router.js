@@ -40,12 +40,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
     pool
       .query(queryText1, [order_date, address_id, req.user.id])
-      .then((response) => {
-        const newOrderId = response.rows[0].id; // the new inserted order
+      .then((result) => {
+        const newOrderId = result.rows[0].id; // the new inserted order
         const queryText2 = `INSERT INTO "line_items" (quantity, order_id, product_id)
         VALUES ($1, $2, $3) RETURNING id;`;
 
-        console.log('response.data', response);
+        console.log('response.data', result);
         //     const queryText = `INSERT INTO "line_items" (quantity, order_id, product_id)
         // VALUES ($1, $2, $3) RETURNING id;`;
         pool
@@ -108,4 +108,22 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
+// // DELETE route to clear the entire cart
+// router.delete('/clear', rejectUnauthenticated, (req, res) => {
+//   const userId = req.user.id;
+//   const queryText = `DELETE FROM "line_items"
+//                      WHERE "order_id" IN (
+//                        SELECT id FROM "orders" WHERE user_id = $1
+//                      );`;
+
+//   pool
+//     .query(queryText, [userId])
+//     .then(() => res.sendStatus(204)) // No content to send back after clearing
+//     .catch((error) => {
+//       console.log('Error clearing cart:', error);
+//       res.sendStatus(500);
+//     });
+// });
+
 module.exports = router;

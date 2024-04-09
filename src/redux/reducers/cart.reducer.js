@@ -7,6 +7,11 @@ const cartReducer = (state = [], action) => {
       return [...state, action.payload];
     case 'DELETE_CART_ITEM':
       return state.filter((item) => item.id !== action.payload);
+    case 'SUBMIT_ORDER_SUCCESS':
+      return state;
+    case 'SUBMIT_ORDER_FAILURE':
+      return state;
+    // Clear cart by setting it to an empty array
     case 'CLEAR_CART':
       return [];
     default:
