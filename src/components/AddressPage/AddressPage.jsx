@@ -29,11 +29,11 @@ function AddressPage() {
     history.push('/account');
   };
 
-  const handleSetDefaultAddress = (id) => {
-    //hardcode test ID
-    // const addressId = 180;
-    dispatch({ type: 'SET_DEFAULT_ADDRESS', payload: { id } });
-  };
+  // const handleSetDefaultAddress = (id) => {
+  //   //hardcode test ID
+  //   // const addressId = 180;
+  //   dispatch({ type: 'SET_DEFAULT_ADDRESS', payload: { id } });
+  // };
 
   // Filter default address
   const defaultAddress = addresses.find((address) => address.isDefault);
@@ -170,13 +170,13 @@ function AddressPage() {
               >
                 Delete
               </Button>
-              <Button
+              {/* <Button
                 variant="outlined"
                 color="primary"
                 onClick={() => handleSetDefaultAddress(addressItem.id)}
               >
                 Set as Default
-              </Button>
+              </Button> */}
             </div>
           ))}
         </div>
