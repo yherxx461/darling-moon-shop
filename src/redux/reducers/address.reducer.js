@@ -16,7 +16,7 @@ const addressReducer = (state = [], action) => {
       // Set the isDefault property of the specified address to true
       return state.map((address) => ({
         ...address,
-        isDefault: address.id === action.payload,
+        isDefault: address.id === action.payload.id ? true : false,
       }));
     default:
       return state;

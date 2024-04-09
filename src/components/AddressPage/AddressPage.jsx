@@ -8,7 +8,7 @@ import './AddressPage.css';
 function AddressPage() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const address = useSelector((store) => store.address);
+  const addresses = useSelector((store) => store.address);
   const [newAddress, setNewAddress] = useState({
     street: '',
     city: '',
@@ -29,41 +29,40 @@ function AddressPage() {
     history.push('/account');
   };
 
+  const handleSetDefaultAddress = (id) => {
+    //hardcode test ID
+    // const addressId = 180;
+    dispatch({ type: 'SET_DEFAULT_ADDRESS', payload: { id } });
+  };
+
+  // Filter default address
+  const defaultAddress = addresses.find((address) => address.isDefault);
+  // Fetch address again after defaultAddress changes
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ADDRESS' });
+  }, [dispatch, defaultAddress]);
+
   const handleSubmitAddress = (event) => {
     event.preventDefault();
-
-    if (newAddress.isDefault) {
-      // Find the previous default address
-      const previousDefault = address.find(
-        (addressItem) => addressItem.isDefault
-      );
-      if (previousDefault && newAddress.isDefault) {
-        // Dispatch action to update the previous default address
-        dispatch({
-          type: 'UPDATE_ADDRESS',
-          payload: { ...previousDefault, isDefault: false },
-        });
-      }
-    }
-
-    // Set the "isDefault" value to boolean true or false before dispatching
+    // Dispatch action to add new address
     dispatch({
       type: 'ADD_ADDRESS',
-      payload: { ...newAddress, isDefault: newAddress.isDefault },
+      payload: { ...newAddress },
     });
+    // Reset fields
     setNewAddress({
       street: '',
       city: '',
       state: '',
       zip: '',
-      isDefault: newAddress.isDefault,
+      isDefault: false,
     });
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     const checked =
-      // default to newAddress.isDefault if not a checkbox ==> false;
+      // default to newAddress.default if not a checkbox ==> false;
       event.target.type === 'checkbox'
         ? event.target.checked
         : newAddress.isDefault;
@@ -75,10 +74,6 @@ function AddressPage() {
 
   const handleDeleteAddress = (id) => {
     dispatch({ type: 'DELETE_ADDRESS', payload: id });
-  };
-
-  const handleSetDefaultAddress = (id) => {
-    dispatch({ type: 'SET_DEFAULT_ADDRESS', payload: id });
   };
 
   return (
@@ -157,33 +152,34 @@ function AddressPage() {
           Confirm
         </Button>
       </form>
-      <div key={address.id}>
+      <div>
         <h3>Saved Addresses</h3>
         {/* <div className="saved-addresses" key={address.id}> */}
-        {address.map((addressItem) => (
-          <div key={addressItem.id}>
-            <p>{addressItem.isDefault ? 'default' : 'not default'}</p>
-            <p>{addressItem.street}</p>
-            <p>
-              {addressItem.city}, {addressItem.state} {addressItem.zip}
-            </p>
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={() => handleDeleteAddress(addressItem.id)}
-            >
-              Delete
-            </Button>
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={() => handleSetDefaultAddress(addressItem.id)}
-            >
-              Set as Default
-            </Button>
-          </div>
-        ))}{' '}
-        {/* </div> */}
+        <div>
+          {addresses.map((addressItem) => (
+            <div key={addressItem.id}>
+              <p>{addressItem.isDefault ? 'default' : 'not default'}</p>
+              <p>{addressItem.street}</p>
+              <p>
+                {addressItem.city}, {addressItem.state} {addressItem.zip}
+              </p>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => handleDeleteAddress(addressItem.id)}
+              >
+                Delete
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => handleSetDefaultAddress(addressItem.id)}
+              >
+                Set as Default
+              </Button>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

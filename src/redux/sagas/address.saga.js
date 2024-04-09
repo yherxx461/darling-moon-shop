@@ -45,7 +45,7 @@ function* setDefaultAddress(action) {
   try {
     const { id } = action.payload;
     // Make API call to set the address as default
-    yield axios.put(`/api/address/${id}`);
+    yield axios.put(`/api/address/${id}/default`);
     yield put({ type: 'FETCH_ADDRESS' }); // Fetch updated addresses after setting default
   } catch (error) {
     console.log('Error setting address as default', error);

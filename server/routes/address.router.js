@@ -48,13 +48,20 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   // POST route code
   const { id } = req.params;
   const { street, city, state, zip } = req.body;
+  console.log('Received PUT request to update address:');
+  console.log('Address ID:', id);
+  console.log('Updated street:', street);
+  console.log('Updated city:', city);
+  console.log('Updated state:', state);
+  console.log('Updated zip:', zip);
+
   const queryText = `UPDATE "address" SET street = $1, city = $2, state = $3, zip = $4 WHERE "id" = $5;`;
   const queryArgs = [street, city, state, zip, id];
 
   pool
     .query(queryText, queryArgs)
     .then(() => {
-      console.log(`PUT /address/${id} - SUCCESS`);
+      console.log(`PUT /address/${id}/default - SUCCESS`);
       res.status(200);
     })
     .catch((err) => {
@@ -63,11 +70,14 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-// PUT request to update default status
 // PUT route request to set an address as default
 router.put('/:id/default', rejectUnauthenticated, (req, res) => {
   // PUT route code to set an address as default
   const { id } = req.params;
+  console.log('ID received', id);
+  if (!Number.isInteger(Number(id))) {
+    return res.status(400).send('Invalid address Id');
+  }
   const queryText = `UPDATE "address" SET "isDefault" = TRUE WHERE "id" = $1;`;
 
   pool

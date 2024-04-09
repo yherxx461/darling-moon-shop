@@ -21,6 +21,8 @@ CREATE TABLE "address" (
 "user_id" INT REFERENCES "user"
 );
 
+ALTER TABLE address RENAME COLUMN "isDefault" TO isdefault;
+
 CREATE TABLE "products" (
 "id" SERIAL PRIMARY KEY,
 "image_1" VARCHAR (255) NOT NULL,
