@@ -23,10 +23,12 @@ function OrderCheckout() {
 
   // Total price when chart quantity/item changes
   useEffect(() => {
-    const totalPrice = cart.reduce((acc, product) => {
-      return acc + product.price * product.quantity;
-    }, 0);
-    setTotalPrice(totalPrice);
+    if (cart.length > 0) {
+      const totalPrice = cart.reduce((acc, product) => {
+        return acc + product.price * product.quantity;
+      }, 0);
+      setTotalPrice(totalPrice);
+    }
   }, [cart]);
 
   // Get time of when the cart is cleared
@@ -38,17 +40,19 @@ function OrderCheckout() {
     setDefaultAddress(defaultAddress);
   }, [addresses]);
 
-  const handleSubmitOrderCheckout = () => {
+  const handlePlaceOrder = () => {
     if (!defaultAddress) {
       // alert('Please set a default address before placing the order.');
       return;
     }
     const orderDetails = {
-      addressId: defaultAddress.id,
+      order_date: new Date().toISOString(),
+      address_id: defaultAddress.id,
+      // Capture current date and time:
     };
     // Dispatch action to clear cart
-    dispatch({ type: 'CLEAR_CART' });
     dispatch({ type: 'SUBMIT_ORDER_REQUEST', payload: orderDetails });
+    dispatch({ type: 'CLEAR_CART' });
     history.push('/order-confirmation');
   };
 
@@ -60,13 +64,11 @@ function OrderCheckout() {
       <div>
         Total: ${totalPrice.toFixed(2)}
         <br></br>
-        <Button
-          variant="outlined"
-          size="small"
-          onClick={handleSubmitOrderCheckout}
-        >
-          <Link to="/order-confirmation">Order Checkout</Link>
-        </Button>
+        <Link to="/order-confirmation">
+          <Button variant="outlined" size="small" onClick={handlePlaceOrder}>
+            Place Order
+          </Button>
+        </Link>
       </div>
       <div>
         <h3 className="page-title">Ship To:</h3>
@@ -93,7 +95,7 @@ function OrderCheckout() {
               <img src={product.img} />
               <h3>{product.product_name}</h3>
               <p>
-                $ {product.price} x {product.quantity}
+                $ {product.price} x {product.quantity} qty
               </p>
             </div>
           ))}
