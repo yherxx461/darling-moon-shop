@@ -108,6 +108,7 @@ function AddressPage() {
           className="street"
           placeholder="Street"
           name="street"
+          required
           value={newAddress.street}
           onChange={handleChange}
         />
@@ -117,6 +118,7 @@ function AddressPage() {
           className="city"
           placeholder="City"
           name="city"
+          required
           value={newAddress.city}
           onChange={handleChange}
         />
@@ -126,6 +128,7 @@ function AddressPage() {
           className="state"
           placeholder="State"
           name="state"
+          required
           value={newAddress.state}
           onChange={handleChange}
         />
@@ -135,6 +138,7 @@ function AddressPage() {
           className="zip"
           placeholder="Zip"
           name="zip"
+          required
           value={newAddress.zip}
           onChange={handleChange}
         />
