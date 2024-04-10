@@ -56,7 +56,7 @@ function AddressPage() {
   const handleChange = (event) => {
     const { name, value } = event.target;
     const checked =
-      // newAddress.isDefault if not a checkbox ==> false;
+      // Set address status 'default' if the checkbox is checked, otherwise, 'not default' if unchecked
       event.target.type === 'checkbox'
         ? event.target.checked
         : newAddress.isDefault;
@@ -71,7 +71,7 @@ function AddressPage() {
   };
 
   const handleSetDefaultAddress = (id) => {
-    event.preventDefault();
+    // event.preventDefault();
     //hardcode test ID
     // const addressId = 180;
     dispatch({
