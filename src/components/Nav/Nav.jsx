@@ -5,21 +5,43 @@ import './Nav.css';
 import { useSelector } from 'react-redux';
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import ShoppingCartIconPage from '../ShoppingCart/ShoppingCartIconPage';
-import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Box,
+  Menu,
+} from '@mui/material';
 
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="sticky"
+      style={{
+        backgroundColor: 'lavender',
+        color: 'black',
+        boxShadow: '0px 0px 0px 0px',
+      }}
+    >
       <Toolbar>
-        <Link to="/products" className="navLink">
-          <Typography variant="h6" component="div">
+        <IconButton arial-label="app">
+          <Menu color="inherit" />
+        </IconButton>
+        <Typography variant="h6" component="div" fontFamily="initial">
+          <Link to="/products" style={{ color: 'black' }}>
             Products
-          </Typography>
-        </Link>
+          </Link>
+        </Typography>
         <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Typography variant="h6" component="div">
+          <Typography
+            variant="h6"
+            component="div"
+            fontFamily="initial"
+            textAlign="center"
+          >
             Darling Moon Shop
           </Typography>
         </Link>
@@ -27,12 +49,12 @@ function Nav() {
         {user.id ? (
           <>
             <Link to="/cart" className="navLink">
-              <IconButton color="inherit">
+              <IconButton style={{ color: 'black' }}>
                 <ShoppingCartIconPage />
               </IconButton>
             </Link>
             <Link to="/account" className="navLink">
-              <IconButton color="inherit">
+              <IconButton style={{ color: 'black' }}>
                 <AccountCircleOutlined fontSize="large" />
               </IconButton>
             </Link>
