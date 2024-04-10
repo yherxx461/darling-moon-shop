@@ -1,4 +1,5 @@
 import { Button, Link } from '@mui/material';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -28,19 +29,6 @@ function AddressPage() {
     history.push('/account');
   };
 
-  // const handleSetDefaultAddress = (id) => {
-  //   //hardcode test ID
-  //   // const addressId = 180;
-  //   dispatch({ type: 'SET_DEFAULT_ADDRESS', payload: { id } });
-  // };
-
-  // Filter default address
-  const defaultAddress = addresses.find((address) => address.isDefault);
-  // Fetch address again after defaultAddress changes
-  useEffect(() => {
-    dispatch({ type: 'FETCH_ADDRESS' });
-  }, [dispatch, defaultAddress]);
-
   const handleSubmitAddress = (event) => {
     event.preventDefault();
     // Dispatch action to add new address
@@ -56,13 +44,19 @@ function AddressPage() {
       zip: '',
       isDefault: false,
     });
-    Swal.success('new address added');
   };
+
+  // Filter default address
+  const defaultAddress = addresses.find((address) => address.isDefault);
+  // Fetch address again after defaultAddress changes
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ADDRESS' });
+  }, [dispatch, defaultAddress]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     const checked =
-      // default to newAddress.default if not a checkbox ==> false;
+      // newAddress.isDefault if not a checkbox ==> false;
       event.target.type === 'checkbox'
         ? event.target.checked
         : newAddress.isDefault;
@@ -74,6 +68,16 @@ function AddressPage() {
 
   const handleDeleteAddress = (id) => {
     dispatch({ type: 'DELETE_ADDRESS', payload: id });
+  };
+
+  const handleSetDefaultAddress = (id) => {
+    event.preventDefault();
+    //hardcode test ID
+    // const addressId = 180;
+    dispatch({
+      type: 'SET_DEFAULT_ADDRESS',
+      payload: id,
+    });
   };
 
   return (
@@ -108,7 +112,6 @@ function AddressPage() {
           className="street"
           placeholder="Street"
           name="street"
-          required
           value={newAddress.street}
           onChange={handleChange}
         />
@@ -118,7 +121,6 @@ function AddressPage() {
           className="city"
           placeholder="City"
           name="city"
-          required
           value={newAddress.city}
           onChange={handleChange}
         />
@@ -128,7 +130,6 @@ function AddressPage() {
           className="state"
           placeholder="State"
           name="state"
-          required
           value={newAddress.state}
           onChange={handleChange}
         />
@@ -138,7 +139,6 @@ function AddressPage() {
           className="zip"
           placeholder="Zip"
           name="zip"
-          required
           value={newAddress.zip}
           onChange={handleChange}
         />
@@ -147,7 +147,7 @@ function AddressPage() {
           type="checkbox"
           className="set-default"
           name="isDefault"
-          checked={newAddress.isDefault}
+          checked={newAddress.is_default}
           onChange={handleChange}
         />
         Set as default address
@@ -162,7 +162,7 @@ function AddressPage() {
         <div>
           {addresses.map((addressItem) => (
             <div key={addressItem.id}>
-              <p>{addressItem.isDefault ? 'not default' : 'default'}</p>
+              <p>{addressItem.is_default ? 'default' : 'not default'}</p>
               <p>{addressItem.street}</p>
               <p>
                 {addressItem.city}, {addressItem.state} {addressItem.zip}
@@ -174,13 +174,13 @@ function AddressPage() {
               >
                 Delete
               </Button>
-              {/* <Button
+              <Button
                 variant="outlined"
                 color="primary"
                 onClick={() => handleSetDefaultAddress(addressItem.id)}
               >
                 Set as Default
-              </Button> */}
+              </Button>
             </div>
           ))}
         </div>

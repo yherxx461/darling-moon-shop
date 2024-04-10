@@ -28,7 +28,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
   const zipValue = zip === '' ? null : zip;
 
-  const queryText = `INSERT INTO "address" (street, city, state, zip, isDefault, user_id) 
+  const queryText = `INSERT INTO "address" (street, city, state, zip, is_default, user_id) 
   VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;`;
   console.log(
     'POST Request - SUCCESS: New address posted to database:',
@@ -47,7 +47,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   // POST route code
   const { id } = req.params;
-  const { street, city, state, zip } = req.body;
+  const { street, city, state, zip } = req.user.id;
   console.log('Received PUT request to update address:');
   console.log('Address ID:', id);
   console.log('Updated street:', street);
@@ -56,7 +56,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log('Updated zip:', zip);
 
   const queryText = `UPDATE "address" SET street = $1, city = $2, state = $3, zip = $4 WHERE "id" = $5;`;
-  const queryArgs = [street, city, state, zip, id];
+  const queryArgs = [street, city, state, zip, req.user.id];
 
   pool
     .query(queryText, queryArgs)
@@ -78,7 +78,7 @@ router.put('/:id/default', rejectUnauthenticated, (req, res) => {
   if (!Number.isInteger(Number(id))) {
     return res.status(400).send('Invalid address Id');
   }
-  const queryText = `UPDATE "address" SET "isDefault" = TRUE WHERE "id" = $1;`;
+  const queryText = `UPDATE "address" SET "is_default" = TRUE WHERE "id" = $1;`;
 
   pool
     .query(queryText, [id])
