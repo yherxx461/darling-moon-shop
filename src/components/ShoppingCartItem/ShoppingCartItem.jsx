@@ -43,7 +43,7 @@ function ShoppingCartItem({ item }) {
     <div key={item.id} className="selectedItems">
       <img src={item.img} className="item-image" />
       <div className="item-details">
-        <p>{item.product_name}</p>
+        <h3>{item.product_name}</h3>
         <br></br>
         <p>
           $ {item.price} x{' '}

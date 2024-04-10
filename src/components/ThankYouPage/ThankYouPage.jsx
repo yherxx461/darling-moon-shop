@@ -1,4 +1,4 @@
-import { Button, Link } from '@mui/material';
+import { Button, Link, Box } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 // import { useDispatch } from 'react-redux';
@@ -19,27 +19,29 @@ function ThankYouPage() {
 
   return (
     <div className="thankyou-messages">
-      <p>Your order has been placed! Thank you for your business.</p>
-      <Link to="/home">
-        <Button
-          onClick={handleClickToHome}
-          size="small"
-          variant="outlined"
-          startIcon={<ArrowBackIosIcon />}
-        >
-          Back to Home
-        </Button>
-      </Link>{' '}
-      <Link to="/products">
-        <Button
-          onClick={handleClickToProducts}
-          size="small"
-          variant="outlined"
-          endIcon={<ArrowForwardIosIcon />}
-        >
-          Continue Shopping
-        </Button>
-      </Link>
+      <Box justifyContent="center">
+        <p>Your order has been placed! Thank you for your business.</p>
+        <Link to="/home">
+          <Button
+            onClick={handleClickToHome}
+            size="small"
+            variant="outlined"
+            startIcon={<ArrowBackIosIcon />}
+          >
+            Back to Home
+          </Button>
+        </Link>{' '}
+        <Link to="/products">
+          <Button
+            onClick={handleClickToProducts}
+            size="small"
+            variant="outlined"
+            endIcon={<ArrowForwardIosIcon />}
+          >
+            Continue Shopping
+          </Button>
+        </Link>
+      </Box>
     </div>
   );
 }

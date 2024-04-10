@@ -27,19 +27,28 @@ function HomePage() {
 
   return (
     <div>
-      <h1 className="container">Featured Keychains</h1>
-      <Grid container spacing={2}>
+      <h1 className="home-title" justifyContent="center">
+        Featured Keychains
+      </h1>
+      <Grid justifyContent="center" container spacing={2}>
         {featured.map((featuredItem) => {
           return (
-            <Grid key={featuredItem.id} item xs={12} md={4} lg={4}>
+            <Grid
+              key={featuredItem.id}
+              item
+              xs={8}
+              md={3}
+              lg={3}
+              justifyContent="center"
+            >
               <Card
-                sx={{ maxWidth: 250 }}
+                sx={{ maxWidth: 325 }}
                 variant="outlined"
                 className="container"
                 onClick={() => handleClickToItemizedProduct(featuredItem.id)}
               >
                 <img src={featuredItem.image_1} className="productImage" />
-                <p>{featuredItem.name}</p>
+                <h3>{featuredItem.name}</h3>
                 <p>$ {featuredItem.price}</p>
               </Card>
             </Grid>

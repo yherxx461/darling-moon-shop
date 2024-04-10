@@ -152,16 +152,15 @@ function AddressPage() {
             name="isDefault"
             checked={newAddress.is_default}
             onChange={handleChange}
-          />
-          Set as default address
-          <br></br>
+          />{' '}
+          {''}Set as default address
           <Button type="submit" variant="outlined" size="small">
             Confirm
           </Button>
         </form>
       </Grid>
-      <div>
-        <h3>Saved Addresses</h3>
+      <div justifyContent="center">
+        <h3 justifyContent="center">Saved Addresses</h3>
         {/* <div className="saved-addresses" key={address.id}> */}
         <Grid
           container

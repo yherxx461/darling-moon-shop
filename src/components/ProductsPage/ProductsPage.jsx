@@ -38,20 +38,28 @@ function ProductsPage() {
           margin: '5em',
           fontSize: '3em',
           marginTop: '3em',
+          textAlign: 'center',
         }}
       >
         Keychains
       </h1>
       <div className="productImages">
-        <Grid container spacing={2}>
+        <Grid container spacing={5} justifyContent="center">
           {/* <div className="productImages" key={products.id}> */}
           {/* TO-DO: Need to do fetching of all the products in the inventory */}
           {products.map((product) => {
             return (
-              <Grid key={product.id} item xs={12} md={3} lg={3}>
+              <Grid
+                key={product.id}
+                item
+                xs={8}
+                md={3}
+                lg={3}
+                justifyContent="center"
+              >
                 <Box sx={{ flexGrow: 1 }}>
                   <Card
-                    sx={{ maxWidth: 250 }}
+                    sx={{ maxWidth: 325 }}
                     variant="outlined"
                     className="container"
                     onClick={() => handleClickToItemizedProduct(product.id)}

@@ -40,24 +40,24 @@ function ShoppingCart() {
   };
 
   return (
-    <>
-      <h1>Shopping Cart</h1>
-      <div className="container">
-        <div className="total-container">
-          {/* <Card className="container"> */}
-          <div>
-            <p>Total: ${totalPrice.toFixed(2)}</p>
-            <Button
-              className="btn"
-              size="small"
-              variant="outlined"
-              onClick={handleProceedToOrderCheckout}
-            >
-              Proceed to Order Checkout
-            </Button>
-          </div>
-          {/* </Card> */}
+    <div>
+      <h1 className="shopping-title">Shopping Cart</h1>
+      <div className="total-container">
+        {/* <Card className="container"> */}
+        <div>
+          <p>Total: ${totalPrice.toFixed(2)}</p>
+          <Button
+            className="btn"
+            size="small"
+            variant="outlined"
+            onClick={handleProceedToOrderCheckout}
+          >
+            Proceed to Order Checkout
+          </Button>
         </div>
+        {/* </Card> */}
+      </div>
+      <div className="container">
         {/* Mapping/fetching the items in the cart */}
         {cart.map((item) => (
           <div className="items-container">
@@ -67,7 +67,7 @@ function ShoppingCart() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

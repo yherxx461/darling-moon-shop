@@ -1,18 +1,24 @@
 .productImage {
   object-fit: cover;
-  width: 300px;
-  height: 300px;
+  width: 325px;
+  height: 325px;
   justify-content: center;
 }
 
 .container {
-  margin: 3em;
-  margin-top: 2em;
+  margin: 2.5em;
+  /* margin-top: 1em; */
   text-align: center;
 }
 
 h1,
 input {
   margin-top: 1em;
+  text-align: center;
+}
+
+.home-title {
+  margin: 2.5em;
+  /* margin-top: 1em; */
   text-align: center;
 }

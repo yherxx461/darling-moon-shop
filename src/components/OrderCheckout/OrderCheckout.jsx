@@ -61,7 +61,9 @@ function OrderCheckout() {
       <Box margin="2em" display={'flex'} justifyContent={'space-between'}>
         <Box width="70%">
           <div>
-            <h1>Order Checkout</h1>
+            <h1 className="order-title" justifyContent="center">
+              Order Checkout
+            </h1>
           </div>
           <div>
             <h2 className="page-title">Ship To:</h2>

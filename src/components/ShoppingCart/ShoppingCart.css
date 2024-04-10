@@ -6,6 +6,10 @@
 
 .total-container {
   margin-bottom: 20px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
 .total-card {
@@ -19,6 +23,7 @@
 .item-container {
   width: 100%;
   margin-bottom: 20px;
+  flex-direction: row;
 }
 
 .item-card {
@@ -43,4 +48,9 @@
 
 .item-details p {
   margin-bottom: 0;
+}
+
+.shopping-title {
+  text-align: center;
+  margin-top: 3rem;
 }
