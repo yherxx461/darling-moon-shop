@@ -36,7 +36,7 @@ function OrderCheckout() {
   // const orderDetails = {
   //   addressId: addressId,
   useEffect(() => {
-    const defaultAddress = addresses.find((address) => address.isdefault);
+    const defaultAddress = addresses.find((address) => address.is_default);
     setDefaultAddress(defaultAddress);
   }, [addresses]);
 
@@ -45,10 +45,10 @@ function OrderCheckout() {
       // alert('Please set a default address before placing the order.');
       return;
     }
+    // Capture current date and time:
     const orderDetails = {
       order_date: new Date().toISOString(),
       address_id: defaultAddress.id,
-      // Capture current date and time:
     };
     // Dispatch action to clear cart
     dispatch({ type: 'SUBMIT_ORDER_REQUEST', payload: orderDetails });
