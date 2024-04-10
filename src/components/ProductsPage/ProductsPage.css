@@ -9,3 +9,7 @@ img {
   height: 350px;
   justify-content: center;
 }
+
+Card {
+  background-color: lavender;
+}
