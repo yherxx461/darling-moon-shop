@@ -3,13 +3,17 @@
   margin-top: 3em;
 }
 
-img {
+.productImage {
   object-fit: cover;
-  width: 350px;
-  height: 350px;
+  width: 450px;
+  height: 450px;
   justify-content: center;
 }
 
-Card {
-  background-color: lavender;
+img {
+  object-fit: cover;
+  width: 450px;
+  height: 450px;
+  justify-content: center;
+  margin: 20px;
 }

@@ -42,7 +42,7 @@ function ProductsPage() {
       >
         Keychains
       </h1>
-      <div className="productImages" style={{ background: 'lavender' }}>
+      <div className="productImages">
         <Grid container spacing={2}>
           {/* <div className="productImages" key={products.id}> */}
           {/* TO-DO: Need to do fetching of all the products in the inventory */}

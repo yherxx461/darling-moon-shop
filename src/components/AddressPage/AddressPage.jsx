@@ -1,4 +1,4 @@
-import { Button, Link } from '@mui/material';
+import { Button, Link, Box, Card, Grid } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -104,86 +104,106 @@ function AddressPage() {
           </li>
         </ul>
       </div>
-      <h3>Add New Address</h3>
-      <form className="address-form" onSubmit={handleSubmitAddress}>
-        <br></br>
-        <input
-          type="text"
-          className="street"
-          placeholder="Street"
-          name="street"
-          value={newAddress.street}
-          onChange={handleChange}
-        />
-        <br></br>
-        <input
-          type="text"
-          className="city"
-          placeholder="City"
-          name="city"
-          value={newAddress.city}
-          onChange={handleChange}
-        />
-        <br></br>
-        <input
-          type="text"
-          className="state"
-          placeholder="State"
-          name="state"
-          value={newAddress.state}
-          onChange={handleChange}
-        />
-        <br></br>
-        <input
-          type="text"
-          className="zip"
-          placeholder="Zip"
-          name="zip"
-          value={newAddress.zip}
-          onChange={handleChange}
-        />
-        <br></br>
-        <input
-          type="checkbox"
-          className="set-default"
-          name="isDefault"
-          checked={newAddress.is_default}
-          onChange={handleChange}
-        />
-        Set as default address
-        <br></br>
-        <Button type="submit" variant="outlined" size="small">
-          Confirm
-        </Button>
-      </form>
+      <Grid
+        justifyContent="center"
+        style={{ justifyContent: 'center', marginLeft: '50em' }}
+      >
+        <h3>Add New Address</h3>
+        <form className="address-form" onSubmit={handleSubmitAddress}>
+          <br></br>
+          <input
+            type="text"
+            className="street"
+            placeholder="Street"
+            name="street"
+            value={newAddress.street}
+            onChange={handleChange}
+          />
+          <br></br>
+          <input
+            type="text"
+            className="city"
+            placeholder="City"
+            name="city"
+            value={newAddress.city}
+            onChange={handleChange}
+          />
+          <br></br>
+          <input
+            type="text"
+            className="state"
+            placeholder="State"
+            name="state"
+            value={newAddress.state}
+            onChange={handleChange}
+          />
+          <br></br>
+          <input
+            type="text"
+            className="zip"
+            placeholder="Zip"
+            name="zip"
+            value={newAddress.zip}
+            onChange={handleChange}
+          />
+          <input
+            type="checkbox"
+            className="set-default"
+            name="isDefault"
+            checked={newAddress.is_default}
+            onChange={handleChange}
+          />
+          Set as default address
+          <br></br>
+          <Button type="submit" variant="outlined" size="small">
+            Confirm
+          </Button>
+        </form>
+      </Grid>
       <div>
         <h3>Saved Addresses</h3>
         {/* <div className="saved-addresses" key={address.id}> */}
-        <div>
-          {addresses.map((addressItem) => (
-            <div key={addressItem.id}>
-              <p>{addressItem.is_default ? 'default' : 'not default'}</p>
-              <p>{addressItem.street}</p>
-              <p>
-                {addressItem.city}, {addressItem.state} {addressItem.zip}
-              </p>
-              <Button
-                variant="outlined"
-                color="primary"
-                onClick={() => handleDeleteAddress(addressItem.id)}
-              >
-                Delete
-              </Button>
-              <Button
-                variant="outlined"
-                color="primary"
-                onClick={() => handleSetDefaultAddress(addressItem.id)}
-              >
-                Set as Default
-              </Button>
-            </div>
-          ))}
-        </div>
+        <Grid
+          container
+          spacing={0}
+          style={{
+            color: 'lavender',
+            margin: '4px',
+            // justifyContent: 'center',
+            display: '-ms-flexbox',
+            marginLeft: '2em',
+          }}
+        >
+          <Box spacing={2}>
+            <Card>
+              <div className="address-container">
+                {addresses.map((addressItem) => (
+                  <div key={addressItem.id}>
+                    <p>{addressItem.is_default ? 'default' : 'not default'}</p>
+                    <p>{addressItem.street}</p>
+                    <p>
+                      {addressItem.city}, {addressItem.state} {addressItem.zip}
+                    </p>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      onClick={() => handleDeleteAddress(addressItem.id)}
+                    >
+                      Delete
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      onClick={() => handleSetDefaultAddress(addressItem.id)}
+                    >
+                      Set as Default
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </Box>
+        </Grid>
       </div>
     </>
   );
