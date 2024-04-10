@@ -89,15 +89,19 @@ function OrderCheckout() {
             )}
           </div>
           <div>
-            <Box className="item-list">
-              <h2>Orders</h2>
-              {cart.map((product) => (
+            <h2>Orders</h2>
+            {cart.map((product) => (
+              <Box
+                className="item-list"
+                style={{ flexDirection: 'column', display: 'flex' }}
+              >
                 <div
                   key={product.id}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     marginBottom: '1em',
+                    flexDirection: 'column',
                   }}
                 >
                   {/* <div style={{ marginRight: '1em' }}> */}
@@ -108,10 +112,8 @@ function OrderCheckout() {
                     $ {product.price} x {product.quantity} qty
                   </p>
                 </div>
-                // </div>
-                // </div>
-              ))}
-            </Box>
+              </Box>
+            ))}
           </div>
         </Box>
         <Box width="30%">
