@@ -42,7 +42,7 @@ function OrderCheckout() {
 
   const handlePlaceOrder = () => {
     if (!defaultAddress) {
-      // alert('Please set a default address before placing the order.');
+      alert('Please select an address before placing the order.');
       return;
     }
     // Capture current date and time:
