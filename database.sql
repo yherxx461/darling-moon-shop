@@ -17,7 +17,7 @@ CREATE TABLE "address" (
 "city" VARCHAR (255) NOT NULL,
 "state" VARCHAR (255) NOT NULL,
 "zip" INT,
-"isDefault" BOOLEAN DEFAULT FALSE,
+"is_default" BOOLEAN DEFAULT FALSE,
 "user_id" INT REFERENCES "user"
 );
 
@@ -62,4 +62,4 @@ VALUES
 ('images/love_1.JPG', 'images/love_2.JPG', 'images/love_3.JPG', 'Love Heart', 'Need an extract heart for someone? Here''s one for you!', 16.75),
 ('images/pink_angel_1.JPG', 'images/pink_angel_2.JPG', 'images/pink_angel_3.JPG', 'Pink Angel', 'Are you an angel?', 16.75),
 ('images/90s_kitsch_1.png', 'images/90s_kitsch_2.png', 'images/90s_kitsch_3.png', '90s Kitsch!', 'Want to be cool like us? Betcha!', 15.00),
-('images/2000s_baby_1.png', 'images/2000s_baby_2.png', 'images/90s_baby_3.png', '2000s Baby!', 'What are you? Old? Young!? I''m MZ!', 15.00);
+('images/2000s_baby_1.png', 'images/2000s_baby_2.png', 'images/2000s_baby_3.png', '2000s Baby!', 'What are you? Old? Young!? I''m MZ!', 15.00);
