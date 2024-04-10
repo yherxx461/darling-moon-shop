@@ -6,8 +6,8 @@ function LoginPage() {
   const history = useHistory();
 
   return (
-    <div>
-      <LoginForm />
+    <div style={{ justifyContent: 'center', marginTop: '5em' }}>
+      <LoginForm style={{ justifyContent: 'center' }} />
 
       <center>
         <button

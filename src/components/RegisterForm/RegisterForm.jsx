@@ -26,7 +26,11 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <form
+      className="formPanel"
+      style={{ marginTop: '5em' }}
+      onSubmit={registerUser}
+    >
       <h2>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">

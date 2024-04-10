@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import ShoppingCartIconPage from '../ShoppingCart/ShoppingCartIconPage';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+// import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import {
   AppBar,
   Toolbar,
@@ -31,20 +31,21 @@ function Nav() {
         <IconButton arial-label="app" style={{ color: 'black' }} f>
           <Menu color="inherit" />
         </IconButton>
-        <Link to="/products" className="navLink" style={{ color: 'black' }}>
-          {/* <Typography variant="h7" component="div" fontFamily="inherit"> */}
-          <IconButton>
-            <MenuOutlinedIcon fontSize="large" />
-          </IconButton>
-          {/* </Typography> */}
-        </Link>
         <Link to="/home" className="navLink">
           <IconButton style={{ color: 'black' }}>
             <HomeOutlinedIcon fontSize="large" />{' '}
           </IconButton>
         </Link>
+        <Link to="/products" className="navLink">
+          {/* <Typography variant="h7" component="div" fontFamily="inherit"> */}
+          <IconButton style={{ color: 'black' }}>
+            {/* <MenuOutlinedIcon fontSize="large" /> */}
+            <Typography>Products</Typography>
+          </IconButton>
+          {/* </Typography> */}
+        </Link>
         <Box sx={{ flexGrow: 1 }} />
-        <Typography variant="h5" component="div" fontFamily="inherit">
+        <Typography variant="h6" component="div" fontFamily="inherit">
           Darling Moon Shop
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
@@ -64,7 +65,17 @@ function Nav() {
           </>
         ) : (
           <Link to="/login" className="navLink">
-            Login / Register
+            <IconButton>
+              <Typography
+                // variant="h9"
+                component="div"
+                fontFamily="inherit"
+                color="black"
+                className="navLink"
+              >
+                Login / Register
+              </Typography>
+            </IconButton>
           </Link>
         )}
       </Toolbar>
