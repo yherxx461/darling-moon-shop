@@ -1,4 +1,12 @@
-import { Button, Link, Box, Card, Grid } from '@mui/material';
+import {
+  Button,
+  Link,
+  Box,
+  Card,
+  Grid,
+  IconButton,
+  Typography,
+} from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -83,26 +91,24 @@ function AddressPage() {
   return (
     <>
       <div>
-        <ul>
-          <li>
-            <Link
-              className="nav-link"
-              to="/account"
-              onClick={handleClickAccount}
-            >
-              Account
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="nav-link"
-              to="/address"
-              onClick={handleClickAddress}
-            >
-              Addresses
-            </Link>
-          </li>
-        </ul>
+        <div className="sidebar">
+          <ul>
+            <li>
+              <Link to="/account" onClick={handleClickAccount}>
+                <IconButton>
+                  <Typography color="black">Account</Typography>
+                </IconButton>
+              </Link>
+            </li>
+            <li>
+              <Link to="/address" onClick={handleClickAddress}>
+                <IconButton>
+                  <Typography color="black">Addresses</Typography>
+                </IconButton>
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
       <Grid
         justifyContent="center"

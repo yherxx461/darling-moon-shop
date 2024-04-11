@@ -1,5 +1,5 @@
 // Material UI Imports
-import { Button } from '@mui/material';
+import { Button, Snackbar, Alert } from '@mui/material';
 
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -12,6 +12,8 @@ function ItemizedProduct() {
   const dispatch = useDispatch();
   const item = useSelector((store) => store.details);
   const [quantity, setQuantity] = useState(1);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   useEffect(() => {
     dispatch({ type: 'FETCH_ITEM_DETAILS', payload: id });
@@ -29,7 +31,8 @@ function ItemizedProduct() {
         order_id: null,
       },
     });
-    // alert('Item added to cart!');
+    setSnackbarMessage(`${item.name} added to cart`);
+    setSnackbarOpen(true);
   };
 
   const handleChange = (event) => {
@@ -37,6 +40,11 @@ function ItemizedProduct() {
     if (!isNaN(newQuantity) && newQuantity >= 1 && newQuantity <= 10) {
       setQuantity(newQuantity);
     }
+  };
+
+  const handleCloseSnackbar = () => {
+    // Closes the message
+    setSnackbarOpen(false);
   };
 
   return (
@@ -70,6 +78,16 @@ function ItemizedProduct() {
           </Button>
         </div>
       </div>
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert severity="success" onClose={handleCloseSnackbar}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Link, Grid, Button } from '@mui/material';
+import { Box, Link, Button, Snackbar, Alert } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +11,8 @@ function OrderCheckout() {
   const cart = useSelector((store) => store.cart);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [defaultAddress, setDefaultAddress] = useState(null);
@@ -42,7 +44,7 @@ function OrderCheckout() {
 
   const handlePlaceOrder = () => {
     if (!defaultAddress) {
-      alert('Please select an address before placing the order.');
+      // alert('Please select an address before placing the order.');
       return;
     }
     // Capture current date and time:
@@ -54,6 +56,13 @@ function OrderCheckout() {
     dispatch({ type: 'SUBMIT_ORDER_REQUEST', payload: orderDetails });
     dispatch({ type: 'CLEAR_CART' });
     history.push('/order-confirmation');
+    setSnackbarMessage('Order placed successfully');
+    setSnackbarOpen(true);
+  };
+
+  const handleCloseSnackbar = () => {
+    // Closes the message
+    setSnackbarOpen(false);
   };
 
   return (
@@ -134,6 +143,16 @@ function OrderCheckout() {
           </div>
         </Box>
       </Box>
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert severity="success" onClose={handleCloseSnackbar}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 }

@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 // Material UI Imports
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import { Link, TextField } from '@mui/material';
+import { Link, TextField, IconButton, Typography } from '@mui/material';
 
 // Import Component/Page:
 import ShoppingCartIconPage from '../ShoppingCart/ShoppingCartIconPage';
@@ -61,12 +61,16 @@ function AccountPage() {
         <ul>
           <li>
             <Link to="/account" onClick={handleClickAccount}>
-              Account
+              <IconButton>
+                <Typography color="black">Account</Typography>
+              </IconButton>
             </Link>
           </li>
           <li>
             <Link to="/address" onClick={handleClickAddress}>
-              Addresses
+              <IconButton>
+                <Typography color="black">Addresses</Typography>
+              </IconButton>
             </Link>
           </li>
         </ul>
@@ -74,7 +78,7 @@ function AccountPage() {
       <div className="main-content">
         <h2>Welcome, {user.username}!</h2>
         {isEditing ? (
-          <>
+          <form>
             <TextField
               type="text"
               defaultValue={user.name}
@@ -98,7 +102,7 @@ function AccountPage() {
             />
             <Button onClick={handleSave}>Save</Button>
             <Button onClick={handleCancel}>Cancel</Button>
-          </>
+          </form>
         ) : (
           <Card className="user-info">
             <Box
@@ -119,15 +123,15 @@ function AccountPage() {
                 </Button>
                 <LogOutButton />
               </div>
+              <Card className="cart-icon">
+                <Link to="/cart">
+                  <ShoppingCartIconPage />
+                </Link>
+              </Card>
             </Box>
           </Card>
         )}
       </div>
-      {/* <Card className="cart-icon">
-        <Link to="/cart">
-          <ShoppingCartIconPage />
-        </Link>
-      </Card> */}
     </div>
   );
 }
