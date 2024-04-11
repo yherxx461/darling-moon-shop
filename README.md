@@ -56,13 +56,16 @@ npm run client
 
 ## Built With
 
-- Node
-- Express
+- Node.js
+- Express.js
 - React
+- Redux
 - Postgresql
+- Postico
 - Heroku
 - Material-UI
 - DrawSQL
+- Balsamiq
 
 ## Authors
 
@@ -74,7 +77,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-Thanks to Prime Digital Academy who equipped and helped me make this application possible.
+Thanks to Prime Digital Academy who equipped and helped me make this application possible. Super special thanks to Myron for the guidance and help throughout this project!
 
 ## Support
 
