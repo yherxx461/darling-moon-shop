@@ -48,3 +48,18 @@
 .saved-addresses > div {
   margin-bottom: 20px;
 }
+
+.saved-address,
+.add-address {
+  text-align: center;
+}
+
+.address-card,
+.address-container {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2rem;
+}

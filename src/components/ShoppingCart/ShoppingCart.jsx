@@ -1,5 +1,5 @@
 // Material UI Imports
-import { Card, Button, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import ShoppingCartItem from '../ShoppingCartItem/ShoppingCartItem';
 // Imports:
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,13 +59,11 @@ function ShoppingCart() {
       </div>
       <div className="container">
         {/* Mapping/fetching the items in the cart */}
-        {cart.map((item) => (
-          <div className="items-container">
-            <Card key={item.id} className="item-card">
-              <ShoppingCartItem item={item} className="item-details" />
-            </Card>
-          </div>
-        ))}
+        <div className="items-container">
+          {cart.map((item) => (
+            <ShoppingCartItem item={item} className="item-details" />
+          ))}
+        </div>
       </div>
     </div>
   );
