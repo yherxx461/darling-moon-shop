@@ -7,10 +7,37 @@
 
 .address-container,
 .shopping-address p {
-  margin-left: 0%;
+  margin-left: 10%;
 }
 
-h1 {
+/* h1 {
   text-align: center;
   align-items: center;
+} */
+
+.total-container,
+.order-title {
+  margin-bottom: 20px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 5rem;
+  padding: 20px;
+}
+
+.checkout-cart-sidebar {
+  position: fixed;
+  right: 0;
+  margin-right: 30%;
+}
+
+/* .order-title {
+  text-align: center;
+  margin-top: 3rem;
+} */
+
+.page-title,
+.orders {
+  margin-left: 10%;
 }

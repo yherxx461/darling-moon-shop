@@ -40,11 +40,20 @@ function ShoppingCart() {
   };
 
   return (
-    <div>
-      <h1 className="shopping-title">Shopping Cart</h1>
-      <div className="total-container">
-        {/* <Card className="container"> */}
-        <div>
+    <div className="container">
+      <div className="shopping-cart-items">
+        <h1 className="shopping-title">Shopping Cart</h1>
+        {/* </Card> */}
+      </div>
+      {/* Mapping/fetching the items in the cart */}
+      <div className="items-container">
+        {cart.map((item) => (
+          <ShoppingCartItem item={item} className="item-details" />
+        ))}
+      </div>
+      {/* <Card className="container"> */}
+      <div className="shopping-cart-sidebar">
+        <div className="total-container">
           <p>Total: ${totalPrice.toFixed(2)}</p>
           <Button
             className="btn"
@@ -54,15 +63,6 @@ function ShoppingCart() {
           >
             Proceed to Order Checkout
           </Button>
-        </div>
-        {/* </Card> */}
-      </div>
-      <div className="container">
-        {/* Mapping/fetching the items in the cart */}
-        <div className="items-container">
-          {cart.map((item) => (
-            <ShoppingCartItem item={item} className="item-details" />
-          ))}
         </div>
       </div>
     </div>

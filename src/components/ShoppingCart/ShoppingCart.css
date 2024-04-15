@@ -54,3 +54,9 @@
   text-align: center;
   margin-top: 3rem;
 }
+
+.shopping-cart-sidebar {
+  position: fixed;
+  right: 0;
+  margin-right: 10%;
+}

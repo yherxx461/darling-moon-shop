@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useDispatch } from 'react-redux';
 // import { useState } from 'react';
+import './ShoppingCartItem.css';
 
 function ShoppingCartItem({ item }) {
   const dispatch = useDispatch();
