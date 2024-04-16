@@ -8,17 +8,17 @@ const orderCheckoutReducer = (state = [], action) => {
     case 'CLEAR_CART':
       return [];
     case 'SUBMIT_ORDER_SUCCESS':
-      return {
-        ...state,
+      return state.map((order) => ({
+        ...order,
         success: true,
         error: null,
-      };
+      }));
     case 'SUBMIT_ORDER_FAIL':
-      return {
-        ...state,
+      return state.map((order) => ({
+        ...order,
         success: false,
         error: action.payload,
-      };
+      }));
     default:
       return state;
   }

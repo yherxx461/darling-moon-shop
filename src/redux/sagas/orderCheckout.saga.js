@@ -23,7 +23,7 @@ function* fetchOrders() {
 
 function* handleOrderCheckout(action) {
   try {
-    const orderDate = new Date();
+    const orderDate = new Date().toISOString();
     const { addressId } = action.payload;
     yield axios.post('/api/orders', {
       ...orderDate,
