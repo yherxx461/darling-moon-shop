@@ -1,5 +1,5 @@
 // import {Snackbar, Alert } from '@mui/material';
-import { Link, Button } from '@mui/material';
+import { Link, Button, TextField } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -25,6 +25,8 @@ function OrderCheckout() {
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [defaultAddress, setDefaultAddress] = useState(null);
+  const [editMode, setEditMode] = useState(false);
+  const [editedAddress, setEditedAddress] = useState({});
 
   useEffect(() => {
     // Dispatch an action to fetch products when the component mounts
@@ -50,6 +52,21 @@ function OrderCheckout() {
     const defaultAddress = addresses.find((address) => address.is_default);
     setDefaultAddress(defaultAddress);
   }, [addresses]);
+
+  const handleEditAddress = () => {
+    setEditedAddress(defaultAddress);
+    setEditMode(true);
+  };
+  const handleSaveAddress = () => {
+    // dispatch action to update address in redux
+    dispatch({ type: 'UPDATE_ADDRESS', payload: editedAddress });
+    setEditMode(false);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setEditedAddress({ ...editedAddress, [name]: value });
+  };
 
   const handlePlaceOrder = () => {
     if (!defaultAddress) {
@@ -93,19 +110,67 @@ function OrderCheckout() {
       </div>
       <h2 className="ship-to-title">Ship To:</h2>
       <div className="address-container">
-        {defaultAddress ? (
-          // render only the default address is not null
+        {defaultAddress && ! editMode && (
+          // Render input fields for editing
+          <div className="shipping-address">
+            <TextField
+              name="name"
+              label="Name"
+              size="small"
+              className="edit-address-field"
+              value={editedAddress.name}
+              onChange={handleInputChange}
+            />
+            <br></br>
+            <TextField
+              name="street"
+              label="Street"
+              size="small"
+              className="edit-address-field"
+              value={editedAddress.street}
+              onChange={handleInputChange}
+            />
+            <br></br>
+
+            <TextField
+              name="city"
+              label="City"
+              size="small"
+              className="edit-address-field"
+              value={editedAddress.city}
+              onChange={handleInputChange}
+            />
+            <br></br>
+
+            <TextField
+              name="zip"
+              label="Zip"
+              size="small"
+              className="edit-address-field"
+              value={editedAddress.zip}
+              onChange={handleInputChange}
+            />
+            <br></br>
+
+            {/* Add other address fields as needed */}
+            <Button variant="contained" onClick={handleSaveAddress}>
+              Save
+            </Button>
+          </div>
+        ) : defaultAddress ? (
+          // render only the default address
           <div key={defaultAddress.id} className="shipping-address">
             <div>
-              <p style={{ justifyContent: 'flex-start' }}>{user.name}</p>
-              <p style={{ justifyContent: 'flex-start' }}>
-                {defaultAddress.street}
-              </p>
-              <p style={{ justifyContent: 'flex-start' }}>
+              <p>{user.name}</p>
+              <p>{defaultAddress.street}</p>
+              <p>
                 {defaultAddress.city}, {defaultAddress.state}{' '}
                 {defaultAddress.zip}
               </p>
             </div>
+            <Button variant="outlined" size="small" onClick={handleEditAddress}>
+              Edit
+            </Button>
           </div>
         ) : (
           <p>No address found</p>

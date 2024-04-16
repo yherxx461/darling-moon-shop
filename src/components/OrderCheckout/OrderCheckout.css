@@ -8,6 +8,7 @@
 .address-container,
 .shopping-address {
   margin-left: 15%;
+  /* margin-bottom: 10%; */
 }
 
 /* h1 {
@@ -52,4 +53,8 @@
   text-align: center;
   justify-content: center;
   margin-left: 15%;
+}
+
+.edit-address-field {
+  padding: 5px;
 }
