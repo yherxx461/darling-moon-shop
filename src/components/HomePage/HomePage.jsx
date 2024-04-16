@@ -27,9 +27,7 @@ function HomePage() {
 
   return (
     <div>
-      <h1 className="home-title" justifyContent="center">
-        Featured Keychains
-      </h1>
+      <h1 className="home-title">Featured Keychains</h1>
       <Grid justifyContent="center" container spacing={2}>
         {featured.map((featuredItem) => {
           return (

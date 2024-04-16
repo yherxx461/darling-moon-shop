@@ -6,15 +6,7 @@ import { useSelector } from 'react-redux';
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import ShoppingCartIconPage from '../ShoppingCart/ShoppingCartIconPage';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-// import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Box,
-  Menu,
-} from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Box } from '@mui/material';
 function Nav() {
   const user = useSelector((store) => store.user);
 
@@ -28,9 +20,6 @@ function Nav() {
       }}
     >
       <Toolbar>
-        <IconButton arial-label="app" style={{ color: 'black' }} f>
-          <Menu color="inherit" />
-        </IconButton>
         <Link to="/home" className="navLink">
           <IconButton style={{ color: 'black' }}>
             <HomeOutlinedIcon fontSize="large" />{' '}
