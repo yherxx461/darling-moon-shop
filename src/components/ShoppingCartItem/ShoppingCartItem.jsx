@@ -54,12 +54,11 @@ function ShoppingCartItem({ item }) {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Product</TableCell>
-                <TableCell>Product Name</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell>Quantity</TableCell>
+                <TableCell align="center">Product</TableCell>
+                <TableCell align="center">Product Name</TableCell>
+                <TableCell align="center">Price</TableCell>
+                <TableCell align="center">Quantity</TableCell>
                 <TableCell>{''}</TableCell>
-                {/* <ShoppingCartItem item={item} className="item-details" /> */}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -72,8 +71,8 @@ function ShoppingCartItem({ item }) {
                 <TableCell component="th" scope="row">
                   <img src={item.img} className="item-image" />
                 </TableCell>
-                <TableCell>{item.product_name}</TableCell>
-                <TableCell>$ {item.price}</TableCell>
+                <TableCell align="center">{item.product_name}</TableCell>
+                <TableCell align="center">$ {item.price}</TableCell>
                 <TableCell>
                   x{' '}
                   <IconButton
@@ -106,28 +105,6 @@ function ShoppingCartItem({ item }) {
             </TableBody>
           </Table>
         </TableContainer>
-        {/* <div className="item-details">
-        <h3>{item.product_name}</h3>
-        <br></br>
-        <p>
-          $ {item.price} x{' '}
-          <IconButton size="small" color="secondary" onClick={handleDownButton}>
-            <KeyboardArrowDownOutlinedIcon />
-          </IconButton>
-          {item.quantity} qty{' '}
-          <IconButton size="small" color="secondary" onClick={handleUpButton}>
-            <KeyboardArrowUpOutlinedIcon />
-          </IconButton>
-        </p>
-        <Button
-          size="small"
-          variant="outlined"
-          type="button"
-          onClick={() => handleDeleteItem(item.id)}
-        >
-          Remove
-        </Button>
-      </div>{' '} */}
       </div>
     </div>
   );

@@ -6,8 +6,8 @@
 } */
 
 .address-container,
-.shopping-address p {
-  margin-left: 10%;
+.shopping-address {
+  margin-left: 15%;
 }
 
 /* h1 {
@@ -15,29 +15,41 @@
   align-items: center;
 } */
 
-.total-container,
-.order-title {
+.total-container {
   margin-bottom: 20px;
   flex-direction: column;
   display: flex;
   align-items: center;
   text-align: center;
-  margin-top: 5rem;
-  padding: 20px;
 }
 
 .checkout-cart-sidebar {
   position: fixed;
   right: 0;
-  margin-right: 30%;
+  margin-right: 15%;
+  text-align: center;
 }
 
-/* .order-title {
+.order-title {
   text-align: center;
-  margin-top: 3rem;
-} */
+  margin-top: 5rem;
+}
 
-.page-title,
+.ship-to-title {
+  margin-left: 15%;
+}
 .orders {
-  margin-left: 10%;
+  margin-left: 15%;
+  /* padding: 20%; */
+}
+
+.order-image {
+  height: 200x;
+  width: 200px;
+}
+
+.order-container {
+  text-align: center;
+  justify-content: center;
+  margin-left: 15%;
 }

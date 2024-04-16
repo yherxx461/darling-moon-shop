@@ -1,9 +1,18 @@
-import { Box, Link, Button, Snackbar, Alert } from '@mui/material';
+// import {Snackbar, Alert } from '@mui/material';
+import { Link, Button } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 import './OrderCheckout.css';
+// import ShoppingCartItem from '../ShoppingCartItem/ShoppingCartItem';
 
 function OrderCheckout() {
   const user = useSelector((store) => store.user);
@@ -11,8 +20,8 @@ function OrderCheckout() {
   const cart = useSelector((store) => store.cart);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
+  // const [snackbarOpen, setSnackbarOpen] = useState(false);
+  // const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [defaultAddress, setDefaultAddress] = useState(null);
@@ -56,31 +65,34 @@ function OrderCheckout() {
     dispatch({ type: 'SUBMIT_ORDER_REQUEST', payload: orderDetails });
     dispatch({ type: 'CLEAR_CART' });
     history.push('/order-confirmation');
-    setSnackbarMessage('Order placed successfully');
-    setSnackbarOpen(true);
+    // setSnackbarMessage('Order placed successfully');
+    // setSnackbarOpen(true);
   };
 
-  const handleCloseSnackbar = () => {
-    // Closes the message
-    setSnackbarOpen(false);
-  };
-
+  // const handleCloseSnackbar = () => {
+  //   // Closes the message
+  //   setSnackbarOpen(false);
+  // };
   return (
     <>
-      {/* <Box margin="2em" display={'flex'} justifyContent={'space-between'}>
-        <Box width="70%"> */}
-      <div>
-        <h1 className="order-title" justifyContent="center">
-          Order Checkout
-        </h1>
+      <h1 className="order-title">Order Checkout</h1>
+      <div className="checkout-cart-sidebar">
+        <p>Total: ${totalPrice.toFixed(2)}</p>
+        <p>
+          <Link to="/order-confirmation">
+            <Button
+              className="btn"
+              variant="outlined"
+              size="small"
+              onClick={handlePlaceOrder}
+            >
+              Place Order
+            </Button>
+          </Link>
+        </p>
       </div>
-      <div>
-        <h2 className="page-title">Ship To:</h2>
-      </div>
-      <div
-        className="address-container"
-        style={{ display: 'flex', justifyContent: 'flex-start' }}
-      >
+      <h2 className="ship-to-title">Ship To:</h2>
+      <div className="address-container">
         {defaultAddress ? (
           // render only the default address is not null
           <div key={defaultAddress.id} className="shipping-address">
@@ -99,51 +111,56 @@ function OrderCheckout() {
           <p>No address found</p>
         )}
       </div>
-      <div>
-        <h2 className="orders">Orders</h2>
-        {cart.map((product) => (
-          <div
-            className="item-list"
-            style={{ flexDirection: 'column', display: 'flex' }}
-          >
-            <div
-              key={product.id}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                marginBottom: '1em',
-                flexDirection: 'column',
-              }}
-            >
-              {/* <div style={{ marginRight: '1em' }}> */}
-              <img src={product.img} />
-              {/* <div style={{ marginLeft: '1em' }}> */}
-              <h3 style={{ marginLeft: '1em' }}>{product.product_name}</h3>
-              <p style={{ marginLeft: '1em' }}>
-                $ {product.price} x {product.quantity} qty
-              </p>
-            </div>
-          </div>
-        ))}
-        {/* </div> */}
-        {/* </div> */}
-        <div className="checkout-cart-sidebar">
-          Total: ${totalPrice.toFixed(2)}
-          <br></br>
-          <Link to="/order-confirmation">
-            <Button
-              className="btn"
-              variant="outlined"
-              size="small"
-              onClick={handlePlaceOrder}
-            >
-              Place Order
-            </Button>
-          </Link>
-        </div>
-        {/* </div> */}
-      </div>
-      <Snackbar
+      <h2 className="orders">Orders</h2>
+      {cart.map((item) => (
+        <TableContainer
+          key={item.id}
+          className="order-container"
+          component={Paper}
+          sx={{ maxWidth: 1000 }}
+        >
+          <Table sx={{ maxWidth: 1000 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center" style={{ width: '33%' }}>
+                  Product
+                </TableCell>
+                <TableCell align="center" style={{ width: '33%' }}>
+                  Product Name
+                </TableCell>
+                <TableCell align="center" style={{ width: '33%' }}>
+                  Quantity
+                </TableCell>
+                <TableCell>{''}</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {/* {cart.map((item) => ( */}
+              <TableRow
+                key={item.id}
+                className="item-card"
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell
+                  component="th"
+                  scope="row"
+                  align="center"
+                  style={{ width: '33%' }}
+                >
+                  <img src={item.img} className="item-image" />
+                </TableCell>
+                <TableCell align="center" style={{ width: '33%' }}>
+                  {item.product_name}
+                </TableCell>
+                <TableCell align="center" style={{ width: '33%' }}>
+                  {item.quantity} qty
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ))}
+      {/* <Snackbar
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         open={snackbarOpen}
         autoHideDuration={3000}
@@ -152,7 +169,7 @@ function OrderCheckout() {
         <Alert severity="success" onClose={handleCloseSnackbar}>
           {snackbarMessage}
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </>
   );
 }
