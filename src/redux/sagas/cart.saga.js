@@ -47,33 +47,33 @@ function* deleteCartItems(action) {
   }
 }
 
-function* clearCart() {
-  try {
-    yield axios.delete(`/api/cart`);
-    yield put({ type: 'CLEAR_CART' });
-  } catch (error) {
-    console.error('Error clearing cart', error);
-  }
-}
+// function* clearCart() {
+//   try {
+//     yield axios.delete(`/api/cart`);
+//     yield put({ type: 'CLEAR_CART' });
+//   } catch (error) {
+//     console.error('Error clearing cart', error);
+//   }
+// }
 
-function* submitOrder(action) {
-  try {
-    const { order_date, address_id } = action.payload;
-    yield axios.post('/api/orders', { order_date, address_id });
-    yield put({ type: 'SUBMIT_ORDER_SUCCESS' });
-  } catch (error) {
-    console.error('Error submitting order:', error);
-    yield put({ type: 'SUBMIT_ORDER_FAILURE' });
-  }
-}
+// function* submitOrder(action) {
+//   try {
+//     const { order_date, address_id } = action.payload;
+//     yield axios.post('/api/orders', { order_date, address_id });
+//     yield put({ type: 'SUBMIT_ORDER_SUCCESS' });
+//   } catch (error) {
+//     console.error('Error submitting order:', error);
+//     yield put({ type: 'SUBMIT_ORDER_FAILURE' });
+//   }
+// }
 
 function* cartSaga() {
   yield takeLatest('FETCH_CART', fetchCart);
   yield takeLatest('ADD_TO_CART', addToCart);
   yield takeLatest('UPDATE_CART_QUANTITY', updateCartQuantity);
   yield takeLatest('DELETE_CART_ITEM', deleteCartItems);
-  yield takeLatest('CLEAR_CART', clearCart);
-  yield takeLatest('SUBMIT_ORDER_REQUEST', submitOrder);
+  // yield takeLatest('CLEAR_CART', clearCart);
+  // yield takeLatest('SUBMIT_ORDER_REQUEST', submitOrder);
 }
 
 export default cartSaga;
