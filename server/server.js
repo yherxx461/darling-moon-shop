@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const productRouter = require('./routes/product.router');
 const addressRouter = require('./routes/address.router');
 const cartRouter = require('./routes/cart.router');
+const ordersRouter = require('./routes/orders.router');
 
 // Express Middleware
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/address', addressRouter);
 app.use('/api/cart', cartRouter);
+app.use('/api/orders', ordersRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {

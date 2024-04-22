@@ -23,19 +23,21 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 // POST Route to handle checkout
-router.post('/', (req, res) => {
-  const { item, addressId, userId } = req.body;
+router.post('/', rejectUnauthenticated, (req, res) => {
+  const { items, addressId, userId } = req.body;
 
-  const orderDate = new Date();
+  const orderDate = new Date().toDateString();
   const queryText = `INSERT INTO orders (order_date, address_id, user_id) VALUES ($1, $2, $3) RETURNING id;`;
   const values = [orderDate, addressId, userId];
 
   pool.query(queryText, values).then((result) => {
     const orderId = result.rows[0].id;
+    console.log('orderId', orderId);
 
     const lineItemsQuery = `INSERT INTO line_items (order_id, product_id, quantity) VALUES ($1, $2, $3);`;
-    const lineItemsValues = item.map((item) => [
+    const lineItemsValues = items.map((item) => [
       orderId,
+      item.order_id,
       item.product_id,
       item.quantity,
     ]);
