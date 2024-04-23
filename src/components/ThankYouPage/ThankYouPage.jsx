@@ -1,6 +1,7 @@
 import { Button, Link, Box } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import './ThankYouPage.css';
 // import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -19,7 +20,7 @@ function ThankYouPage() {
 
   return (
     <div className="thankyou-messages">
-      <Box justifyContent="center">
+      <Box justifyContent="center" textAlign="center" margin="25%">
         <p>Your order has been placed! Thank you for your business.</p>
         <Link to="/home">
           <Button
